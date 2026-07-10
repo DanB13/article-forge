@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+  Cover template: one real artefact (left) + one designed thesis panel (right).
+  Replace ARTEFACT_URI via render_cover.py --embed photo.jpg=ARTEFACT_URI
+  Edit the headline/subtitle text directly. Render at 1200x627 for LinkedIn.
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 627px; font-family: Georgia, 'Times New Roman', serif; }
+  /* table-cell, not flex: wkhtmltoimage's Qt WebKit has no unprefixed flexbox */
+  .cover { display: table; table-layout: fixed; width: 1200px; height: 627px; }
+  .artefact {
+    display: table-cell; width: 55%; height: 100%;
+    background-image: url('ARTEFACT_URI');
+    background-size: cover; background-position: center;
+  }
+  .panel {
+    display: table-cell; width: 45%; height: 100%;
+    background: #101418; color: #f2f2f0;
+    vertical-align: middle;
+    padding: 48px;
+  }
+  .kicker {
+    font-family: 'Courier New', monospace; font-size: 15px;
+    letter-spacing: 2px; text-transform: uppercase; color: #6fbf9a;
+    margin-bottom: 20px;
+  }
+  .headline { font-size: 42px; line-height: 1.15; font-weight: bold; }
+  .subtitle { margin-top: 22px; font-size: 19px; line-height: 1.4; color: #b8bcc0; }
+</style>
+</head>
+<body>
+  <div class="cover">
+    <div class="artefact"></div>
+    <div class="panel">
+      <div class="kicker">KICKER TEXT</div>
+      <div class="headline">Headline goes here; make it the article's claim</div>
+      <div class="subtitle">Subtitle expressing the thesis in one line.</div>
+    </div>
+  </div>
+</body>
+</html>
