@@ -11,8 +11,8 @@ current version is in `.claude/skills/article-forge/VERSION`.
   missing file without overwriting existing ones. Onboarding runs it first.
 - New `engine-update` workflow: every Monday your copy checks upstream and opens
   a pull request with the new engine version. Conflicts open an issue instead.
-- UPDATING.md now covers the one-time `--allow-unrelated-histories` merge that
-  every repo created from the template needs once.
+- UPDATING.md now covers the one-time merge every template copy needs
+  (`--allow-unrelated-histories -X theirs`); the workflow does it automatically.
 
 **Provenance (Phase 4)**
 - Subcut claims ("rises to X% at large firms") need their own provenance record.

@@ -57,9 +57,16 @@ jobs:
           fi
 
           git checkout -b "$branch"
-          # The flag only matters for the very first update of a template copy,
-          # which shares no history with upstream. Afterwards it changes nothing.
-          if ! git merge upstream/main --allow-unrelated-histories --no-edit -m "Engine update to v${ver}"; then
+          # A copy made from the template shares no history with upstream. Its
+          # first merge needs --allow-unrelated-histories, and -X theirs so that
+          # engine files (owned by upstream) do not all conflict. profile/ and
+          # articles/ are never shipped upstream, so they are not affected.
+          # Every later merge is a normal one and reports real conflicts.
+          merge_args=(--no-edit -m "Engine update to v${ver}")
+          if ! git merge-base HEAD upstream/main >/dev/null 2>&1; then
+            merge_args+=(--allow-unrelated-histories -X theirs)
+          fi
+          if ! git merge upstream/main "${merge_args[@]}"; then
             files=$(git diff --name-only --diff-filter=U | sed 's/^/- /')
             git merge --abort
             {

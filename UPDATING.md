@@ -27,12 +27,19 @@ public, and your profile and drafts would be visible.
 ```bash
 git remote add upstream https://github.com/DanB13/article-forge.git
 git fetch upstream
-git merge upstream/main --allow-unrelated-histories
+git merge upstream/main --allow-unrelated-histories -X theirs
 ```
 
-If git reports conflicts in `profile/` or `articles/` (repos made from v1.1
-templates can), keep your version: `git checkout --ours <file> && git add <file>`.
-Then commit. Or ask Claude Code to do the merge for you.
+Why `-X theirs`: with no shared history, git sees every engine file that
+differs between your copy and upstream as an add/add conflict. `-X theirs`
+resolves those in favour of upstream, which owns the engine. Your `profile/` and
+`articles/` are not affected, because upstream does not ship them. (Tested on a
+real v1.1 copy: zero conflicts, profile unchanged byte for byte.) If you had
+edited engine files yourself, those edits are replaced; move personal rules into
+`profile/` first. Or ask Claude Code to do the merge for you.
+
+Use `-X theirs` for this first merge only. Later merges are normal, so git will
+flag any real conflict instead of choosing for you.
 
 Run the scaffold once afterwards. It adds any new template files and keeps
 everything you already have:
