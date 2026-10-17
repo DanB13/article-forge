@@ -1,0 +1,50 @@
+name: evals
+
+# Behaviour evals call the model, so they cost money. Run them by hand before a
+# release: Actions > evals > Run workflow. Needs an ANTHROPIC_API_KEY repo secret.
+on:
+  workflow_dispatch:
+    inputs:
+      case:
+        description: "Case name glob (blank runs every case)"
+        required: false
+        default: ""
+      model:
+        description: "Model under test (blank uses the Claude Code default; pin it to compare runs over time)"
+        required: false
+        default: ""
+      max_cost_usd:
+        description: "Hard cost ceiling for the run, in USD"
+        required: false
+        default: "10"
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm install -g @anthropic-ai/claude-code
+      - name: Check the API key is set
+        run: test -n "$ANTHROPIC_API_KEY" || { echo "Add ANTHROPIC_API_KEY under Settings > Secrets and variables > Actions"; exit 1; }
+      - name: Run evals
+        env:
+          CASE: ${{ inputs.case }}
+          MODEL: ${{ inputs.model }}
+          MAX_COST: ${{ inputs.max_cost_usd }}
+        run: |
+          args=(.claude/skills/article-forge --scaffold --trust-plugin --threshold 0.8 --max-cost-usd "$MAX_COST" --json evals-result.json)
+          [ -n "$CASE" ] && args+=(--case "$CASE")
+          [ -n "$MODEL" ] && args+=(--model "$MODEL")
+          claude plugin eval "${args[@]}" --allow-tools Bash Write Edit
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eval-results
+          path: |
+            evals-result.json
+            .claude/skills/article-forge/evals/results/

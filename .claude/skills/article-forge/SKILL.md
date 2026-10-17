@@ -11,7 +11,9 @@ A phase-driven system for producing published, fully-referenced, credible though
 
 1. Look for `profile/voice-profile.md` and `profile/context.md` in the working repo (or attached project knowledge in Claude.ai).
 2. If found, read both fully before doing any writing. They override your default style completely.
-3. If NOT found, run **onboarding** (see `references/00-onboarding.md`): interview the user, fetch or ingest 2–3 pieces they've published, and generate the profile files before proceeding.
+3. If NOT found, run **onboarding** (see `references/00-onboarding.md`). In a repo, first run `python <skill-dir>/scripts/scaffold_profile.py` from the repo root: it creates `profile/` and `articles/` from `assets/templates/` and never overwrites a file that exists. Then interview the user, ingest 2–3 pieces they've published, and fill the profile files before proceeding.
+
+The upstream repo never ships `profile/` or `articles/`. Those folders exist only in the user's own repo, so engine updates cannot conflict with them.
 
 Never overwrite the user's profile with your own defaults. Profile files are the user's property; the skill only proposes additions during the Retro phase, with explicit approval.
 

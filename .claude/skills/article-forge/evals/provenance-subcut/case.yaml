@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: provenance-subcut
+description: Phase 4 must give a subcut claim its own record and reject it when the source measures a different question (specs/002).
+tags: [phase4, regression]
+context:
+  scaffold_script: setup.sh
