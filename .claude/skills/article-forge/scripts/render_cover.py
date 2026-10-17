@@ -18,10 +18,35 @@ Requires: wkhtmltoimage (apt: wkhtmltopdf), Pillow (pip install pillow --break-s
 import argparse
 import base64
 import mimetypes
+import re
+import shutil
 import subprocess
 import sys
 import tempfile
 from pathlib import Path
+
+# wkhtmltoimage's old WebKit ignores these, and the layout silently collapses.
+_UNSUPPORTED_LAYOUT = re.compile(r"display\s*:\s*(inline-)?(flex|grid)\b", re.I)
+
+
+def lint_html(html: str) -> list[str]:
+    """Return warnings for CSS that wkhtmltoimage will not render."""
+    found = sorted({m.group(0).lower().replace(" ", "") for m in _UNSUPPORTED_LAYOUT.finditer(html)})
+    return [f"'{f}' is not supported by wkhtmltoimage; use table/table-cell layout" for f in found]
+
+
+def keep_source(html_path: Path, output_path: Path) -> Path | None:
+    """Copy the input HTML into <output dir>/html/ so the image can be re-rendered later.
+
+    Returns the copy's path, or None when the input already lives there.
+    """
+    dest_dir = output_path.parent / "html"
+    dest = dest_dir / html_path.name
+    if dest.resolve() == html_path.resolve():
+        return None
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(html_path, dest)
+    return dest
 
 
 def embed_images(html: str, embeds: list[str]) -> str:
@@ -49,9 +74,13 @@ def main() -> None:
                     help="viewport width for wkhtmltoimage (default: --width)")
     ap.add_argument("--embed", action="append", default=[],
                     help="image.jpg=PLACEHOLDER_TOKEN (repeatable)")
+    ap.add_argument("--no-keep-source", action="store_true",
+                    help="do not copy the input HTML into <output dir>/html/")
     args = ap.parse_args()
 
     html = args.html.read_text()
+    for warning in lint_html(html):
+        print(f"WARNING: {warning}", file=sys.stderr)
     if args.embed:
         html = embed_images(html, args.embed)
 
@@ -86,6 +115,10 @@ def main() -> None:
     img.save(args.output, "PNG")
     raw.unlink(missing_ok=True)
     print(f"wrote {args.output} ({args.width}x{args.height})")
+    if not args.no_keep_source:
+        kept = keep_source(args.html, args.output)
+        if kept:
+            print(f"kept source {kept}")
 
 
 if __name__ == "__main__":

@@ -21,6 +21,7 @@ For each stat, establish and record in `articles/<slug>/evidence.md`:
 - **Population drift**: "97% of *breached* organisations" quietly becomes "97% of organisations" through repetition.
 - **Zombie stats**: decade-old figures circulating with new dates.
 - **Single-vendor market sizes presented as consensus**: check whether competing analysts publish materially different numbers.
+- **Subcut laundering**: a headline figure is real, but a breakdown attached to it ("…and at large companies it rises to 72%") is not in the source, or measures a different question. Every subcut claim ("rises to", "among", "at companies with", "in the UK") gets its **own** seven-part record. Confirm the source publishes that exact breakdown for that exact question; a number of the right size elsewhere in the same report does not count.
 
 **Heuristic: the more impressive and widely quoted a number is, the MORE suspicious you should be.** The most-shared numbers are the most laundered.
 
@@ -45,6 +46,8 @@ Verify every link resolves **on publish day**, not the day it was found. Stabili
 - Company newsrooms post-rebrand and acquired-company content: fragile to very fragile.
 
 For dead primary sources, substitute in this order: wire-service press release in the publisher's own words → hosted PDF of the original report → reputable trade-press coverage quoting the figures.
+
+**Edition-specific anchors.** When the article names an edition ("IBM's 2025 Cost of a Data Breach Report") but the best link is an evergreen page, that page will serve next year's edition and stop matching the quoted numbers. Record both in the link map: the evergreen URL for readers, plus an edition-specific anchor (the newsroom release or PDF for that year) as the evidence of record.
 
 ## Output
 

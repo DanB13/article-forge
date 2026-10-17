@@ -1,3 +1,5 @@
 # Built skill ZIPs (attach to GitHub releases, don't commit)
 article-forge-skill-*.zip
 __pycache__/
+.pytest_cache/
+.claude/skills/article-forge/evals/results/

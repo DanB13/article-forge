@@ -49,6 +49,7 @@ Markdown usually renders: deliver a markdown pack instead of plain text; keep th
 3. Companion post linking to the article.
 4. Supporting links (forum threads etc.) into the post's comments.
 5. Timing: Tue–Thu, 7–9am in the audience's primary timezone.
+6. **Capture the published link list.** On publish day, save every URL as it actually went live, with its anchor phrase, to `articles/<slug>/links-published.md`. Links often change at the last minute (a dead slug fixed, a source swapped). The Retro phase and future regression tests diff this file against `evidence.md`.
 
 ## Pre-publish checklist
 
@@ -59,3 +60,4 @@ Markdown usually renders: deliver a markdown pack instead of plain text; keep th
 - [ ] Closing question answerable from the reader's own experience
 - [ ] Mobile rendering checked
 - [ ] References prepared for first comment
+- [ ] `links-published.md` saved after publishing

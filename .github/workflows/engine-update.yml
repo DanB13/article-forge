@@ -1,0 +1,108 @@
+name: engine-update
+
+# Runs in YOUR copy of article-forge (made from the template), never upstream.
+# Every Monday it checks the upstream engine for new commits. If there are any,
+# it merges them on a branch and opens a pull request for you to review.
+#
+# One-time setup in your repo:
+#   Settings > Actions > General > Workflow permissions:
+#     "Read and write permissions" and
+#     "Allow GitHub Actions to create and approve pull requests".
+# If an update changes files under .github/workflows/, GitHub refuses the push
+# from the default token. Add a fine-grained token with Contents, Pull requests
+# and Workflows (read and write) as the ENGINE_UPDATE_TOKEN secret.
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  update:
+    if: github.repository != 'DanB13/article-forge'
+    runs-on: ubuntu-latest
+    env:
+      UPSTREAM: ${{ vars.ARTICLE_FORGE_UPSTREAM || 'https://github.com/DanB13/article-forge.git' }}
+      BASE: ${{ github.event.repository.default_branch }}
+      GH_TOKEN: ${{ secrets.ENGINE_UPDATE_TOKEN || github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.ENGINE_UPDATE_TOKEN || github.token }}
+
+      - name: Merge upstream engine on a branch
+        id: merge
+        run: |
+          git config user.name "article-forge engine update"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote add upstream "$UPSTREAM"
+          git fetch --quiet upstream main
+
+          if git merge-base --is-ancestor upstream/main HEAD 2>/dev/null; then
+            echo "Engine is up to date."
+            exit 0
+          fi
+
+          ver=$(git show upstream/main:.claude/skills/article-forge/VERSION | tr -d '[:space:]')
+          branch="engine-update/v${ver}-$(git rev-parse --short upstream/main)"
+          if git ls-remote --exit-code --heads origin "$branch" >/dev/null; then
+            echo "Branch $branch already exists; a pull request is waiting for you."
+            exit 0
+          fi
+
+          git checkout -b "$branch"
+          # A copy made from the template shares no history with upstream. Its
+          # first merge needs --allow-unrelated-histories, and -X theirs so that
+          # engine files (owned by upstream) do not all conflict. profile/ and
+          # articles/ are never shipped upstream, so they are not affected.
+          # Every later merge is a normal one and reports real conflicts.
+          merge_args=(--no-edit -m "Engine update to v${ver}")
+          if ! git merge-base HEAD upstream/main >/dev/null 2>&1; then
+            merge_args+=(--allow-unrelated-histories -X theirs)
+          fi
+          if ! git merge upstream/main "${merge_args[@]}"; then
+            files=$(git diff --name-only --diff-filter=U | sed 's/^/- /')
+            git merge --abort
+            {
+              echo "conflict<<EOF"; echo "$files"; echo "EOF"
+              echo "version=$ver"
+            } >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git push origin "$branch"
+          git show upstream/main:CHANGELOG.md 2>/dev/null \
+            | awk '/^## /{n++} n==1' > pr-body.md || true
+          {
+            echo ""
+            echo "---"
+            echo "Opened automatically by the engine-update workflow. Review the diff, then merge."
+            echo "Your profile/ and articles/ folders are never shipped upstream, so they are untouched."
+          } >> pr-body.md
+          { echo "branch=$branch"; echo "version=$ver"; } >> "$GITHUB_OUTPUT"
+
+      - name: Open pull request
+        if: steps.merge.outputs.branch != ''
+        run: |
+          gh pr create --base "$BASE" --head "${{ steps.merge.outputs.branch }}" \
+            --title "Engine update: article-forge v${{ steps.merge.outputs.version }}" \
+            --body-file pr-body.md
+
+      - name: Report a conflict
+        if: steps.merge.outputs.conflict != ''
+        env:
+          FILES: ${{ steps.merge.outputs.conflict }}
+        run: |
+          gh issue create \
+            --title "Engine update to v${{ steps.merge.outputs.version }} needs a manual merge" \
+            --body "The automatic merge stopped on these files:
+
+          $FILES
+
+          Run locally: \`git fetch upstream && git merge upstream/main\`, keep your own version of anything in profile/ or articles/, then push. Claude Code can do this for you."
