@@ -58,3 +58,20 @@ def reported_kept(ctx, rel):
 def nothing_written(ctx):
     assert not any(Path(ctx["root"]).rglob("*"))
     assert ctx["out"]["created"]  # the dry run still reports what it would create
+
+
+@given("an empty repo with the engine-update workflow")
+def repo_with_workflow(ctx):
+    wf = ctx["root"] / scaffold_profile.UPDATE_WORKFLOW
+    wf.parent.mkdir(parents=True)
+    wf.write_text("name: engine-update\n", encoding="utf-8")
+
+
+@then("the output reminds me to switch on update PRs")
+def has_reminder(ctx):
+    assert any("Allow GitHub Actions to create and approve pull requests" in r for r in ctx["out"]["reminders"])
+
+
+@then("there is no reminder")
+def no_reminder(ctx):
+    assert ctx["out"]["reminders"] == []

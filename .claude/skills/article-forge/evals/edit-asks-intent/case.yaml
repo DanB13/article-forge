@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: edit-asks-intent
+description: Rule 2: a passage pasted with no stated intent gets one question or options, never a silent edit (specs/005).
+tags: [rule-2, phase3]
+context:
+  scaffold_script: setup.sh

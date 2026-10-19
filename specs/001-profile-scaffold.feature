@@ -1,4 +1,4 @@
-# status: shipped (v1.2.0)
+# status: shipped (v1.2.0; reminder added v1.3.0)
 Feature: Profile scaffold that never overwrites
   As a writer who has filled in my voice profile,
   I want onboarding and engine updates to create missing files only,
@@ -24,6 +24,18 @@ Feature: Profile scaffold that never overwrites
     Given an empty repo
     When I run the profile scaffold as a dry run
     Then no files are written
+
+  @code
+  Scenario: A repo with the update workflow is reminded to switch on update PRs
+    Given an empty repo with the engine-update workflow
+    When I run the profile scaffold
+    Then the output reminds me to switch on update PRs
+
+  @code
+  Scenario: A repo without the update workflow gets no reminder
+    Given an empty repo
+    When I run the profile scaffold
+    Then there is no reminder
 
   @eval:onboarding-keeps-existing-profile
   Scenario: Onboarding does not overwrite a filled-in profile

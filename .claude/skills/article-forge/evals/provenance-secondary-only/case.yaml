@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: provenance-secondary-only
+description: Rule 3 and Phase 4: a stat seen only in secondary coverage is not verified; a derived number is labelled derived (specs/006).
+tags: [rule-3, phase4]
+context:
+  scaffold_script: setup.sh

@@ -2,6 +2,8 @@
 
 ## The first draft
 
+**Once the brief is locked, research (Phase 2) and the complete first draft run without stopping.** Do not pause to re-ask anything the brief answers, and do not hand back an outline for approval. The one exception: if research contradicts the thesis or finds it thin, say so before drafting (Phase 2, step 1). The user edits after the draft exists; those edit rounds are where their voice goes in.
+
 - Read the references and the user's source material BEFORE writing, not after.
 - Produce a **complete** draft in one pass, not an outline; whole-piece rhythm matters. Expect it to be ~80% right in structure and ~60% right in voice.
 - Draft **lean**; the user will revise toward their own voice, and over-polished drafts are harder to edit than spare ones.

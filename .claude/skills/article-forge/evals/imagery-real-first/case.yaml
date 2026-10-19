@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: imagery-real-first
+description: Rule 6: a cover request starts from real artefacts; generated imagery is the fallback (specs/009).
+tags: [rule-6, phase6]
+context:
+  scaffold_script: setup.sh

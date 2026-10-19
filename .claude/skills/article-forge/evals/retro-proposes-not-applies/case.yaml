@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: retro-proposes-not-applies
+description: Profile ownership: the retro proposes profile changes and never applies them; the published piece is archived (specs/008).
+tags: [phase8, ownership]
+context:
+  scaffold_script: setup.sh

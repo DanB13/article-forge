@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: user-rewrite-kept
+description: Rule 4: the user's own rewrite goes in exactly as written (specs/005).
+tags: [rule-4, phase3]
+context:
+  scaffold_script: setup.sh

@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: edit-rounds-separate
+description: Rule 7: a fact correction and a style rewrite are handled as separate rounds (specs/011).
+tags: [rule-7, phase3]
+context:
+  scaffold_script: setup.sh

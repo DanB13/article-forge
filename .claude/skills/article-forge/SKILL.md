@@ -19,7 +19,7 @@ Never overwrite the user's profile with your own defaults. Profile files are the
 
 ## The phases
 
-Work through these in order for a new article. The user can enter at any phase (e.g. "review this paragraph" jumps to Phase 5 behaviour). Announce which phase you're in when it changes.
+Work through these in order for a new article. Once the brief is locked, Phases 2 and 3 run without stopping, through to a complete first draft (see `references/03-draft.md`). The user can enter at any phase (e.g. "review this paragraph" jumps to Phase 5 behaviour). Announce which phase you're in when it changes.
 
 | Phase | Name | Reference file | Load when |
 |---|---|---|---|
