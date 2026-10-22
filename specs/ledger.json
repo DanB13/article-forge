@@ -1,0 +1,222 @@
+{
+  "released": "1.3.0",
+  "updated": "2026-10-22",
+  "scenarios": {
+    "001-01": {
+      "title": "A new repo gets every template",
+      "spec": "001-profile-scaffold.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "001-02": {
+      "title": "An existing profile is kept byte for byte",
+      "spec": "001-profile-scaffold.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "001-03": {
+      "title": "A dry run writes nothing",
+      "spec": "001-profile-scaffold.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "001-04": {
+      "title": "A repo with the update workflow is reminded to switch on update PRs",
+      "spec": "001-profile-scaffold.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "001-05": {
+      "title": "A repo without the update workflow gets no reminder",
+      "spec": "001-profile-scaffold.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "001-06": {
+      "title": "Onboarding does not overwrite a filled-in profile",
+      "spec": "001-profile-scaffold.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "002-01": {
+      "title": "A subcut that measures a different question is flagged",
+      "spec": "002-provenance-subcuts.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "002-02": {
+      "title": "The supported headline figure is not flagged",
+      "spec": "002-provenance-subcuts.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "003-01": {
+      "title": "Rendering keeps a copy of the HTML source",
+      "spec": "003-imagery-sources.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "003-02": {
+      "title": "A source already in the html folder is not copied onto itself",
+      "spec": "003-imagery-sources.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "003-03": {
+      "title": "Unsupported layout CSS is reported",
+      "spec": "003-imagery-sources.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "004-01": {
+      "title": "An ambiguous theme gets questions, not a draft",
+      "spec": "004-brief-before-draft.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "004-02": {
+      "title": "A locked brief gets a complete first draft in one pass",
+      "spec": "004-brief-before-draft.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "004-03": {
+      "title": "The first draft follows the profile's mechanics",
+      "spec": "004-brief-before-draft.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "005-01": {
+      "title": "A passage with no stated intent gets a question or options, not an edit",
+      "spec": "005-never-edit-silently.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "005-02": {
+      "title": "The writer's own rewrite goes in word for word",
+      "spec": "005-never-edit-silently.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "006-01": {
+      "title": "Draft statistics carry the unverified marker",
+      "spec": "006-statistics-stay-flagged.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "006-02": {
+      "title": "A statistic seen only in secondary coverage is not verified",
+      "spec": "006-statistics-stay-flagged.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "006-03": {
+      "title": "A derived number is labelled as derived",
+      "spec": "006-statistics-stay-flagged.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "007-01": {
+      "title": "Approved mechanical fixes remove em dashes and banned words",
+      "spec": "007-voice-edit-mechanics.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "007-02": {
+      "title": "\"X, not Y\" contrasts are cut to the profile limit",
+      "spec": "007-voice-edit-mechanics.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "007-03": {
+      "title": "Personal details are asked for, never invented",
+      "spec": "007-voice-edit-mechanics.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "008-01": {
+      "title": "The retro proposes profile changes and does not apply them",
+      "spec": "008-profile-ownership.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "008-02": {
+      "title": "The retro writes its record now and asks before archiving",
+      "spec": "008-profile-ownership.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "009-01": {
+      "title": "A cover request starts from real material",
+      "spec": "009-imagery-real-first.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "010-01": {
+      "title": "A scenario with no test tag fails the check",
+      "spec": "010-spec-hygiene.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "010-02": {
+      "title": "An eval case that no scenario uses fails as an orphan",
+      "spec": "010-spec-hygiene.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "010-03": {
+      "title": "A superseded spec is listed as a retire candidate",
+      "spec": "010-spec-hygiene.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "010-04": {
+      "title": "A shipped eval scenario that was never verified is flagged",
+      "spec": "010-spec-hygiene.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "010-05": {
+      "title": "Eval verification goes stale after 90 days",
+      "spec": "010-spec-hygiene.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "010-06": {
+      "title": "Private specs and evals under local/ are checked too",
+      "spec": "010-spec-hygiene.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "010-07": {
+      "title": "Every eval case file parses",
+      "spec": "010-spec-hygiene.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "011-01": {
+      "title": "The writer's role is not made bigger than the anchor says",
+      "spec": "011-accuracy-and-rounds.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "011-02": {
+      "title": "A fact fix and a style rewrite are handled as separate rounds",
+      "spec": "011-accuracy-and-rounds.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "012-01": {
+      "title": "Version numbers agree",
+      "spec": "012-release.feature",
+      "status": "active",
+      "since": "1.3.0"
+    },
+    "012-02": {
+      "title": "The skill ZIP leaves out evals and fixtures",
+      "spec": "012-release.feature",
+      "status": "active",
+      "since": "1.3.0"
+    }
+  }
+}

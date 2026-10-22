@@ -4,7 +4,7 @@ Feature: Profile scaffold that never overwrites
   I want onboarding and engine updates to create missing files only,
   so that my profile and articles can never be lost or reset.
 
-  @code
+  @code @id:001-01
   Scenario: A new repo gets every template
     Given an empty repo
     When I run the profile scaffold
@@ -12,33 +12,33 @@ Feature: Profile scaffold that never overwrites
     And profile/context.md is created
     And articles/_ideas.md is created
 
-  @code
+  @code @id:001-02
   Scenario: An existing profile is kept byte for byte
     Given a repo where profile/voice-profile.md says "MY OWN RULES"
     When I run the profile scaffold
     Then profile/voice-profile.md still says "MY OWN RULES"
     And profile/voice-profile.md is reported as kept
 
-  @code
+  @code @id:001-03
   Scenario: A dry run writes nothing
     Given an empty repo
     When I run the profile scaffold as a dry run
     Then no files are written
 
-  @code
+  @code @id:001-04
   Scenario: A repo with the update workflow is reminded to switch on update PRs
     Given an empty repo with the engine-update workflow
     When I run the profile scaffold
     Then the output reminds me to switch on update PRs
 
-  @code
+  @code @id:001-05
   Scenario: A repo without the update workflow gets no reminder
     Given an empty repo
     When I run the profile scaffold
     Then there is no reminder
 
   # last-verified: 2026-10-22
-  @eval:onboarding-keeps-existing-profile
+  @eval:onboarding-keeps-existing-profile @id:001-06
   Scenario: Onboarding does not overwrite a filled-in profile
     Given a repo with a filled-in voice profile
     When the user says "set up my voice profile"

@@ -31,10 +31,10 @@ Use `scripts/render_cover.py`. Iterate on contrast and text alignment with the u
 
 Two rules learned the hard way:
 
-- **Keep the HTML sources.** `render_cover.py` copies each input HTML into `assets/html/` next to the PNG (skip with `--no-keep-source`). Without the source, a late title change means rebuilding a slide from scratch.
+- **Keep the HTML sources.** `render_cover.py` copies each input HTML into `articles/<slug>/assets/html/` next to the PNG (skip with `--no-keep-source`). Without the source, a late title change means rebuilding a slide from scratch.
 - **No flexbox or grid.** wkhtmltoimage uses an old WebKit engine that ignores `display: flex` and `display: grid`, and the layout silently collapses. Use `table` / `table-cell` layouts. `render_cover.py` warns when it finds either.
 
-For a multi-article series, lock an image style guide once (palette with hex values, type sizes at the render canvas, layout tokens) in the first article's `assets/image-style-guide.md`, and reuse it for every later piece. Start from `assets/image-style-guide-template.md`.
+For a multi-article series, lock an image style guide once (palette with hex values, type sizes at the render canvas, layout tokens) in the first article's `articles/<slug>/assets/image-style-guide.md`, and reuse it for every later piece. Start from `assets/image-style-guide-template.md`.
 
 ## Third-party options (document for users, don't assume)
 

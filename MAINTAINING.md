@@ -8,7 +8,10 @@ that every user runs on their own profile.
 
 1. **Write.** Add or edit `specs/NNN-name.feature`: the story (As a / I want /
    so that), `# status: proposed`, and each scenario tagged `@code` or
-   `@eval:<case>`.
+   `@eval:<case>`, plus a permanent ID: `@id:NNN-01`, `@id:NNN-02`... An ID
+   never changes and is never reused. Scenarios that check the public engine
+   repo itself also get `@upstream`, so writers' copies skip them.
+   **The maintainer approves the scenarios before the build starts.**
 2. **Red.** `python tools/check_specs.py` fails until a test exists. Write the
    pytest-bdd steps in `tests/`, or the eval case in
    `.claude/skills/article-forge/evals/<case>/`. It fails until the behaviour
@@ -27,8 +30,12 @@ A new behaviour-only feature file also goes in the list in
 | Tier | When | Command | Cost |
 |---|---|---|---|
 | T1 | Every push and PR (CI) | `python tools/check_specs.py && pytest` + `claude plugin validate` | Free |
-| T2 | Before a release | `claude plugin eval .claude/skills/article-forge --scaffold --allow-tools Bash Write Edit --threshold 0.8 --max-cost-usd 10`, then `python tools/check_specs.py --strict` | Model calls |
+| T2 | Before a final release (enforced) | `claude plugin eval .claude/skills/article-forge --runs 3 --scaffold --allow-tools Bash Write Edit --json run.json --max-cost-usd 20`, then `python tools/eval_summary.py make --version X.Y.Z --from run.json` | Model calls |
 | T3 | Monthly | The T2 suite, to catch model drift (a scheduled cloud task, or the `evals` workflow with an API key) | Model calls |
+
+`pytest` also audits itself against the specs: a skipped `@code` scenario, or
+one that no test ran, fails the run. Only `@eval` scenarios (and `@upstream`
+ones in a writer's copy) may be skipped.
 
 Evals run on whatever account runs them: your Claude plan in a Claude Code
 session, or an Anthropic API key in GitHub Actions (`evals` workflow, run by
@@ -56,7 +63,8 @@ it ships. Nothing is installed or changed.
 
 It fails on an **orphan**: an eval case that no scenario uses. To retire, delete
 the feature (or scenario) and its test or eval case in the same PR, and list it
-under "Retired" in the CHANGELOG. Git history keeps the old files.
+under "Retired" in the CHANGELOG. Released scenarios and eval cases also need a
+retire record (below). Git history keeps the old files.
 
 ## Private specs (your repo only)
 
@@ -71,20 +79,49 @@ in its `prompt.md` frontmatter, and runs with
 
 ## Release
 
-1. Bump `.claude/skills/article-forge/VERSION` and the `version` in
-   `.claude/skills/article-forge/.claude-plugin/plugin.json`; add the
-   CHANGELOG entry. A test fails if the three disagree.
-2. Run T2. The maintainer merges the PR on GitHub with **Squash and merge**,
-   so `main` gets one commit authored by the maintainer. An AI assistant
-   working on the engine stops once the PR is open and its checks are green;
-   it does not merge or tag.
-3. The maintainer tags and pushes from their own machine:
-   `git tag -a v1.3.0 -m "v1.3.0" && git push origin v1.3.0`. Do not create the
-   tag from the GitHub Releases page: that makes the release first, and the
-   workflow then fails when it tries to make it again. The `release`
-   workflow checks the tag, runs the tests, builds the skill ZIP (without
-   evals) and publishes a GitHub Release.
-4. Users get the engine in Monday's update PR; Claude.ai users download the ZIP.
+Every release goes out as a candidate first. Your private repo, set to the `rc`
+channel, is the staging step.
+
+1. **Prepare.** Bump `.claude/skills/article-forge/VERSION` and the `version`
+   in `.claude/skills/article-forge/.claude-plugin/plugin.json`; add the
+   CHANGELOG entry. A test fails if the three disagree. The PR goes green and
+   the maintainer merges it with **Squash and merge**. An AI assistant stops
+   once the PR is open and green; it does not merge or tag.
+2. **Candidate.** The maintainer tags main from their own machine:
+   `git tag -a v1.3.1-rc1 -m "v1.3.1-rc1" && git push origin v1.3.1-rc1`.
+   The `release` workflow runs the free tests and publishes a pre-release.
+   Repos with `ENGINE_CHANNEL=rc` receive it at their next update. Use it on
+   real work.
+3. **Eval gate.** Run T2 on main and make the summary
+   (`tools/eval_summary.py make`). Then record the release's scenarios:
+   `python tools/check_specs.py --update-ledger X.Y.Z`. It refuses if a
+   scenario from the last release vanished without a retire record. Set the
+   `# last-verified:` dates and each feature's `# status: shipped (vX.Y.Z)`.
+   Commit the summary, the ledger and the dates in one PR; merge it.
+   The summary records a fingerprint of the engine files, so any later change
+   to the engine means a new eval run.
+4. **Final.** Tag the same version without `-rc`:
+   `git tag -a v1.3.1 -m "v1.3.1" && git push origin v1.3.1`. The workflow
+   also runs `check_specs.py --strict --release X.Y.Z` and
+   `eval_summary.py check`, and refuses the release if the ledger is behind,
+   the summary is missing or stale, a case failed, or a case from the last
+   release was not run. Do not create tags from the GitHub Releases page.
+5. Users on the default channel get the final release in Monday's update PR;
+   Claude.ai users download the ZIP.
+
+## Retire records
+
+To remove a released scenario or eval case on purpose, add an entry to
+`specs/retired.yaml` in the same PR:
+
+```yaml
+- id: "004-02"            # a scenario ID, or eval:<case> for an eval case
+  reason: "Replaced by 020-01, which checks the same rule more tightly"
+  approved_by: "Dan"
+  date: "2026-11-02"
+```
+
+Without one, `check_specs.py` and the release gate fail and name what vanished.
 
 ## Users and this tooling
 

@@ -7,7 +7,7 @@ Feature: Never edit silently; the writer's own lines win
   Non-negotiable rules 2 and 4.
 
   # last-verified: 2026-10-22
-  @eval:edit-asks-intent
+  @eval:edit-asks-intent @id:005-01
   Scenario: A passage with no stated intent gets a question or options, not an edit
     Given a draft
     When the user pastes a paragraph and says only "change this"
@@ -15,7 +15,7 @@ Feature: Never edit silently; the writer's own lines win
     And the draft file is not changed
 
   # last-verified: 2026-10-22
-  @eval:user-rewrite-kept
+  @eval:user-rewrite-kept @id:005-02
   Scenario: The writer's own rewrite goes in word for word
     Given a draft
     When the user supplies a replacement line of their own

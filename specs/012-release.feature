@@ -4,13 +4,13 @@ Feature: A release is consistent and ships only what users need
   I want every release to carry one version number and a clean skill ZIP,
   so that Claude.ai users get a working skill and nobody gets my test fixtures.
 
-  @code
+  @code @id:012-01
   Scenario: Version numbers agree
     Given the engine repo
     When I read the skill VERSION, the plugin manifest and the CHANGELOG
     Then all three name the same version
 
-  @code
+  @code @id:012-02
   Scenario: The skill ZIP leaves out evals and fixtures
     Given the engine repo
     When I build the skill ZIP

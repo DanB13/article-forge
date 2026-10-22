@@ -10,7 +10,7 @@ Feature: Subcut statistics get their own provenance record
   The eval uses a synthetic survey so the fixture is stable and copyright-free.
 
   # last-verified: 2026-10-22
-  @eval:provenance-subcut
+  @eval:provenance-subcut @id:002-01
   Scenario: A subcut that measures a different question is flagged
     Given a draft that says a survey found 61% overall, rising to 74% at large firms
     And the source survey reports 61% overall and 74% for a different question
@@ -19,7 +19,7 @@ Feature: Subcut statistics get their own provenance record
     And that record says the source does not support it
 
   # last-verified: 2026-10-22
-  @eval:provenance-subcut
+  @eval:provenance-subcut @id:002-02
   Scenario: The supported headline figure is not flagged
     Given the same draft and source
     When Phase 4 runs on the draft
