@@ -7,21 +7,21 @@ Feature: The voice edit enforces the profile's mechanics and never invents the w
   Phase 5.
 
   # last-verified: 2026-10-22
-  @eval:voice-edit-mechanics
+  @eval:voice-edit-mechanics @id:007-01
   Scenario: Approved mechanical fixes remove em dashes and banned words
     Given a draft with em dashes and banned words, and the user's advance approval of mechanical fixes
     When the voice edit runs
     Then the draft contains no em dash and no banned word
 
   # last-verified: 2026-10-22
-  @eval:voice-edit-mechanics
+  @eval:voice-edit-mechanics @id:007-02
   Scenario: "X, not Y" contrasts are cut to the profile limit
     Given a draft with six "X, not Y" contrasts and a profile limit of three
     When the voice edit runs
     Then at most three remain
 
   # last-verified: 2026-10-22
-  @eval:voice-edit-mechanics
+  @eval:voice-edit-mechanics @id:007-03
   Scenario: Personal details are asked for, never invented
     Given a draft with no personal anecdotes
     When the voice edit runs

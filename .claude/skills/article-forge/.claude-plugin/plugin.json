@@ -1,8 +1,11 @@
 {
   "name": "article-forge",
   "description": "Idea-to-published thought-leadership articles: brief, research, draft, statistic provenance, voice edit, imagery, packaging and retro.",
-  "version": "1.3.0",
-  "author": { "name": "Dan Boddington", "url": "https://github.com/DanB13" },
+  "version": "1.3.1",
+  "author": {
+    "name": "Dan Boddington",
+    "url": "https://github.com/DanB13"
+  },
   "repository": "https://github.com/DanB13/article-forge",
   "license": "MIT"
 }

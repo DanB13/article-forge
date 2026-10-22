@@ -10,6 +10,8 @@ From the repo root, run:
 
 It copies `assets/templates/` into `profile/` and `articles/` and reports each file as `created` or `kept`. It never overwrites an existing file. If every file is `kept`, the user already has a profile: read it, and ask whether they want to rebuild it before changing anything.
 
+If the scaffold prints a reminder about update PRs, run `python <skill-dir>/scripts/check_setup.py` and walk the user through any setting it reports as missing. Without them, engine updates never reach their repo.
+
 In Claude.ai without a filesystem, use the same templates as the structure for the files you generate.
 
 ## Step 1 — Gather published writing

@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: migration-asks-first
+description: "A waiting profile migration is announced and needs the writer's yes before it runs (specs/015)."
+tags: [migrations, profile-ownership]
+context:
+  scaffold_script: setup.sh

@@ -1,8 +1,11 @@
 name: release
 
-# Push a version tag (for example v1.3.0) on the public repo to publish a release.
-# Checks that the tag matches VERSION, runs the tests, builds the Claude.ai skill
-# ZIP and attaches it to a GitHub Release with the CHANGELOG entry as notes.
+# Push a version tag on the public repo to publish a release.
+#   v1.3.1-rc1  a release candidate: free tests only; published as a pre-release.
+#               Writers on the "rc" channel (ENGINE_CHANNEL=rc) receive it.
+#   v1.3.1      a final release: also needs specs/ledger.json at 1.3.1 and a passing
+#               eval summary made for exactly this engine (tools/eval_summary.py).
+# Both build the Claude.ai skill ZIP and attach it, with the CHANGELOG entry as notes.
 on:
   push:
     tags: ["v*"]
@@ -20,20 +23,35 @@ jobs:
         with:
           python-version: "3.12"
       - name: Tag matches VERSION
+        id: tag
         run: |
           v=$(tr -d '[:space:]' < .claude/skills/article-forge/VERSION)
-          [ "$GITHUB_REF_NAME" = "v$v" ] || { echo "Tag $GITHUB_REF_NAME does not match VERSION $v"; exit 1; }
+          case "$GITHUB_REF_NAME" in
+            "v$v") echo "kind=final" >> "$GITHUB_OUTPUT" ;;
+            "v$v"-rc[0-9]*) echo "kind=rc" >> "$GITHUB_OUTPUT" ;;
+            *) echo "Tag $GITHUB_REF_NAME does not match VERSION $v"; exit 1 ;;
+          esac
+          echo "version=$v" >> "$GITHUB_OUTPUT"
       - name: Tests
         run: |
-          pip install pytest pytest-bdd pyyaml
+          pip install -r requirements-dev.txt
           python tools/check_specs.py
           pytest -q
+          python tools/secret_scan.py
+      - name: Final release gate (ledger, strict spec check, eval summary)
+        if: steps.tag.outputs.kind == 'final'
+        run: |
+          python tools/check_specs.py --strict --release "${{ steps.tag.outputs.version }}"
+          python tools/eval_summary.py check --version "${{ steps.tag.outputs.version }}" --tag "$GITHUB_REF_NAME"
       - name: Build the skill ZIP
         run: bash tools/package_skill.sh
       - name: Create the release
         env:
           GH_TOKEN: ${{ github.token }}
+          KIND: ${{ steps.tag.outputs.kind }}
         run: |
           awk '/^## /{n++} n==1' CHANGELOG.md > notes.md
-          gh release create "$GITHUB_REF_NAME" article-forge-skill-*.zip \
+          flags=""
+          [ "$KIND" = "rc" ] && flags="--prerelease"
+          gh release create "$GITHUB_REF_NAME" article-forge-skill-*.zip $flags \
             --title "Article Forge $GITHUB_REF_NAME" --notes-file notes.md

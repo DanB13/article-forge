@@ -35,13 +35,17 @@ def _feature(root: Path, folder: str, name: str, body: str, status: str = "shipp
     p.write_text(f"# status: {status}\nFeature: Demo\n\n{body}\n", encoding="utf-8")
 
 
+def _id(name: str) -> str:
+    return f"@id:{name.split('-', 1)[0]}-01"
+
+
 def _code_test(root: Path, rel: str) -> None:
     (root / "tests" / f"test_{Path(rel).stem}.py").write_text(f'scenarios("../{rel}")\n', encoding="utf-8")
 
 
 @given(parsers.re(r'a spec "(?P<name>[^"]+)" with a scenario tagged "(?P<tag>[^"]*)"'))
 def spec_with_tag(repo, name, tag):
-    _feature(repo["root"], "specs", name, f"  {tag}\n  Scenario: Something happens\n    Given x")
+    _feature(repo["root"], "specs", name, f"  {tag} {_id(name)}\n  Scenario: Something happens\n    Given x")
     if tag == "@code":
         _code_test(repo["root"], f"specs/{name}")
 
@@ -54,20 +58,20 @@ def orphan_case(repo, case):
 @given(parsers.parse('a spec "{name}" that supersedes "{old}"'))
 def superseding_spec(repo, name, old):
     _feature(repo["root"], "specs", name,
-             f"# supersedes: {old}\n  @code\n  Scenario: Newer behaviour\n    Given y")
+             f"# supersedes: {old}\n  @code {_id(name)}\n  Scenario: Newer behaviour\n    Given y")
     _code_test(repo["root"], f"specs/{name}")
 
 
 @given(parsers.re(r'a shipped spec "(?P<name>[^"]+)" with an eval scenario verified on "(?P<date>[^"]*)"'))
 def shipped_eval(repo, name, date):
     verified = f"  # last-verified: {date}\n" if date else ""
-    _feature(repo["root"], "specs", name, f"{verified}  @eval:demo-case\n  Scenario: Claude does it\n    Given z")
+    _feature(repo["root"], "specs", name, f"{verified}  @eval:demo-case {_id(name)}\n  Scenario: Claude does it\n    Given z")
     _case(repo["root"], EVALS, "demo-case")
 
 
 @given(parsers.parse('a private spec "{name}" whose scenario uses the private eval case "{case}"'))
 def private_spec(repo, name, case):
-    _feature(repo["root"], "local/specs", name, f"  @eval:{case}\n  Scenario: Pack moves applied\n    Given w",
+    _feature(repo["root"], "local/specs", name, f"  @eval:{case} {_id(name)}\n  Scenario: Pack moves applied\n    Given w",
              status="in-progress")
     _case(repo["root"], Path("local/evals"), case)
 

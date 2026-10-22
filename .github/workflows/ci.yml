@@ -12,11 +12,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install pytest pytest-bdd pyyaml
+      - run: pip install -r requirements-dev.txt
       - name: Every spec scenario has a test
         run: python tools/check_specs.py
-      - name: Code scenarios (pytest-bdd)
+      - name: Code scenarios (pytest-bdd), with the scenario audit
         run: pytest -q -rs
+      - name: No keys or tokens in tracked files
+        run: python tools/secret_scan.py
       - uses: actions/setup-node@v4
         with:
           node-version: "22"

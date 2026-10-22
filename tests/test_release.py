@@ -41,8 +41,7 @@ def same_version(ctx):
 
 @when("I build the skill ZIP")
 def build_zip(ctx, tmp_path):
-    if not shutil.which("zip"):
-        pytest.skip("zip is not installed")
+    assert shutil.which("zip"), "zip must be installed to build the skill ZIP"
     work = tmp_path / "repo"
     shutil.copytree(ROOT / ".claude", work / ".claude")
     shutil.copytree(ROOT / "tools", work / "tools")

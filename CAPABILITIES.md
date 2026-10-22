@@ -1,4 +1,4 @@
-# Capabilities (v1.3.0)
+# Capabilities (v1.3.1)
 
 What the engine does today, by phase. Each line links to the spec that proves
 it, where one exists. Specs live in `specs/`; history is in `CHANGELOG.md`.
@@ -23,7 +23,14 @@ it, where one exists. Specs live in `specs/`; history is in `CHANGELOG.md`.
 | 7 Package | Publish-day link list saved for regression diffs | |
 | 8 Retro | Proposes profile updates for approval; never applies them; archives the piece | [008](specs/008-profile-ownership.feature) |
 | All | Engine updates arrive as pull requests in your own repo | [UPDATING.md](UPDATING.md) |
+| All | Updates never change `profile/` or `articles/`; a half-finished update is finished | [014](specs/014-upgrade-safety.feature) |
+| All | Profile format changes run as approved, ordered, backed-up migrations | [015](specs/015-migrations.feature) |
+| All | Final releases by default; release candidates by choice | [016](specs/016-release-channels.feature) |
+| All | A set-up check for the GitHub settings updates need | [017](specs/017-setup-check.feature) |
 | Maintainer | Every scenario tested; stale specs flagged for retirement | [010](specs/010-spec-hygiene.feature) |
 | Maintainer | Consistent versions; skill ZIP release without evals | [012](specs/012-release.feature) |
+| Maintainer | A final release needs a passing eval run on exactly that engine | [013](specs/013-release-gate.feature) |
+| Maintainer | Scenarios tracked by ID against the last release; skipped tests fail | [018](specs/018-nothing-disappears.feature) |
+| Maintainer | Complete skill ZIP; no private material or keys in the repo | [019](specs/019-package-and-secrets.feature) |
 
 Rows without a spec gain one when they are next changed.

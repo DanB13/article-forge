@@ -3,6 +3,46 @@
 All notable changes to the article-forge engine. Versions follow semver; the
 current version is in `.claude/skills/article-forge/VERSION`.
 
+## v1.3.1 (unreleased): Safe upgrades
+
+Upgrades, releases and tests that cannot fail silently.
+
+**For writers**
+- Updates bring in final releases only. Set the repository variable
+  `ENGINE_CHANNEL=rc` to receive release candidates first.
+- An update that would change `profile/` or `articles/` is refused, and an
+  issue explains why.
+- The update token now only pushes the update branch; the workflow's own
+  token opens the pull request. A token needs only Contents and Workflows.
+- A half-finished update (branch pushed, no pull request) is finished by the
+  next run.
+- The first update of a template copy now also removes engine files that
+  upstream deleted. (Found by the new upgrade rehearsal test.)
+- Profile migrations: `scripts/migrate.py` runs waiting format changes in
+  order, only after your yes, with a backup of every file. Claude checks for
+  waiting migrations at the start of each session. No migrations exist yet.
+- `scripts/check_setup.py` checks the two GitHub settings updates need.
+- `scripts/check_profile.py` checks the profile has what the engine reads.
+- UPDATING.md explains how to undo an update.
+
+**For the maintainer**
+- Final releases need an eval summary made for exactly the released engine
+  (`tools/eval_summary.py`), with every case passing and every case from the
+  last release run. Release candidates need only the free tests.
+- Every scenario has a permanent ID; `specs/ledger.json` records each release's
+  scenarios, and removing one needs a retire record in `specs/retired.yaml`.
+- `pytest` fails if a code scenario is skipped or never runs.
+- Tests check the skill ZIP holds every file the skill mentions, the public
+  repo holds no private material, and no tracked file holds a key or token
+  (`tools/secret_scan.py`, also in CI).
+- Test tools are pinned in `requirements-dev.txt`.
+- A pull request template with a definition of done.
+- Public repo: push protection, secret scanning and a protected main branch
+  (CI must pass) are switched on.
+
+**Specs:** 013 to 019, 29 approved scenarios plus 3 added during the build
+(013-05, 015-07, 018-08); see the v1.3.1 pull request.
+
 ## v1.3.0 (2026-10-22): Prove
 
 Every non-negotiable rule now has a test.

@@ -24,13 +24,17 @@ author's repo that every case's `setup.sh` copies in first.
 From the repo root (every run is a real model call on your plan or API key):
 
 ```bash
-claude plugin eval .claude/skills/article-forge --scaffold --allow-tools Bash Write Edit \
-  --threshold 0.8 --max-cost-usd 10
+claude plugin eval .claude/skills/article-forge --runs 3 --scaffold --allow-tools Bash Write Edit \
+  --json run.json --max-cost-usd 20
+python tools/eval_summary.py make --version X.Y.Z --from run.json
 ```
 
 - `--scaffold` runs each case's `setup.sh`.
 - `--allow-tools` grants the write tools the skill needs.
 - One cheap run of one case: add `--case <name> --runs 1 --ablation none`.
+- `eval_summary.py make` writes `summaries/vX.Y.Z.json`, which a final release
+  needs (spec 013). To fold in a rerun of some cases, pass several `--from`
+  files; a later one replaces earlier results for the same case.
 
 Every fixture is invented (Sam Carter, Acme Research, TechNewsDaily), so the
 cases are stable and hold no third-party text.

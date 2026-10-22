@@ -5,19 +5,19 @@ Feature: Imagery keeps sources and warns on unsupported CSS
   layouts the renderer cannot draw,
   so that I can re-render in minutes instead of rebuilding from scratch.
 
-  @code
+  @code @id:003-01
   Scenario: Rendering keeps a copy of the HTML source
     Given a cover template "cover.html"
     When I keep the source for output "assets/cover.png"
     Then "assets/html/cover.html" exists
 
-  @code
+  @code @id:003-02
   Scenario: A source already in the html folder is not copied onto itself
     Given a cover template "assets/html/cover.html"
     When I keep the source for output "assets/cover.png"
     Then no copy is made
 
-  @code
+  @code @id:003-03
   Scenario Outline: Unsupported layout CSS is reported
     Given HTML containing "<css>"
     When I lint the HTML

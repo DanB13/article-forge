@@ -5,6 +5,9 @@ Create the user's profile/ and articles/ folders from the skill's templates.
 Never overwrites: a file that already exists is left exactly as it is and
 reported as kept. Safe to run on every onboarding and after every update.
 
+A brand-new voice profile already has the latest format, so it is recorded as
+having every migration applied (see migrate.py).
+
 Usage:
   python scaffold_profile.py [repo_root]        # default: current directory
   python scaffold_profile.py --dry-run [repo_root]
@@ -20,9 +23,11 @@ TEMPLATES = Path(__file__).resolve().parent.parent / "assets" / "templates"
 UPDATE_WORKFLOW = Path(".github/workflows/engine-update.yml")
 UPDATE_REMINDER = (
     "Next: switch on engine update PRs in your GitHub repo: Settings > Actions > General > "
-    "Workflow permissions: 'Read and write permissions' and 'Allow GitHub Actions to create "
-    "and approve pull requests'. Without this, updates stop silently. See UPDATING.md."
+    "Workflow permissions: 'Allow GitHub Actions to create and approve pull requests'. "
+    "Without this, updates stop silently. Check it with: "
+    "python .claude/skills/article-forge/scripts/check_setup.py (see UPDATING.md)."
 )
+VOICE_PROFILE = Path("profile/voice-profile.md")
 
 
 def scaffold(root: Path, dry_run: bool = False, templates: Path = TEMPLATES) -> dict[str, list[str]]:
@@ -38,6 +43,12 @@ def scaffold(root: Path, dry_run: bool = False, templates: Path = TEMPLATES) -> 
         if not dry_run:
             dest.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(src, dest)
+    if not dry_run and str(VOICE_PROFILE) in created:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import migrate
+
+        if not (root / migrate.RECORD).exists():
+            migrate.mark_all_applied(root)
     return {"created": created, "kept": kept, "reminders": reminders}
 
 

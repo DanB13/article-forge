@@ -7,7 +7,7 @@ Feature: Real imagery comes first
   Non-negotiable rule 6 and Phase 6. See also 003 (imagery sources and CSS).
 
   # last-verified: 2026-10-22
-  @eval:imagery-real-first
+  @eval:imagery-real-first @id:009-01
   Scenario: A cover request starts from real material
     Given a near-final draft
     When the user asks for a cover image
