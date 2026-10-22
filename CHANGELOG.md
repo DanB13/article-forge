@@ -12,6 +12,13 @@ Every non-negotiable rule now has a test.
   stopping (decision of 19 Oct 2026). The one exception: research that
   contradicts the thesis is raised before drafting.
 - Onboarding's scaffold reminds users to switch on engine update PRs.
+- The skill now also starts on any change request to a draft, including files
+  under `articles/` (it did not start for "replace this line" requests).
+- A message that asks for a fact fix and a style change applies the fact fix
+  first, then handles the style change as its own round.
+- Eval graders for long drafts use exact checks (section count, closing
+  question, every % figure flagged) instead of an LLM judge that saw only part
+  of the file.
 
 **Specs and evals**
 - 8 new feature files (004 to 009, 011, 012) covering all 7 non-negotiable

@@ -1,6 +1,6 @@
 ---
 name: article-forge
-description: A complete idea-to-published workflow for LinkedIn (and other platform) thought-leadership articles. Use this skill whenever the user wants to write, draft, edit, fact-check, illustrate, package, or publish an article, LinkedIn post, or long-form thought-leadership piece; whenever they share a theme, thesis, or article idea; whenever they paste article text for review or edits; and whenever they paste a published article back for a retrospective. Covers briefing, research, drafting, statistic provenance verification, voice editing, imagery, publishing packs, and style learning.
+description: A complete idea-to-published workflow for LinkedIn (and other platform) thought-leadership articles. Use this skill whenever the user wants to write, draft, edit, fact-check, illustrate, package, or publish an article, LinkedIn post, or long-form thought-leadership piece; whenever they share a theme, thesis, or article idea; whenever they paste article text for review or edits, or ask for any change to a draft (including files under articles/), such as replacing a line, fixing a fact or making it punchier; and whenever they paste a published article back for a retrospective. Covers briefing, research, drafting, statistic provenance verification, voice editing, imagery, publishing packs, and style learning.
 ---
 
 # Article Forge

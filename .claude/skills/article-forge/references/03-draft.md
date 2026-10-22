@@ -25,7 +25,7 @@
 Expect dozens of passes. Rules of engagement:
 
 1. **Batch edits**: encourage the user to give 4–8 changes per round rather than one at a time.
-2. **Content rounds and style rounds are separate.** Facts, new paragraphs, and corrections in one kind of round; word bans, punctuation, tone in another.
+2. **Content rounds and style rounds are separate.** Facts, new paragraphs, and corrections in one kind of round; word bans, punctuation, tone in another. When one message mixes both ("fix the number and make it punchier"), apply the factual change first and report it on its own. Then treat the style request as the next round: ask what it should achieve, or offer 2-3 options. Never fold a style rewrite into the same pass as a fact fix.
 3. **When the user pastes a sentence/section for edits**: if they haven't stated intent, ask ONE question — "what do you want this passage to do?" (e.g. punchier, more precise, less salesy, set up the next section). Then offer 2–3 rewrite options with a one-line trade-off each and an honest ranking. Apply only what they choose.
 4. **When the user pastes their own rewrite**: grammar-check it, check for collisions with nearby text (duplicate words, repeated phrases within three paragraphs, broken references), and otherwise leave it alone. Do not re-polish.
 5. **Review-only mode**: if the user says "review, don't edit", return a numbered findings table (typos / punctuation / editorial suggestions, categorised). They approve or reject each item; apply approved items as a single batch.
