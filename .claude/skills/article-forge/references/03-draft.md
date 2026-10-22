@@ -16,9 +16,9 @@
 - **Mirrored sentence structures across sections** when the repetition IS the argument.
 - **Steelman before critique**: give the opposing view its genuine due before dismantling it.
 - **Personal confession opening**: credibility through honesty.
-- **Close with a question readers can answer from their own experience** (when the brief's outcome is engagement).
+- **Close with a question readers can answer from their own experience** (when the brief's outcome is engagement). The question is the article's last line: nothing follows it, not even an invitation to reply.
 - **Engineer the quotable lines**: each major section should contain one sentence that works as a pull quote and comment fodder.
-- Stats are woven where they **close an argument, not decorate it**. All still marked `[UNVERIFIED]` until Phase 4.
+- Stats are woven where they **close an argument, not decorate it**. All still marked `[UNVERIFIED]` until Phase 4, at every appearance: a back-reference ("that 61% figure") carries the marker too, so a later correction finds every mention.
 - **The headline comes LAST.** Keep a working title only. After the stats are verified, generate 8–10 headline options; data-led headlines with a twist outperform abstract ones. Pick, then refine the winner once more.
 
 ## The iteration loop (this is where the article is actually made)
