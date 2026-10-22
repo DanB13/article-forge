@@ -17,10 +17,17 @@ import sys
 from pathlib import Path
 
 TEMPLATES = Path(__file__).resolve().parent.parent / "assets" / "templates"
+UPDATE_WORKFLOW = Path(".github/workflows/engine-update.yml")
+UPDATE_REMINDER = (
+    "Next: switch on engine update PRs in your GitHub repo: Settings > Actions > General > "
+    "Workflow permissions: 'Read and write permissions' and 'Allow GitHub Actions to create "
+    "and approve pull requests'. Without this, updates stop silently. See UPDATING.md."
+)
 
 
 def scaffold(root: Path, dry_run: bool = False, templates: Path = TEMPLATES) -> dict[str, list[str]]:
     created, kept = [], []
+    reminders = [UPDATE_REMINDER] if (root / UPDATE_WORKFLOW).exists() else []
     for src in sorted(p for p in templates.rglob("*") if p.is_file()):
         rel = src.relative_to(templates)
         dest = root / rel
@@ -31,7 +38,7 @@ def scaffold(root: Path, dry_run: bool = False, templates: Path = TEMPLATES) -> 
         if not dry_run:
             dest.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(src, dest)
-    return {"created": created, "kept": kept}
+    return {"created": created, "kept": kept, "reminders": reminders}
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -45,6 +52,8 @@ def main(argv: list[str] | None = None) -> int:
         print(f"{verb}: {f}")
     for f in out["kept"]:
         print(f"kept (already exists): {f}")
+    for r in out["reminders"]:
+        print(r)
     return 0
 
 

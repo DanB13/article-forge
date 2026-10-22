@@ -103,7 +103,7 @@ pytest                          # @code scenarios
 claude plugin eval .claude/skills/article-forge --scaffold --allow-tools Bash Write Edit
 ```
 
-See [specs/README.md](specs/README.md) and the evals
+See [MAINTAINING.md](MAINTAINING.md), [specs/README.md](specs/README.md) and the evals
 [README](.claude/skills/article-forge/evals/README.md).
 
 ## The phases at a glance

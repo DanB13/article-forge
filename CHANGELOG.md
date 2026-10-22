@@ -3,6 +3,45 @@
 All notable changes to the article-forge engine. Versions follow semver; the
 current version is in `.claude/skills/article-forge/VERSION`.
 
+## v1.3.0 (2026-10-22): Prove
+
+Every non-negotiable rule now has a test.
+
+**Engine behaviour**
+- Once the brief is locked, research and the complete first draft run without
+  stopping (decision of 19 Oct 2026). The one exception: research that
+  contradicts the thesis is raised before drafting.
+- Onboarding's scaffold reminds users to switch on engine update PRs.
+- The skill now also starts on any change request to a draft, including files
+  under `articles/` (it did not start for "replace this line" requests).
+- A message that asks for a fact fix and a style change applies the fact fix
+  first, then handles the style change as its own round.
+- Eval graders for long drafts use exact checks (section count, closing
+  question, every % figure flagged) instead of an LLM judge that saw only part
+  of the file.
+- Rule 5: every claim about the writer's past, including roles ("signed off")
+  and past thoughts ("I thought we were done"), comes from the brief's anchors
+  or is marked `[CONFIRM: ...]`. When a confession needs a detail the anchors
+  lack, the engine asks for it before offering openings.
+- Imagery starts by asking what real material exists, before anything is built.
+- The retro writes `retro.md` at once, with each proposal marked pending, and
+  asks before saving the published piece to `profile/corpus/` (spec 008).
+
+**Specs and evals**
+- 8 new feature files (004 to 009, 011, 012) covering all 7 non-negotiable
+  rules, the voice edit, the retro's profile ownership and releases.
+- 10 new eval cases with a shared fictional fixture repo (`evals/_fixtures/`).
+- 010: `check_specs.py` fails on orphan eval cases, warns about retire
+  candidates (`# supersedes:`) and evals not verified in 90 days
+  (`# last-verified:`), scans private specs under `local/`, and has `--strict`.
+
+**Maintainer system**
+- `MAINTAINING.md`: spec-first workflow, test tiers, trying an unreleased
+  engine on real work (`--plugin-dir`), retiring specs, private specs, releases.
+- `release` workflow: a version tag checks VERSION, runs the tests, builds the
+  skill ZIP (without evals) and publishes a GitHub Release.
+- A test fails if VERSION, the plugin manifest and the CHANGELOG disagree.
+
 ## v1.2.0 (2026-10-17): Foundations
 
 **Updates that cannot touch your work**

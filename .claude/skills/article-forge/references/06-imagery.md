@@ -2,6 +2,10 @@
 
 Treat imagery as a separate workstream with its own iteration budget (expect 3–5 rounds on the cover alone). Start only when the text and title are near-final; a cover built before an audience pivot is a cover built twice.
 
+## First step: ask what real material exists
+
+Before you build or render anything, ask the user what real material they have or can get: screenshots, photos, a real document, data for a chart. Then propose the cover from that. Do not build a typography-only placeholder first. Use a designed or generated image only when the user has no real material, and say that it is the fallback.
+
 ## Rules that consistently produce good visual sets
 
 1. **Real beats conceptual.** Real photographs, real screenshots, real charts, real frameworks. Reject stock-concept imagery repeatedly until something authentic appears; "no rubbish" said five times is what produces a distinctive set.

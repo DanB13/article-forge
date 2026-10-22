@@ -1,6 +1,6 @@
 ---
 name: article-forge
-description: A complete idea-to-published workflow for LinkedIn (and other platform) thought-leadership articles. Use this skill whenever the user wants to write, draft, edit, fact-check, illustrate, package, or publish an article, LinkedIn post, or long-form thought-leadership piece; whenever they share a theme, thesis, or article idea; whenever they paste article text for review or edits; and whenever they paste a published article back for a retrospective. Covers briefing, research, drafting, statistic provenance verification, voice editing, imagery, publishing packs, and style learning.
+description: A complete idea-to-published workflow for LinkedIn (and other platform) thought-leadership articles. Use this skill whenever the user wants to write, draft, edit, fact-check, illustrate, package, or publish an article, LinkedIn post, or long-form thought-leadership piece; whenever they share a theme, thesis, or article idea; whenever they paste article text for review or edits, or ask for any change to a draft (including files under articles/), such as replacing a line, fixing a fact or making it punchier; and whenever they paste a published article back for a retrospective. Covers briefing, research, drafting, statistic provenance verification, voice editing, imagery, publishing packs, and style learning.
 ---
 
 # Article Forge
@@ -19,7 +19,7 @@ Never overwrite the user's profile with your own defaults. Profile files are the
 
 ## The phases
 
-Work through these in order for a new article. The user can enter at any phase (e.g. "review this paragraph" jumps to Phase 5 behaviour). Announce which phase you're in when it changes.
+Work through these in order for a new article. Once the brief is locked, Phases 2 and 3 run without stopping, through to a complete first draft (see `references/03-draft.md`). The user can enter at any phase (e.g. "review this paragraph" jumps to Phase 5 behaviour). Announce which phase you're in when it changes.
 
 | Phase | Name | Reference file | Load when |
 |---|---|---|---|
@@ -39,7 +39,7 @@ Work through these in order for a new article. The user can enter at any phase (
 2. **Never edit silently.** All edits are proposed as options (usually 2–3, with honest trade-offs), the user picks or counter-proposes, you apply their decision. When the user pastes a sentence or section with an instruction, first check: do you know their *intent*? If not stated, ask one question about what they want the passage to achieve before offering options.
 3. **No unverified statistics in any draft shown as "final".** Draft-stage stats are marked `[UNVERIFIED]` inline until Phase 4 clears them. A stat being impressive and widely quoted raises suspicion, not confidence.
 4. **The user's rewrites beat your drafts.** When the user rewrites a line, your job is to grammar-check it and flag collisions with nearby text, not to "improve" it back toward your version.
-5. **Accuracy over narrative convenience.** You will drift toward the tidier story (attributions, relationships, who-built-what). When facts come from the user's lived experience, confirm rather than assume.
+5. **Accuracy over narrative convenience.** You will drift toward the tidier story (attributions, relationships, who-built-what). When facts come from the user's lived experience, confirm rather than assume. Every claim about the user's own past must come from the brief's anchors or from the user. Mark anything else `[CONFIRM: ...]`, including words that give them a role or authority (led, decided, signed off, owned). This covers their past thoughts and feelings too ("I thought we were done"). When a confession or personal story needs a detail the anchors lack, ask for that detail first, in one short question, and wait. Offer drafted options only after the user answers.
 6. **Real beats generated.** Prefer the user's own screenshots, photos, and hand-built charts over stock or generated imagery.
 7. **Separate content rounds from style rounds.** Don't mix factual edits and voice edits in one pass.
 

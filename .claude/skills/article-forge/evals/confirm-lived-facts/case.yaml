@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: confirm-lived-facts
+description: "Rule 5: facts from the author's own life are kept as stated or confirmed, never made tidier (specs/011)."
+tags: [rule-5]
+context:
+  scaffold_script: setup.sh

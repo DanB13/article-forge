@@ -1,0 +1,39 @@
+name: release
+
+# Push a version tag (for example v1.3.0) on the public repo to publish a release.
+# Checks that the tag matches VERSION, runs the tests, builds the Claude.ai skill
+# ZIP and attaches it to a GitHub Release with the CHANGELOG entry as notes.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    if: github.repository == 'DanB13/article-forge'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Tag matches VERSION
+        run: |
+          v=$(tr -d '[:space:]' < .claude/skills/article-forge/VERSION)
+          [ "$GITHUB_REF_NAME" = "v$v" ] || { echo "Tag $GITHUB_REF_NAME does not match VERSION $v"; exit 1; }
+      - name: Tests
+        run: |
+          pip install pytest pytest-bdd pyyaml
+          python tools/check_specs.py
+          pytest -q
+      - name: Build the skill ZIP
+        run: bash tools/package_skill.sh
+      - name: Create the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          awk '/^## /{n++} n==1' CHANGELOG.md > notes.md
+          gh release create "$GITHUB_REF_NAME" article-forge-skill-*.zip \
+            --title "Article Forge $GITHUB_REF_NAME" --notes-file notes.md
