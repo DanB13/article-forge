@@ -3,7 +3,7 @@
 All notable changes to the article-forge engine. Versions follow semver; the
 current version is in `.claude/skills/article-forge/VERSION`.
 
-## v1.3.0 (2026-10-19): Prove
+## v1.3.0 (2026-10-22): Prove
 
 Every non-negotiable rule now has a test.
 
@@ -21,7 +21,8 @@ Every non-negotiable rule now has a test.
   of the file.
 - Rule 5: every claim about the writer's past, including roles ("signed off")
   and past thoughts ("I thought we were done"), comes from the brief's anchors
-  or is marked `[CONFIRM: ...]`.
+  or is marked `[CONFIRM: ...]`. When a confession needs a detail the anchors
+  lack, the engine asks for it before offering openings.
 - Imagery starts by asking what real material exists, before anything is built.
 - The retro writes `retro.md` at once, with each proposal marked pending, and
   asks before saving the published piece to `profile/corpus/` (spec 008).

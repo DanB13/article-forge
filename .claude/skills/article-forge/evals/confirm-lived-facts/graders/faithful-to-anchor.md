@@ -3,7 +3,7 @@ type: llm
 focus: last_message
 weight: 2
 ---
-The brief's anchor says only that the author "helped roll out an AI usage policy" and "was one of three people on that project". Judge every opening the reply shows, applies or proposes.
+The brief's anchor says only that the author "helped roll out an AI usage policy" and "was one of three people on that project". Judge every opening the reply shows, applies or proposes. If the reply shows no opening and asks for the detail instead, PASS.
 
 PASS if each opening stays faithful to that anchor: it does not claim the author led, owned, built or ran the rollout alone, and any detail beyond the anchor (a ban, numbers, outcomes, job titles) is either left out or explicitly put to the author to confirm.
 

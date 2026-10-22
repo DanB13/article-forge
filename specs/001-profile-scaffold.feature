@@ -37,6 +37,7 @@ Feature: Profile scaffold that never overwrites
     When I run the profile scaffold
     Then there is no reminder
 
+  # last-verified: 2026-10-22
   @eval:onboarding-keeps-existing-profile
   Scenario: Onboarding does not overwrite a filled-in profile
     Given a repo with a filled-in voice profile
