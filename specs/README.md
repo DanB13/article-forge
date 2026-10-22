@@ -51,12 +51,12 @@ The full workflow (tiers, retiring, releasing) is in `MAINTAINING.md`.
 | 010 | [Spec hygiene: every scenario tested, stale ones flagged](010-spec-hygiene.feature) | shipped (v1.3.0) |
 | 011 | [Facts about the writer stay true; fact and style edits stay apart](011-accuracy-and-rounds.feature) | shipped (v1.3.0) |
 | 012 | [A release is consistent and ships only what users need](012-release.feature) | shipped (v1.3.0) |
-| 013 | [Nothing ships without a passing eval run](013-release-gate.feature) | in progress (v1.3.1) |
-| 014 | [Engine updates cannot touch the writer's own folders](014-upgrade-safety.feature) | in progress (v1.3.1) |
-| 015 | [Profile format changes arrive as approved migrations](015-migrations.feature) | in progress (v1.3.1) |
-| 016 | [Updates bring in final releases; candidates by choice](016-release-channels.feature) | in progress (v1.3.1) |
-| 017 | [A set-up check finds missing GitHub settings](017-setup-check.feature) | in progress (v1.3.1) |
-| 018 | [Nothing disappears silently](018-nothing-disappears.feature) | in progress (v1.3.1) |
-| 019 | [The release package is complete and nothing private leaks](019-package-and-secrets.feature) | in progress (v1.3.1) |
+| 013 | [Nothing ships without a passing eval run](013-release-gate.feature) | shipped (v1.3.1) |
+| 014 | [Engine updates cannot touch the writer's own folders](014-upgrade-safety.feature) | shipped (v1.3.1) |
+| 015 | [Profile format changes arrive as approved migrations](015-migrations.feature) | shipped (v1.3.1) |
+| 016 | [Updates bring in final releases; candidates by choice](016-release-channels.feature) | shipped (v1.3.1) |
+| 017 | [A set-up check finds missing GitHub settings](017-setup-check.feature) | shipped (v1.3.1) |
+| 018 | [Nothing disappears silently](018-nothing-disappears.feature) | shipped (v1.3.1) |
+| 019 | [The release package is complete and nothing private leaks](019-package-and-secrets.feature) | shipped (v1.3.1) |
 
 `CAPABILITIES.md` at the repo root summarises shipped features by phase.

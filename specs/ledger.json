@@ -1,5 +1,5 @@
 {
-  "released": "1.3.0",
+  "released": "1.3.1",
   "updated": "2026-10-22",
   "scenarios": {
     "001-01": {
@@ -217,6 +217,228 @@
       "spec": "012-release.feature",
       "status": "active",
       "since": "1.3.0"
+    },
+    "013-01": {
+      "title": "A release with no eval summary is refused",
+      "spec": "013-release-gate.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "013-02": {
+      "title": "A summary made for different engine content is refused",
+      "spec": "013-release-gate.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "013-03": {
+      "title": "A failed eval case blocks the release",
+      "spec": "013-release-gate.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "013-04": {
+      "title": "A passing summary for the released engine lets the release go ahead",
+      "spec": "013-release-gate.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "013-05": {
+      "title": "A release candidate needs only the free tests",
+      "spec": "013-release-gate.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "014-01": {
+      "title": "The engine repo never contains a writer's folders",
+      "spec": "014-upgrade-safety.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "014-02": {
+      "title": "An upgrade leaves the writer's folders byte for byte",
+      "spec": "014-upgrade-safety.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "014-03": {
+      "title": "An update that would change the writer's folders is refused",
+      "spec": "014-upgrade-safety.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "014-04": {
+      "title": "The token only pushes; the workflow's own access opens the pull request",
+      "spec": "014-upgrade-safety.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "014-05": {
+      "title": "A half-finished update gets its pull request",
+      "spec": "014-upgrade-safety.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "015-01": {
+      "title": "A jump runs every migration in between, in order",
+      "spec": "015-migrations.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "015-02": {
+      "title": "Nothing changes without the writer's yes",
+      "spec": "015-migrations.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "015-03": {
+      "title": "Running the migrations twice changes nothing the second time",
+      "spec": "015-migrations.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "015-04": {
+      "title": "A profile with no record counts as before the first migration",
+      "spec": "015-migrations.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "015-05": {
+      "title": "Profiles from older versions reach the latest version",
+      "spec": "015-migrations.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "015-06": {
+      "title": "A migration backs up each file before changing it",
+      "spec": "015-migrations.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "015-07": {
+      "title": "A new profile starts with every migration marked as applied",
+      "spec": "015-migrations.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "015-08": {
+      "title": "The engine asks before running waiting migrations",
+      "spec": "015-migrations.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "016-01": {
+      "title": "By default the update brings in the latest final release",
+      "spec": "016-release-channels.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "016-02": {
+      "title": "The candidate channel brings in the newest candidate or release",
+      "spec": "016-release-channels.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "017-01": {
+      "title": "The check reports both settings when they are on",
+      "spec": "017-setup-check.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "017-02": {
+      "title": "The check finds missing settings and says how to fix them",
+      "spec": "017-setup-check.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "017-03": {
+      "title": "Without a signed-in GitHub CLI the check explains how to look by hand",
+      "spec": "017-setup-check.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "018-01": {
+      "title": "Every scenario needs an ID",
+      "spec": "018-nothing-disappears.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "018-02": {
+      "title": "Two scenarios cannot share an ID",
+      "spec": "018-nothing-disappears.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "018-03": {
+      "title": "A released scenario cannot disappear without a retire record",
+      "spec": "018-nothing-disappears.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "018-04": {
+      "title": "A retire record with a reason and an approver allows a removal",
+      "spec": "018-nothing-disappears.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "018-05": {
+      "title": "A release's eval run covers every case from the last release",
+      "spec": "018-nothing-disappears.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "018-06": {
+      "title": "Only eval scenarios may be skipped",
+      "spec": "018-nothing-disappears.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "018-07": {
+      "title": "Every code scenario must be collected",
+      "spec": "018-nothing-disappears.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "018-08": {
+      "title": "A release needs the ledger updated to its version",
+      "spec": "018-nothing-disappears.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "019-01": {
+      "title": "The skill ZIP holds every file the skill refers to",
+      "spec": "019-package-and-secrets.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "019-02": {
+      "title": "Every file the skill refers to exists",
+      "spec": "019-package-and-secrets.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "019-03": {
+      "title": "The engine repo holds no private-only material",
+      "spec": "019-package-and-secrets.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "019-04": {
+      "title": "No tracked file holds a key or token",
+      "spec": "019-package-and-secrets.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "019-05": {
+      "title": "The key scan catches a planted token",
+      "spec": "019-package-and-secrets.feature",
+      "status": "active",
+      "since": "1.3.1"
+    },
+    "019-06": {
+      "title": "CI installs pinned test dependencies",
+      "spec": "019-package-and-secrets.feature",
+      "status": "active",
+      "since": "1.3.1"
     }
   }
 }

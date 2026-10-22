@@ -1,4 +1,4 @@
-# status: in-progress
+# status: shipped (v1.3.1)
 Feature: Profile format changes arrive as approved migrations
   As a writer who may skip engine updates for months,
   I want changes to the profile format applied in order, only with my approval, and reversibly,
@@ -64,6 +64,7 @@ Feature: Profile format changes arrive as approved migrations
     When I run the profile scaffold
     Then no engine migration is waiting
 
+  # last-verified: 2026-10-22
   @eval:migration-asks-first @id:015-08
   Scenario: The engine asks before running waiting migrations
     Given a writer's repo with a waiting migration

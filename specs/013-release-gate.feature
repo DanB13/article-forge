@@ -1,4 +1,4 @@
-# status: in-progress
+# status: shipped (v1.3.1)
 Feature: Nothing ships without a passing eval run
   As the maintainer,
   I want a release to need an eval summary made for exactly the engine being released,
