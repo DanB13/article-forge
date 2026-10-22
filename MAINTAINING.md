@@ -74,8 +74,14 @@ in its `prompt.md` frontmatter, and runs with
 1. Bump `.claude/skills/article-forge/VERSION` and the `version` in
    `.claude/skills/article-forge/.claude-plugin/plugin.json`; add the
    CHANGELOG entry. A test fails if the three disagree.
-2. Run T2. Merge to `main`.
-3. Tag and push: `git tag v1.3.0 && git push origin v1.3.0`. The `release`
+2. Run T2. The maintainer merges the PR on GitHub with **Squash and merge**,
+   so `main` gets one commit authored by the maintainer. An AI assistant
+   working on the engine stops once the PR is open and its checks are green;
+   it does not merge or tag.
+3. The maintainer tags and pushes from their own machine:
+   `git tag -a v1.3.0 -m "v1.3.0" && git push origin v1.3.0`. Do not create the
+   tag from the GitHub Releases page: that makes the release first, and the
+   workflow then fails when it tries to make it again. The `release`
    workflow checks the tag, runs the tests, builds the skill ZIP (without
    evals) and publishes a GitHub Release.
 4. Users get the engine in Monday's update PR; Claude.ai users download the ZIP.
