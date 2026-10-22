@@ -8,6 +8,7 @@
 - Produce a **complete** draft in one pass, not an outline; whole-piece rhythm matters. Expect it to be ~80% right in structure and ~60% right in voice.
 - Draft **lean**; the user will revise toward their own voice, and over-polished drafts are harder to edit than spare ones.
 - Apply the voice profile from the start (punctuation rules, banned words), but leave the personality injection mostly to the user — flag places where an aside or confession would land.
+- **`draft.md` holds the article only.** Inline markers (`[UNVERIFIED]`, `[CONFIRM: ...]`) stay in the text. Drafting notes, open questions and your own suggestions go in your reply or in `articles/<slug>/notes.md`, never after the article's last line. The draft must end exactly as the published piece would.
 
 ## Structural moves that have worked
 
