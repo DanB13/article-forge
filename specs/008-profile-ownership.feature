@@ -14,8 +14,8 @@ Feature: The writer owns the profile; the retro only proposes
     And the voice profile file is not edited
 
   @eval:retro-proposes-not-applies
-  Scenario: The retro writes its record and archives the published piece
+  Scenario: The retro writes its record now and asks before archiving
     Given a final draft and the published version
     When the retro runs
-    Then a retro file is written for the article
-    And the published piece is saved to the corpus
+    Then a retro file is written for the article with each proposal marked pending
+    And the published piece is not saved to the corpus until the writer says yes

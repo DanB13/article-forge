@@ -19,6 +19,12 @@ Every non-negotiable rule now has a test.
 - Eval graders for long drafts use exact checks (section count, closing
   question, every % figure flagged) instead of an LLM judge that saw only part
   of the file.
+- Rule 5: every claim about the writer's past, including roles ("signed off")
+  and past thoughts ("I thought we were done"), comes from the brief's anchors
+  or is marked `[CONFIRM: ...]`.
+- Imagery starts by asking what real material exists, before anything is built.
+- The retro writes `retro.md` at once, with each proposal marked pending, and
+  asks before saving the published piece to `profile/corpus/` (spec 008).
 
 **Specs and evals**
 - 8 new feature files (004 to 009, 011, 012) covering all 7 non-negotiable

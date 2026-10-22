@@ -1,7 +1,7 @@
 ---
 type: tool_used
 tool: Edit
-input_match: voice-profile
+input_match: '"file_path":"[^"]*voice-profile'
 min: 0
 max: 0
 arm: both

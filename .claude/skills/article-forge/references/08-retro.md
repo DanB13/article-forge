@@ -22,7 +22,7 @@ Present as a numbered proposal table. The user approves/rejects each. Apply appr
 
 ## Step 3 — Archive to corpus
 
-Save the published version to `profile/corpus/` (or project knowledge). The corpus is the ground truth for future drafting; drafts are not corpus.
+Ask once: "May I save the published version to `profile/corpus/<slug>.md`?" Save it only after a yes, because `profile/` belongs to the user. The corpus is the ground truth for future drafting; drafts are not corpus.
 
 ## Step 4 — Process retro
 
@@ -32,4 +32,4 @@ Two quick questions:
 
 ## Output
 
-`articles/<slug>/retro.md`: the diff summary, approved profile changes, corpus confirmation, and the seeded next idea.
+Write `articles/<slug>/retro.md` in the same turn as the proposal table, before you wait for answers. It holds the diff summary, every proposal with its status (`pending`, `approved` or `rejected`), the corpus status and the seeded next idea. Update the statuses when the user answers. The record then survives if the session ends before the user replies.
