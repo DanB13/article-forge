@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install pytest pytest-bdd
+      - run: pip install pytest pytest-bdd pyyaml
       - name: Every spec scenario has a test
         run: python tools/check_specs.py
       - name: Code scenarios (pytest-bdd)

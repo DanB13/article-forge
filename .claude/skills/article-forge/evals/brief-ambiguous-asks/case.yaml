@@ -1,6 +1,6 @@
 schema_version: "1.1"
 name: brief-ambiguous-asks
-description: Rule 1: an ambiguous theme gets questions, not a draft (specs/004).
+description: "Rule 1: an ambiguous theme gets questions, not a draft (specs/004)."
 tags: [rule-1, phase1]
 context:
   scaffold_script: setup.sh

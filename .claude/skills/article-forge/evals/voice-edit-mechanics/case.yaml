@@ -1,6 +1,6 @@
 schema_version: "1.1"
 name: voice-edit-mechanics
-description: Phase 5: approved mechanical fixes remove em dashes and banned words; contrasts cut to 3; personal details asked, never invented (specs/007).
+description: "Phase 5: approved mechanical fixes remove em dashes and banned words; contrasts cut to 3; personal details asked, never invented (specs/007)."
 tags: [phase5]
 context:
   scaffold_script: setup.sh

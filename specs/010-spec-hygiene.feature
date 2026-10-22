@@ -46,3 +46,9 @@ Feature: Spec hygiene: every scenario is tested, stale ones are flagged for reti
     Given a private spec "L001-rory.feature" whose scenario uses the private eval case "rory-moves"
     When I run the spec check
     Then it passes
+
+  @code
+  Scenario: Every eval case file parses
+    Given the engine's eval cases
+    When I parse each case.yaml and the frontmatter of each prompt and grader
+    Then every file parses as YAML

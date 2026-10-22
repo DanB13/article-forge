@@ -1,6 +1,6 @@
 schema_version: "1.1"
 name: onboarding-keeps-existing-profile
-description: "Set up my voice profile" in a repo that already has a filled profile must not overwrite it (specs/001).
+description: "\"Set up my voice profile\" in a repo that already has a filled profile must not overwrite it (specs/001)."
 tags: [phase0, safety]
 context:
   scaffold_script: setup.sh

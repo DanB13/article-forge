@@ -106,3 +106,31 @@ def stale_count(repo, count):
 @then("it passes")
 def passes(repo):
     assert repo["report"].fails == []
+
+
+ENGINE_EVALS = Path(__file__).resolve().parents[1] / EVALS
+
+
+@given("the engine's eval cases")
+def engine_cases(repo):
+    repo["files"] = [f for f in ENGINE_EVALS.rglob("*")
+                     if f.name == "case.yaml" or (f.suffix == ".md" and (f.parent.name == "graders" or f.name == "prompt.md"))]
+    assert repo["files"]
+
+
+@when("I parse each case.yaml and the frontmatter of each prompt and grader")
+def parse_all(repo):
+    import yaml
+    repo["errors"] = []
+    for f in repo["files"]:
+        text = f.read_text(encoding="utf-8")
+        doc = text if f.name == "case.yaml" else (text.split("---", 2)[1] if text.startswith("---") else "")
+        try:
+            yaml.safe_load(doc)
+        except yaml.YAMLError as e:
+            repo["errors"].append(f"{f.relative_to(ENGINE_EVALS)}: {e}")
+
+
+@then("every file parses as YAML")
+def all_parse(repo):
+    assert repo["errors"] == []
