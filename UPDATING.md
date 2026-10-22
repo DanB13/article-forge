@@ -56,6 +56,11 @@ named `engine-update/v<version>-<sha>` and opens a pull request with the
 changelog. You review and merge it in GitHub. If the merge conflicts, it opens
 an issue instead.
 
+Merge engine update PRs with **Create a merge commit**, never *Squash and
+merge* or *Rebase and merge*. The merge commit is how git knows which upstream
+version you already have. Without it, the next update repeats old changes and
+can conflict.
+
 Enable it once in your repo: **Settings > Actions > General > Workflow
 permissions**: choose *Read and write permissions* and tick *Allow GitHub
 Actions to create and approve pull requests*.
