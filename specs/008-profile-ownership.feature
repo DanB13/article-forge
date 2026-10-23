@@ -7,7 +7,7 @@ Feature: The writer owns the profile; the retro only proposes
 
   Phase 8.
 
-  # last-verified: 2026-10-22
+  # last-verified: 2026-10-23
   @eval:retro-proposes-not-applies @id:008-01
   Scenario: The retro proposes profile changes and does not apply them
     Given a final draft and the published version
@@ -15,7 +15,7 @@ Feature: The writer owns the profile; the retro only proposes
     Then proposed profile changes are listed for approval
     And the voice profile file is not edited
 
-  # last-verified: 2026-10-22
+  # last-verified: 2026-10-23
   @eval:retro-proposes-not-applies @id:008-02
   Scenario: The retro writes its record now and asks before archiving
     Given a final draft and the published version

@@ -12,43 +12,29 @@ your repo  1…n─M1──n+1────M2───n+2────────
                one-time merge with --allow-unrelated-histories; M2, M3 are normal
 ```
 
-## Why the first update is different
+## The first update
 
-A repo created with **Use this template** starts with its own first commit. It
-shares no history with upstream, so a plain `git merge` stops with
-`refusing to merge unrelated histories`. You need one merge with the flag. That
-merge links the two histories, and every later update is an ordinary merge.
+A repo created with **Use this template** starts with its own first commit, so
+it shares no history with upstream. The update tool handles this for you: the
+first update links the two histories (`--allow-unrelated-histories -X theirs`,
+upstream wins on engine files), and every later update is an ordinary merge.
+Your `profile/` and `articles/` are not affected, because upstream does not ship
+them. If you had edited engine files yourself, the first update replaces those
+edits; move personal rules into `profile/` first.
 
 You cannot use a GitHub fork instead: a fork of a public repository is always
 public, and your profile and drafts would be visible.
 
-## One-time setup (Claude Code / git users)
+To do the first merge by hand instead (or ask Claude Code to):
 
 ```bash
 git remote add upstream https://github.com/DanB13/article-forge.git
-git fetch upstream
-git merge upstream/main --allow-unrelated-histories -X theirs
-```
-
-Why `-X theirs`: with no shared history, git sees every engine file that
-differs between your copy and upstream as an add/add conflict. `-X theirs`
-resolves those in favour of upstream, which owns the engine. Your `profile/` and
-`articles/` are not affected, because upstream does not ship them. (Tested on a
-real v1.1 copy: zero conflicts, profile unchanged byte for byte.) If you had
-edited engine files yourself, those edits are replaced; move personal rules into
-`profile/` first. Or ask Claude Code to do the merge for you.
-
-Use `-X theirs` for this first merge only. Later merges are normal, so git will
-flag any real conflict instead of choosing for you.
-
-Run the scaffold once afterwards. It adds any new template files and keeps
-everything you already have:
-
-```bash
+git fetch upstream --tags
+git merge <newest tag> --allow-unrelated-histories -X theirs
 python .claude/skills/article-forge/scripts/scaffold_profile.py
 ```
 
-## After that: updates arrive as pull requests
+## Updates arrive as pull requests
 
 The `engine-update` workflow (`.github/workflows/engine-update.yml`) runs every
 Monday in your repo. It runs `tools/engine_update.py`, which:

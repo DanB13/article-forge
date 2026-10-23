@@ -2,8 +2,18 @@
 tier: style
 mutant:
 - file: SKILL.md
-  text: 3. **No unverified statistics in any draft shown as "final".** Draft-stage stats are marked `[UNVERIFIED]` inline until Phase 4 clears them. A stat being impressive and widely quoted raises suspicion,
-    not confidence.
+  text: '3. **No unverified statistics in any draft shown as "final".** Draft-stage stats are marked `[UNVERIFIED]` inline until Phase 4 clears them. A stat being impressive and widely quoted raises suspicion,
+    not confidence. <!-- specs: 006-01, 006-02, 006-03, 002-01, 002-02 -->'
+- file: SKILL.md
+  text: '├── research.md       # candidate stats + claimed sources, all marked unverified'
+- file: references/02-research.md
+  text: 3. **Collect more statistics than will be used**; selection is for narrative fit later, not volume. Record each stat WITH its claimed source, and mark every one `[UNVERIFIED]`.
+- file: references/02-research.md
+  text: '`articles/<slug>/research.md`: candidate stats table (claim, claimed source, URL, why it might fit), anchor-fact checks, historical evidence, human artefacts, internal references. All stats flagged
+    `[UNVERIFIED]`.'
+- file: references/03-draft.md
+  text: '- **`draft.md` holds the article only.** Inline markers (`[UNVERIFIED]`, `[CONFIRM: ...]`) stay in the text. Drafting notes, open questions and your own suggestions go in your reply or in `articles/<slug>/notes.md`,
+    never after the article''s last line. The draft must end exactly as the published piece would.'
 - file: references/03-draft.md
   text: '- Stats are woven where they **close an argument, not decorate it**. All still marked `[UNVERIFIED]` until Phase 4, at every appearance: a back-reference ("that 61% figure") carries the marker
     too, so a later correction finds every mention.'

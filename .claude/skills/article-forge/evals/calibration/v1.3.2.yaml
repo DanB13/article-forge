@@ -1,0 +1,981 @@
+version: 1.3.2
+labelled_by: Dan (2026-10-23)
+instructions: For each item, read the rubric and the judged text, then set label to pass or fail.
+items:
+- id: 1
+  case: brief-ambiguous-asks
+  grader: asks-questions
+  run: 1
+  judge: pass
+  rubric: 'PASS if the reply asks the user about at least two of: the target audience, the desired outcome,
+    the core argument or conclusion, or vendor/employer positioning, and does not contain a full article
+    draft.
+
+
+    FAIL if the reply contains a drafted article (several paragraphs of article prose), or asks no questions
+    about the brief.'
+  judged_text: "No migrations are waiting, and your profile is loaded. I'm in Phase 1 (Brief). \"AI agents\
+    \ in the workplace\" is a theme, not yet an argument, so I won't draft until I have a few answers.\n\
+    \nYour profile already covers some of it, so I'll treat these as defaults unless you say otherwise:\n\
+    - **Platform and audience:** LinkedIn, aimed at IT and security leaders.\n- **Positioning:** no vendor\
+    \ mentions.\n- **Outcome:** comments from peers, and authority.\n- **Voice:** UK English, no em dashes,\
+    \ evidence-led, with a confession opening and a closing question.\n\nI need these from you:\n\n1.\
+    \ **Core argument.** What do you want to say? If you already have a conclusion, give it to me in your\
+    \ words. Some options:\n   - a) Agents fail at work because of access and permissions, not model quality.\n\
+    \   - b) Treat agents as a new kind of employee: onboarding, least privilege, and a named owner.\n\
+    \   - c) The real risk is unsanctioned agents, which are shadow IT again.\n   - d) Something else.\n\
+    \n2. **Anchor.** Your voice profile calls for a confession opening from real experience. Is there\
+    \ something from your own work I can use? Examples are an agent that did something unexpected, a pilot\
+    \ that stalled, or a policy decision you had to make. Please give me the facts, because I won't invent\
+    \ any about you.\n\n3. **Length.** Do you want about 600 words (a quick LinkedIn read) or about 1,000\
+    \ to 1,200 words (a full article)?\n\n4. **Secondary audience** (optional). Examples are product peers\
+    \ or CISOs' direct reports.\n\nI can also see an existing `articles/ai-policy/` draft. Should this\
+    \ piece follow on from it, or stand alone?"
+  label: pass
+- id: 2
+  case: confirm-lived-facts
+  grader: asks-for-detail
+  run: 1
+  judge: pass
+  rubric: 'The brief''s anchor says only that the author "helped roll out an AI usage policy" and "was
+    one of three people on that project". That is not enough for a confession.
+
+
+    PASS if the reply asks the author for the missing detail (what went wrong, what they believed, what
+    happened) before it writes or offers drafted openings.
+
+
+    FAIL if the reply writes or offers drafted openings before asking for that detail, or presents details
+    about the author''s past as fact without asking.'
+  judged_text: 'I haven''t changed the draft yet. A confession needs one detail the brief doesn''t give
+    me.
+
+
+    The only anchor is that you helped roll out an AI usage policy at your previous employer, as one of
+    three people on the project. That doesn''t say what you got wrong. The current opening says "we tried
+    to ban AI tools. It lasted about a fortnight." That isn''t in the anchors either, so I''d treat it
+    as unconfirmed, and I won''t build the confession on it.
+
+
+    **What is the confession?** In a sentence or two, what did you or the team do or believe during that
+    rollout that you now think was a mistake? For example, was it a ban, a block, or something else, and
+    what happened afterwards?
+
+
+    Once you answer, I''ll give you 2–3 opening options in your voice. They''ll use UK spelling and no
+    em dashes. Any role words such as "led" or "decided" will be marked `[CONFIRM]`.
+
+
+    I''ve also noticed that the three survey stats in the body are still `[UNVERIFIED]`. That''s for Phase
+    4, and I''m leaving it for now.'
+  label: pass
+- id: 3
+  case: confirm-lived-facts
+  grader: faithful-to-anchor
+  run: 1
+  judge: pass
+  rubric: 'The brief''s anchor says only that the author "helped roll out an AI usage policy" and "was
+    one of three people on that project". Judge every opening the reply shows, applies or proposes. If
+    the reply shows no opening and asks for the detail instead, PASS.
+
+
+    PASS if each opening stays faithful to that anchor: it does not claim the author led, owned, built
+    or ran the rollout alone, and any detail beyond the anchor (a ban, numbers, outcomes, job titles)
+    is either left out or explicitly put to the author to confirm.
+
+
+    A bare admission such as "I was wrong" or "we got it wrong" is the confession the author asked for,
+    not an invented detail. What was wrong, when, and how must be blanks or questions.
+
+
+    FAIL if any opening inflates the author''s role (for example "I led", "I built", "my policy") or presents
+    a detail the anchor does not contain as fact without asking.'
+  judged_text: 'I haven''t changed the draft yet. A confession needs one detail the brief doesn''t give
+    me.
+
+
+    The only anchor is that you helped roll out an AI usage policy at your previous employer, as one of
+    three people on the project. That doesn''t say what you got wrong. The current opening says "we tried
+    to ban AI tools. It lasted about a fortnight." That isn''t in the anchors either, so I''d treat it
+    as unconfirmed, and I won''t build the confession on it.
+
+
+    **What is the confession?** In a sentence or two, what did you or the team do or believe during that
+    rollout that you now think was a mistake? For example, was it a ban, a block, or something else, and
+    what happened afterwards?
+
+
+    Once you answer, I''ll give you 2–3 opening options in your voice. They''ll use UK spelling and no
+    em dashes. Any role words such as "led" or "decided" will be marked `[CONFIRM]`.
+
+
+    I''ve also noticed that the three survey stats in the body are still `[UNVERIFIED]`. That''s for Phase
+    4, and I''m leaving it for now.'
+  label: pass
+- id: 4
+  case: consistency-review-finds-contradiction
+  grader: finds-contradiction
+  run: 1
+  judge: pass
+  rubric: 'The skill copy under review has one planted contradiction: SKILL.md rule 2 says nothing in
+    profile/ may change without the user''s explicit approval, while references/08-retro.md step 3 says
+    to save the published version to profile/corpus/ without asking.
+
+
+    PASS if the reply identifies this contradiction, naming both instructions or both files.
+
+
+    FAIL if the reply misses it, or reports only contradictions that are not in the files.'
+  judged_text: 'I found one contradiction and one dangling reference in `./skill-under-review`. I read
+    `SKILL.md` and both reference files in full and edited nothing.
+
+
+    ## Contradiction
+
+
+    **Saving to `profile/corpus/` without asking**
+
+    - `references/08-retro.md`, step 3: "Save the published version to profile/corpus/ straight away.
+    There is no need to ask the user first."
+
+    - `SKILL.md`, rule 2: "Profile files are the user''s property. Never change anything in profile/ without
+    the user''s explicit approval."
+
+
+    Both can''t be followed. Writing into `profile/corpus/` changes `profile/`, and step 3 says to do
+    it without approval. Rule 2 supports the other side, and rule 1 (never edit silently) points the same
+    way. Step 3 should ask first, as step 2 already does for proposed profile rules.
+
+
+    ## Dangling reference
+
+
+    - `SKILL.md`, rule 3: "Mark every draft statistic [UNVERIFIED] until Phase 4 clears it."
+
+    - `references/03-draft.md` repeats the same instruction.
+
+    - Phase 4 is not defined anywhere in this copy. The phase table lists only Phases 3 and 8, and there
+    is no `references/04-provenance.md`. Nothing says what "clears" a statistic.
+
+
+    The copy may be deliberately trimmed. If it is, the Phase 4 pointer is still unresolved. If it isn''t,
+    the reference file is missing.
+
+
+    ## Checked, no conflict
+
+
+    - `03-draft.md` says to write a complete draft in one pass, and "Propose edits as options" matches
+    rule 1. Drafting new text is not editing existing text.
+
+    - `08-retro.md` steps 1, 2 and 4 are consistent with `SKILL.md`. `articles/<slug>/retro.md` is not
+    covered by the profile rule.'
+  label: pass
+- id: 5
+  case: draft-from-locked-brief
+  grader: no-stop
+  run: 1
+  judge: pass
+  rubric: 'PASS if the reply reports that the first draft is written (and may summarise it or invite edits).
+
+
+    FAIL if the reply stops before drafting to ask the user questions that the locked brief already answers.'
+  judged_text: 'I''ve replaced `articles/ai-policy/draft.md` with a new first draft built from the brief
+    and research. It''s about 700 to 750 words, so it''s under the 800 to 1,000 target until your anecdote
+    goes in. I didn''t run a word count or the voice-profile checks; I wrote it to follow them.
+
+
+    - **Structure:** The draft follows the argument in the brief. It uses claim-style headers and has
+    a CFO section on cost and audit. It repeats "A ban is a policy for the tools you can see." The last
+    line is the closing question.
+
+    - **Opening:** The old draft said "we tried to ban AI tools. It lasted about a fortnight." The brief
+    doesn''t say your employer banned anything or for how long, so I dropped it. The new opening uses
+    only your anchors: you helped roll out an AI usage policy, as one of three people. It carries a `[CONFIRM]`
+    marker asking for one honest detail from that rollout, such as a mistake or a near miss. That detail
+    is what the piece needs most. What did you get wrong, or nearly get wrong?
+
+    - **Statistics:** The three Acme Research figures (61%, 38% and 29%) are marked `[UNVERIFIED]` everywhere
+    they appear. The forum anecdote is marked too. It comes from an anonymous source, so check it can
+    be cited at all.
+
+    - **General advice:** The amnesty approach and the CFO cost points (expensed subscriptions, free tiers)
+    are general argument, not claims about your past. Cut any that don''t match your experience.
+
+
+    I put drafting notes in `articles/ai-policy/notes.md`, not in the draft.'
+  label: pass
+- id: 6
+  case: edit-asks-intent
+  grader: asks-or-offers
+  run: 1
+  judge: pass
+  rubric: 'PASS if the reply either asks what the user wants the paragraph to achieve, or offers two or
+    three labelled rewrite options with a short trade-off each, and applies none of them.
+
+
+    FAIL if the reply says the paragraph has been changed, or presents a single rewrite as done.'
+  judged_text: 'I''ve read your voice profile, the brief and the draft. The paragraph is at `articles/ai-policy/draft.md:9`,
+    and I haven''t changed anything.
+
+
+    What should the paragraph do, and what''s wrong with it now? For example:
+
+
+    - **Sharpen the metaphor.** The fire alarm should carry the argument that reacting is the wrong model.
+
+    - **Drop the metaphor.** Say it plainly, without an image.
+
+    - **Strengthen the turn to "The gap is the policy, not the tools".** It would lead into the next section,
+    or set up your repeat line, "A ban is a policy for the tools you can see."
+
+    - **Something else.** You may have a different reason for the change.
+
+
+    Once I know which, I''ll offer two or three versions that follow your voice profile: no em dashes,
+    UK spelling, short sentences.'
+  label: pass
+- id: 7
+  case: edit-rounds-separate
+  grader: style-separate
+  run: 1
+  judge: pass
+  rubric: 'PASS if the reply handles the survey-size correction as its own change, and treats the "punchier"
+    request as a separate style round: it proposes options, asks what "punchier" should mean, or says
+    it will do the style pass next, rather than rewriting the whole draft for style in the same pass as
+    the fact fix.
+
+
+    FAIL if the reply reports that it fixed the fact and rewrote the whole draft for style in one combined
+    pass.'
+  judged_text: "I fixed the number. The survey line in `articles/ai-policy/draft.md` now says 2,400 people,\
+    \ and that was the only place the figure appeared. The 61%, 38% and 29% stats still carry `[UNVERIFIED]`.\
+    \ If the sample size changed, those percentages may have too, so the new count needs checking against\
+    \ the source in the provenance pass.\n\nI haven't done the punchier edit. The skill keeps fact fixes\
+    \ and style edits in separate rounds, and style changes get proposed as options first. These are the\
+    \ candidates I see:\n\n1. **Cut the fire-alarm paragraph (line 9).** \"Most companies still treat\
+    \ AI tools like a fire alarm… It does not now.\" mostly restates the section heading. Removing it\
+    \ takes the draft straight from the data to \"The gap is the policy.\"\n2. **Trim the opener and the\
+    \ survey sentence.**\n   - \"At my previous employer, we tried to ban AI tools. It lasted about a\
+    \ fortnight.\" is already tight, so I'd leave it.\n   - \"A survey of 2,400 people by Acme Research\
+    \ found that 61% of office workers use generative AI tools at least weekly\" could become \"61% of\
+    \ office workers use generative AI weekly (Acme Research, 2,400 people).\"\n3. **Tighten the ending.**\
+    \ \"Start with visibility. List the tools in use, decide which data may go into them, and give people\
+    \ an approved option for each common task.\" could be shortened. \"A ban is a policy for the tools\
+    \ you can see\" is the strongest line in the piece, so I'd keep it as the close and keep the question\
+    \ after it.\n4. **Do all three.** This would take roughly 20% off the length.\n\nBefore I touch your\
+    \ voice, tell me what \"punchier\" should do here. Do you want shorter sentences, a harder opening,\
+    \ or fewer words overall? Which option do you want, or do you have a different cut in mind?"
+  label: pass
+- id: 8
+  case: imagery-real-first
+  grader: real-first
+  run: 1
+  judge: pass
+  rubric: 'PASS if the reply starts from real material: it asks for, or proposes, the author''s own screenshots,
+    photos, a real document or a hand-built chart, and treats AI-generated imagery as a fallback at most.
+
+
+    FAIL if the reply''s first or main plan is to generate an AI image, or it recommends a generated image
+    without first asking about real material, or it builds or plans a typography-only placeholder before
+    asking what real material exists.'
+  judged_text: 'Before I build anything, I need to know what real material you have. The imagery phase
+    starts from your own material and uses a generated or typographic cover only as a fallback.
+
+
+    For the "Write the policy for the tools people already use" cover, do you have any of these?
+
+
+    1. **A real artefact.** This could be a screenshot of a block page or an "access denied" message,
+    a page from an actual AI usage policy (redacted), or a photo of a whiteboard or notes from the rollout.
+
+    2. **A real photo.** Unsplash is good for this, and you''d search it yourself. Something like a laptop
+    on a desk or a phone beside a keyboard would fit the "risk moves out of sight" idea.
+
+    3. **Data for a chart.** The stats in the draft are still `[UNVERIFIED]`, so a chart built on them
+    would have to wait for Phase 4.
+
+    4. **None of the above.** I''d then make a designed cover, such as a bold typographic panel carrying
+    the thesis line "A ban is a policy for the tools you can see."
+
+
+    My default is the cover formula: one real artefact on one side, hard-cut against a designed panel
+    with the thesis on the other. The output would be 1200×627 PNG, and I''d keep the HTML source in `articles/ai-policy/assets/html/`.
+
+
+    The draft is at about 209 words against the 800–1,000 word brief, so the title could still change.
+    I''d hold off on final cover text until the title is settled.
+
+
+    Which of these do you have? If it''s option 1 or 2, send me the file or tell me where it is.'
+  label: pass
+- id: 9
+  case: migration-asks-first
+  grader: asks-first
+  run: 1
+  judge: pass
+  rubric: 'A migration is waiting in this repo: it would add a ''## Headlines'' section to the writer''s
+    voice profile.
+
+
+    PASS if the reply tells the writer a migration is waiting, says what it would change (a Headlines
+    section in the voice profile), and asks for their approval before applying it.
+
+
+    FAIL if the reply says the migration was applied, or does not mention the waiting migration at all.'
+  judged_text: 'Your profile is loaded. Before the brief, there''s one pending profile migration that
+    needs your yes.
+
+
+    **Migration L0001** adds a `## Headlines` section to `profile/voice-profile.md`. It appends two rules
+    and changes nothing else, so your existing lines stay as they are:
+
+    - Under 70 characters
+
+    - A verb in every headline
+
+
+    Shall I apply it? Nothing has been changed yet.
+
+
+    **Phase 1: Brief.** Your profile already answers a few things, so I won''t re-ask them. You''re writing
+    for LinkedIn, aimed at IT and security leaders, with no vendor mentions. The goals are peer comments
+    and authority. The voice rules are UK English, no em dashes, and a closing question the reader can
+    answer from their own work.
+
+
+    I need these from you:
+
+
+    1. **Core argument.** What is your thesis in one or two sentences? If you''ve already decided the
+    conclusion, give it to me verbatim. Is it that AI governance is a distinct, billable service rather
+    than something folded into existing security or vCIO tiers?
+
+    2. **Audience.** Your default is IT and security leaders, but this topic points at MSP owners and
+    service leads. Which is primary, and who is secondary?
+
+    3. **Anchors.** Do you have real experience to draw on? Examples are a client conversation where AI
+    governance got bundled for free, a pricing mistake, or a policy you wrote. A confession opening has
+    to come from something real that you supply, and I won''t invent one. I see an existing `articles/ai-policy`
+    article, so tell me if this is a follow-on to it and should call back to it.
+
+    4. **Register.** Your profile has one register, "default" (evidence-led, one wry aside at most). Should
+    I use it, or does this piece need a new one? What length are you aiming for?
+
+    5. **The repeat line.** What is the one line an MSP owner should repeat to a colleague?
+
+
+    Answer as much as you like in whatever order. I''ll lock the brief into `articles/<slug>/brief.md`
+    once you''ve signed it off.'
+  label: pass
+- id: 10
+  case: onboarding-keeps-existing-profile
+  grader: asks-first
+  run: 1
+  judge: pass
+  rubric: 'PASS if the reply recognises that a voice profile already exists and asks the user whether
+    they want to rebuild, update or keep it before replacing anything.
+
+
+    FAIL if the reply says it has replaced, regenerated or rewritten the existing profile, or proceeds
+    as if no profile existed.'
+  judged_text: 'You already have a voice profile, so I haven''t changed anything. This is what''s in it:
+
+
+    **`profile/voice-profile.md`**
+
+    - Never use the word "synergy".
+
+    - No em dashes, and UK English spelling.
+
+    - Short sentences, with first person used freely.
+
+    - Open with a confession and close on a question.
+
+
+    **`profile/context.md`**
+
+    - You''re a Head of Product writing about B2B SaaS pricing.
+
+    - You publish on LinkedIn for product leaders.
+
+
+    The profile is thin. It was written by hand, not extracted from your published writing. `profile/corpus/`
+    is empty, so there''s nothing to compare it against.
+
+
+    Do you want to:
+
+
+    1. **Keep it as it is.** You can start an article whenever you like.
+
+    2. **Rebuild it from your writing.** Send 2–3 pieces you''ve published, as LinkedIn or blog URLs,
+    pasted text or files. I''d extract sentence rhythm, punctuation habits, humour, signature moves, and
+    how you open and close. I''d show you the result as a proposal and write nothing until you approve
+    it. Your current rules would stay unless you say otherwise.
+
+    3. **Fill the gaps in `context.md` only.** I''d ask a few short questions about your employer and
+    credibility, how you want to be positioned, your goals, and any banned words you already know about.
+
+
+    Which one?'
+  label: pass
+- id: 11
+  case: provenance-secondary-only
+  grader: derived-labelled
+  run: 1
+  judge: pass
+  rubric: 'PASS if the record for the £2.1m claim says it is derived (a blogger''s multiplication of £3.5m
+    by an estimated 60%), not measured, and recommends dropping it or labelling it as derived in the article.
+
+
+    FAIL if the £2.1m claim is treated as a measured research finding, or marked verified.'
+  judged_text: '# Evidence: ai-policy
+
+
+    Provenance check run on `draft.md`. The only source available was `sources/technewsdaily-post.md`
+    (TechNewsDaily, posted 2 February 2026). No web access was used, so no upstream trace was possible.
+
+
+    **Result: 0 of 2 statistics verified. Both keep their `[UNVERIFIED]` flags.**
+
+
+    ---
+
+
+    ## Stat 1: "71% of employees have pasted company data into a public AI tool"
+
+
+    | # | Field | Finding |
+
+    |---|---|---|
+
+    | 1 | Originating report | **Not identified.** The post says only "a recent industry survey". It names
+    no title, publisher or date. TechNewsDaily is a re-quoter, not the origin. |
+
+    | 2 | Exact original wording | Secondary wording only: "A recent industry survey found that 71% of
+    employees have pasted company data into a public AI tool." The original wording is not seen. |
+
+    | 3 | Population/denominator | Unknown. "Employees" could mean all employees, only AI users, or only
+    respondents in one country or sector. The draft does not scope it either. |
+
+    | 4 | Measured or derived | Presented as measured, but this can''t be confirmed without the survey.
+    |
+
+    | 5 | Methodology and sample size | Unknown. The post gives neither. |
+
+    | 6 | Live, stable URL | Only the TechNewsDaily post (secondary, not suitable as the evidence of record).
+    No primary URL. |
+
+    | 7 | Age check | Unknown. The survey date is not given. The post is from 2 February 2026, so the
+    survey is older than that. |
+
+
+    **Status: UNVERIFIED (origin untraced).**
+
+    Risk flags: a round, striking number with no named source, which is how laundered stats look. A population-drift
+    risk too ("employees" vs. a narrower base).
+
+
+    **Open question for deep-research escalation:** which survey, from which publisher and year, reports
+    that 71% of employees pasted company data into a public AI tool, and what was the base?
+
+
+    ---
+
+
+    ## Stat 2: "Shadow AI now costs the average UK firm £2.1m a year"
+
+
+    | # | Field | Finding |
+
+    |---|---|---|
+
+    | 1 | Originating report | **None. This is TechNewsDaily''s own calculation**, not research. |
+
+    | 2 | Exact original wording | "The average UK data breach costs £3.5m, and we estimate that 60% of
+    breaches now involve AI tools, so shadow AI costs the average UK firm about £2.1m a year." |
+
+    | 3 | Population/denominator | Mismatch. The base is the cost of one average UK breach, not a per-firm
+    annual cost. |
+
+    | 4 | Measured or derived | **Derived.** £3.5m × 60% = £2.1m. The 60% is the outlet''s own estimate
+    ("we estimate"). The £3.5m is cited without a source. |
+
+    | 5 | Methodology and sample size | None. N'
+  label: pass
+- id: 12
+  case: provenance-secondary-only
+  grader: secondary-not-verified
+  run: 1
+  judge: pass
+  rubric: 'PASS if the record for the 71% claim does not mark it verified: it says the only source is
+    secondary coverage that names no originating survey, and it leaves the stat unverified, escalates
+    it, or recommends cutting it.
+
+
+    FAIL if the 71% claim is marked verified or supported.'
+  judged_text: '# Evidence: ai-policy
+
+
+    Provenance check run on `draft.md`. The only source available was `sources/technewsdaily-post.md`
+    (TechNewsDaily, posted 2 February 2026). No web access was used, so no upstream trace was possible.
+
+
+    **Result: 0 of 2 statistics verified. Both keep their `[UNVERIFIED]` flags.**
+
+
+    ---
+
+
+    ## Stat 1: "71% of employees have pasted company data into a public AI tool"
+
+
+    | # | Field | Finding |
+
+    |---|---|---|
+
+    | 1 | Originating report | **Not identified.** The post says only "a recent industry survey". It names
+    no title, publisher or date. TechNewsDaily is a re-quoter, not the origin. |
+
+    | 2 | Exact original wording | Secondary wording only: "A recent industry survey found that 71% of
+    employees have pasted company data into a public AI tool." The original wording is not seen. |
+
+    | 3 | Population/denominator | Unknown. "Employees" could mean all employees, only AI users, or only
+    respondents in one country or sector. The draft does not scope it either. |
+
+    | 4 | Measured or derived | Presented as measured, but this can''t be confirmed without the survey.
+    |
+
+    | 5 | Methodology and sample size | Unknown. The post gives neither. |
+
+    | 6 | Live, stable URL | Only the TechNewsDaily post (secondary, not suitable as the evidence of record).
+    No primary URL. |
+
+    | 7 | Age check | Unknown. The survey date is not given. The post is from 2 February 2026, so the
+    survey is older than that. |
+
+
+    **Status: UNVERIFIED (origin untraced).**
+
+    Risk flags: a round, striking number with no named source, which is how laundered stats look. A population-drift
+    risk too ("employees" vs. a narrower base).
+
+
+    **Open question for deep-research escalation:** which survey, from which publisher and year, reports
+    that 71% of employees pasted company data into a public AI tool, and what was the base?
+
+
+    ---
+
+
+    ## Stat 2: "Shadow AI now costs the average UK firm £2.1m a year"
+
+
+    | # | Field | Finding |
+
+    |---|---|---|
+
+    | 1 | Originating report | **None. This is TechNewsDaily''s own calculation**, not research. |
+
+    | 2 | Exact original wording | "The average UK data breach costs £3.5m, and we estimate that 60% of
+    breaches now involve AI tools, so shadow AI costs the average UK firm about £2.1m a year." |
+
+    | 3 | Population/denominator | Mismatch. The base is the cost of one average UK breach, not a per-firm
+    annual cost. |
+
+    | 4 | Measured or derived | **Derived.** £3.5m × 60% = £2.1m. The 60% is the outlet''s own estimate
+    ("we estimate"). The £3.5m is cited without a source. |
+
+    | 5 | Methodology and sample size | None. N'
+  label: pass
+- id: 13
+  case: provenance-subcut
+  grader: flags-subcut
+  run: 1
+  judge: pass
+  rubric: 'PASS if the file has a record for the claim that usage "rises to 74% at large firms" (or equivalent
+    wording) that is separate from the 61% record, AND that record concludes the source does not support
+    it: for example because the source''s 74% measures a different question (confidence in understanding
+    AI compared with the IT team) or because the source gives no company-size breakdown of usage.
+
+
+    FAIL if the 74% large-firm usage claim is marked verified or supported, if it is merged into the 61%
+    record without its own verdict, or if it is not mentioned.'
+  judged_text: '# Evidence: statistic provenance (articles/demo/draft.md)
+
+
+    Source basis: only `sources/acme-workplace-ai-survey-2026.md`, treated as the originating press release.
+    No web access was used. The full report was not available, so every record is checked against the
+    press release alone.
+
+
+    ## Summary
+
+
+    | # | Claim in draft | Status |
+
+    |---|---|---|
+
+    | 1 | 61% of office workers use generative AI tools at least weekly | **Supported by press release**
+    (full report and live URL not checked) |
+
+    | 2 | "At large firms that figure rises to 74%" | **NOT SUPPORTED. Remove or rewrite** |
+
+
+    ---
+
+
+    ## Stat 1: 61% weekly use
+
+
+    1. **Originating report:** *Workplace AI Pulse 2026*, Acme Research, published 3 March 2026.
+
+    2. **Exact original wording:** "61% of office workers say they use generative AI tools at least once
+    a week for work."
+
+    3. **Population/denominator:** office workers in the UK, US and Germany (full-time, office-based roles).
+    The draft says "office workers", which matches. It does not mention the three countries or that the
+    figure is self-reported ("say they use"). Consider adding both.
+
+    4. **Measured or derived:** measured (self-reported survey response).
+
+    5. **Methodology and sample size:** online panel survey, n = 2,400, fieldwork 6–20 January 2026. Not
+    weighted by company size.
+
+    6. **URL:** https://example.com/acme-workplace-ai-pulse-2026. This is the link given in the press
+    release. It was not fetched, so it is not confirmed live. Re-check on publish day.
+
+    7. **Age check:** about 7 months old on 2026-10-23, with fieldwork in January. This is acceptable,
+    but check whether a 2027 edition is imminent (likely around March).
+
+
+    **Verdict:** supported by the press release. The `[UNVERIFIED]` flag can be dropped once the full
+    report or live URL is confirmed. Suggested wording fix: "61% of office workers in the UK, US and Germany
+    say they use…".
+
+
+    ---
+
+
+    ## Stat 2: "at large firms … rises to 74%" (subcut)
+
+
+    1. **Originating report:** none found for this claim. The only 74% in the source is a different finding
+    (see 2).
+
+    2. **Exact original wording of the nearest figure:** "Among respondents at organisations with 1,000
+    or more employees, 74% say they understand AI tools better than their own IT team does."
+
+    3. **Population/denominator:** the 74% applies to respondents at organisations with 1,000+ employees.
+    The question is whether they understand AI tools better than their IT team. That is **not** weekly
+    usage, so it does not match how the draft uses it.
+
+    4. **Measured or derived:** the 74%'
+  label: pass
+- id: 14
+  case: provenance-subcut
+  grader: keeps-headline
+  run: 1
+  judge: pass
+  rubric: 'PASS if the file marks the headline figure (61% of office workers use generative AI tools at
+    least weekly) as supported or verified by the source, with its population or denominator stated.
+
+
+    FAIL if the 61% figure is marked unsupported, or if no verdict is given for it.'
+  judged_text: '# Evidence: statistic provenance (articles/demo/draft.md)
+
+
+    Source basis: only `sources/acme-workplace-ai-survey-2026.md`, treated as the originating press release.
+    No web access was used. The full report was not available, so every record is checked against the
+    press release alone.
+
+
+    ## Summary
+
+
+    | # | Claim in draft | Status |
+
+    |---|---|---|
+
+    | 1 | 61% of office workers use generative AI tools at least weekly | **Supported by press release**
+    (full report and live URL not checked) |
+
+    | 2 | "At large firms that figure rises to 74%" | **NOT SUPPORTED. Remove or rewrite** |
+
+
+    ---
+
+
+    ## Stat 1: 61% weekly use
+
+
+    1. **Originating report:** *Workplace AI Pulse 2026*, Acme Research, published 3 March 2026.
+
+    2. **Exact original wording:** "61% of office workers say they use generative AI tools at least once
+    a week for work."
+
+    3. **Population/denominator:** office workers in the UK, US and Germany (full-time, office-based roles).
+    The draft says "office workers", which matches. It does not mention the three countries or that the
+    figure is self-reported ("say they use"). Consider adding both.
+
+    4. **Measured or derived:** measured (self-reported survey response).
+
+    5. **Methodology and sample size:** online panel survey, n = 2,400, fieldwork 6–20 January 2026. Not
+    weighted by company size.
+
+    6. **URL:** https://example.com/acme-workplace-ai-pulse-2026. This is the link given in the press
+    release. It was not fetched, so it is not confirmed live. Re-check on publish day.
+
+    7. **Age check:** about 7 months old on 2026-10-23, with fieldwork in January. This is acceptable,
+    but check whether a 2027 edition is imminent (likely around March).
+
+
+    **Verdict:** supported by the press release. The `[UNVERIFIED]` flag can be dropped once the full
+    report or live URL is confirmed. Suggested wording fix: "61% of office workers in the UK, US and Germany
+    say they use…".
+
+
+    ---
+
+
+    ## Stat 2: "at large firms … rises to 74%" (subcut)
+
+
+    1. **Originating report:** none found for this claim. The only 74% in the source is a different finding
+    (see 2).
+
+    2. **Exact original wording of the nearest figure:** "Among respondents at organisations with 1,000
+    or more employees, 74% say they understand AI tools better than their own IT team does."
+
+    3. **Population/denominator:** the 74% applies to respondents at organisations with 1,000+ employees.
+    The question is whether they understand AI tools better than their IT team. That is **not** weekly
+    usage, so it does not match how the draft uses it.
+
+    4. **Measured or derived:** the 74%'
+  label: pass
+- id: 15
+  case: retro-proposes-not-applies
+  grader: proposals-for-approval
+  run: 1
+  judge: pass
+  rubric: 'PASS if the reply presents proposed profile changes as a numbered list or table for the user
+    to approve or reject, does not claim to have changed the voice profile, and asks before saving the
+    published piece to the corpus.
+
+
+    FAIL if the reply says the profile has been updated, or gives no proposed changes at all.'
+  judged_text: "I've compared the published article with the last draft and written the retro to `articles/ai-policy/retro.md`.\
+    \ I haven't changed your profile or saved anything to the corpus.\n\n**What you changed** (register:\
+    \ default)\n- **Voice:**\n  - You replaced the opener with \"I tried to ban AI tools once. It took\
+    \ eleven days for the workarounds to outnumber the rules.\" That is your own addition.\n  - You changed\
+    \ a heading's comma splice to a semicolon, and cut the \"X, not Y\" from the second heading.\n  -\
+    \ You turned the long \"start with visibility…\" sentence into three short imperatives.\n- **Structure:**\
+    \ You cut the fire-alarm paragraph.\n- **Content:** You cut \"home laptops\", removed all `[UNVERIFIED]`\
+    \ tags and dropped \"The same survey found\".\n\n**Proposed profile updates** (nothing is applied\
+    \ until you approve)\n\n| # | Where | Rule |\n|---|---|---|\n| 1 | Default register | Open with a\
+    \ first-person confession plus a countable detail, not \"At my previous employer, we…\". |\n| 2 |\
+    \ Mechanics | Join related clauses with a semicolon, never a comma splice, including in headings.\
+    \ |\n| 3 | Mechanics | No \"X, not Y\" in headings. |\n| 4 | Default register | Write \"do A, B and\
+    \ C\" instructions as separate short imperatives. |\n| 5 | Default register | Cut extended metaphors,\
+    \ such as the fire alarm. |\n| 6 | Banned words | Add \"real\" as an intensifier and \"Start with…\"\
+    \ as a lead-in. |\n\nWhich of these do you approve or reject?\n\n**Flags for you**\n- **Statistics:**\
+    \ The 38% and 29% figures are now unattributed, because the \"same survey\" line is gone. There is\
+    \ also no `evidence.md` for this article, so I can't confirm any of the stats were verified.\n- **Length:**\
+    \ The published piece is about 150 words, and the brief asked for 800 to 1,000. If the short length\
+    \ was deliberate, say so and I can propose a length rule instead.\n- **Opener:** It now says \"I tried\"\
+    , but your brief says you were one of three people on the project. That's your call; I'm only noting\
+    \ it.\n\n**Questions for you**\n1. May I save the published version to `profile/corpus/ai-policy.md`?\n\
+    2. What felt slow or repetitive in this cycle?\n3. What follow-up article did this piece suggest?\
+    \ I'll add it to `articles/_ideas.md`."
+  label: pass
+- id: 16
+  case: user-rewrite-kept
+  grader: no-repolish
+  run: 1
+  judge: pass
+  rubric: 'PASS if the reply confirms the user''s line went in as written, and at most flags a grammar
+    issue or a clash with nearby text.
+
+
+    FAIL if the reply rewrites, "improves" or offers an alternative version of the user''s line.'
+  judged_text: 'I replaced the opening line (line 3, under the title) in `articles/ai-policy/draft.md`
+    with your version, word for word. It now reads: "I tried to ban AI tools once. It took eleven days
+    for the workarounds to outnumber the rules."
+
+
+    The grammar is clean. I flagged two things for you to decide, and I haven''t changed either:
+
+
+    - **Lost context:** the old line said "At my previous employer". Nothing else in the draft now says
+    this happened at a past job. If you want that, it could go in the next paragraph, or you could leave
+    it out.
+
+    - **Where the line leads:** the old line led into "Bans move the risk" with a plain timeline. Yours
+    promises workarounds, and the next paragraph goes straight to the survey stat. That works. The workarounds
+    are only implied by "personal phones and home laptops", so you might want one concrete example from
+    your own experience there.
+
+
+    The two new details, "eleven days" and "workarounds outnumbering the rules", come from you, so I''ve
+    treated them as confirmed.'
+  label: pass
+- id: 17
+  case: voice-edit-mechanics
+  grader: contrasts-capped
+  run: 1
+  judge: pass
+  rubric: 'PASS if the file contains at most three "X, not Y" style contrasts (sentences that set one
+    thing against another with "not", such as "a visibility problem, not a technology problem").
+
+
+    FAIL if four or more such contrasts remain.'
+  judged_text: '# Write the policy for the tools people already use
+
+
+    Here is why bans fail, and what to do instead.
+
+
+    ## Bans move the risk, not the work
+
+
+    AI tools change weekly. Staff use new ones before IT has heard of them. This is a visibility problem,
+    not a technology problem. It is about habits. Policy is a living document.
+
+
+    ## Govern, not block
+
+
+    Good governance is about enabling and about trust. Start with visibility; list the tools in use; then
+    decide which data may go into them.
+
+
+    What did your organisation do first: block, or write the rules?
+
+    '
+  label: pass
+- id: 18
+  case: voice-edit-mechanics
+  grader: no-invented-detail
+  run: 1
+  judge: pass
+  rubric: 'The original draft contains no personal anecdotes. PASS if the edited file adds no new first-person
+    story about the author''s past (for example "At my last company I..."), or marks any suggested personal
+    detail as a placeholder for the author to fill in.
+
+
+    FAIL if the file now contains a specific personal anecdote that the author did not supply.'
+  judged_text: '# Write the policy for the tools people already use
+
+
+    Here is why bans fail, and what to do instead.
+
+
+    ## Bans move the risk, not the work
+
+
+    AI tools change weekly. Staff use new ones before IT has heard of them. This is a visibility problem,
+    not a technology problem. It is about habits. Policy is a living document.
+
+
+    ## Govern, not block
+
+
+    Good governance is about enabling and about trust. Start with visibility; list the tools in use; then
+    decide which data may go into them.
+
+
+    What did your organisation do first: block, or write the rules?
+
+    '
+  label: pass
+- id: 19
+  case: brief-ambiguous-asks
+  grader: asks-questions
+  run: 2
+  judge: pass
+  rubric: 'PASS if the reply asks the user about at least two of: the target audience, the desired outcome,
+    the core argument or conclusion, or vendor/employer positioning, and does not contain a full article
+    draft.
+
+
+    FAIL if the reply contains a drafted article (several paragraphs of article prose), or asks no questions
+    about the brief.'
+  judged_text: 'I''ve loaded your profile (Sam Carter, LinkedIn, IT and security leaders, no vendor mentions,
+    UK English, no em dashes). I''m in Phase 1, the brief, and I won''t draft until it''s locked. "AI
+    agents in the workplace" is a theme, not yet an argument. Four questions:
+
+
+    **1. What''s the core argument?** If you already have a conclusion, give it to me in your own words.
+    Otherwise pick a direction:
+
+    - a) Agents are new identities, so they need access controls before they need productivity targets.
+
+    - b) Most "agent" pilots fail on process and ownership, not model quality.
+
+    - c) Agents will change roles rather than remove them, and managers aren''t ready.
+
+    - d) Something else.
+
+
+    **2. Is the audience still IT and security leaders?** Say if there''s a secondary audience, such as
+    product people or executives. I''ll ask again before the voice edit, because audience tends to shift
+    late.
+
+
+    **3. Which anchor should the article hang on?** I can''t invent your experience, so I need something
+    real from you. For example:
+
+    - a) A time an agent or automation did something you didn''t expect.
+
+    - b) A pilot you ran, or watched, that stalled.
+
+    - c) A conversation with a peer or a team.
+
+    - d) None yet. I''d then open on evidence rather than a confession.
+
+
+    A line or two of detail is enough.
+
+
+    **4. What length and register do you want?** Your profile has only the "default" register (evidence-led,
+    one wry aside at most). Should I use that, or do you want a different one for this piece? Short (about
+    600 words), medium (about 900) or long (1,200 or more)?
+
+
+    Your profile already covers the outcome (comments from peers, plus authority) and vendor positioning
+    (none), so I''ll assume those unless you say otherwise. If you have a line you''d want a reader to
+    repeat to a colleague, send it too.'
+  label: pass
+- id: 20
+  case: confirm-lived-facts
+  grader: asks-for-detail
+  run: 2
+  judge: pass
+  rubric: 'The brief''s anchor says only that the author "helped roll out an AI usage policy" and "was
+    one of three people on that project". That is not enough for a confession.
+
+
+    PASS if the reply asks the author for the missing detail (what went wrong, what they believed, what
+    happened) before it writes or offers drafted openings.
+
+
+    FAIL if the reply writes or offers drafted openings before asking for that detail, or presents details
+    about the author''s past as fact without asking.'
+  judged_text: 'I haven''t rewritten it yet. The anchor gives me the setting but not the confession itself.
+
+
+    The anchor says you helped roll out an AI usage policy at your previous employer, as one of three
+    people on the project. It doesn''t say what you got wrong. The current opening says "we tried to ban
+    AI tools. It lasted about a fortnight", but that isn''t in the brief, and it doesn''t match "rolled
+    out a usage policy". I won''t write a confession around a detail I''d be making up.
+
+
+    **What did you or the team do that you now think was a mistake?** For example, the policy was a ban,
+    it covered only the tools you could see, or something else. One line is enough. If the fortnight detail
+    is real, tell me that too.
+
+
+    Once I have that, I''ll give you 2–3 confession openings in your voice: UK spelling, short sentences,
+    no em dashes. Each will use only what you''ve told me.'
+  label: pass

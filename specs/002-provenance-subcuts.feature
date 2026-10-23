@@ -10,7 +10,7 @@ Feature: Subcut statistics get their own provenance record
   only 72% measured a different question. Phase 4 must catch this pattern.
   The eval uses a synthetic survey so the fixture is stable and copyright-free.
 
-  # last-verified: 2026-10-22
+  # last-verified: 2026-10-23
   @eval:provenance-subcut @id:002-01
   Scenario: A subcut that measures a different question is flagged
     Given a draft that says a survey found 61% overall, rising to 74% at large firms
@@ -19,7 +19,7 @@ Feature: Subcut statistics get their own provenance record
     Then evidence.md has a separate record for the 74% claim
     And that record says the source does not support it
 
-  # last-verified: 2026-10-22
+  # last-verified: 2026-10-23
   @eval:provenance-subcut @id:002-02
   Scenario: The supported headline figure is not flagged
     Given the same draft and source

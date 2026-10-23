@@ -65,7 +65,7 @@ Feature: Profile format changes arrive as approved migrations
     When I run the profile scaffold
     Then no engine migration is waiting
 
-  # last-verified: 2026-10-22
+  # last-verified: 2026-10-23
   @eval:migration-asks-first @id:015-08
   Scenario: The engine asks before running waiting migrations
     Given a writer's repo with a waiting migration

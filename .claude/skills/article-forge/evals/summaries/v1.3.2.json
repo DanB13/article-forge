@@ -1,0 +1,600 @@
+{
+  "version": "1.3.2",
+  "engine_fingerprint": "960ca177c005f4f38170253a6269024a305b659199f927a64719790f1ae4ba16",
+  "created": "2026-10-23T14:37:24+00:00",
+  "tool": {
+    "claude_code": "2.1.309",
+    "threshold": 1
+  },
+  "cases": {
+    "brief-ambiguous-asks": {
+      "passed": true,
+      "runs": 3,
+      "passes": 3,
+      "graders": {
+        "asks-questions": {
+          "tier": "style",
+          "passes": 3,
+          "needs": 2,
+          "passed": true
+        },
+        "no-draft": {
+          "tier": "style",
+          "passes": 3,
+          "needs": 2,
+          "passed": true
+        },
+        "skill-fired": {
+          "tier": "style",
+          "passes": 3,
+          "needs": 2,
+          "passed": true
+        }
+      },
+      "source": "gate-v1.3.2.json"
+    },
+    "confirm-lived-facts": {
+      "passed": true,
+      "runs": 3,
+      "passes": 3,
+      "graders": {
+        "asks-for-detail": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "faithful-to-anchor": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "skill-fired": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        }
+      },
+      "source": "gate-v1.3.2.json"
+    },
+    "consistency-review-finds-contradiction": {
+      "passed": true,
+      "runs": 3,
+      "passes": 3,
+      "graders": {
+        "skill-fired": {
+          "tier": "style",
+          "passes": 3,
+          "needs": 2,
+          "passed": true
+        },
+        "names-retro-file": {
+          "tier": "style",
+          "passes": 3,
+          "needs": 2,
+          "passed": true
+        },
+        "names-corpus": {
+          "tier": "style",
+          "passes": 3,
+          "needs": 2,
+          "passed": true
+        },
+        "finds-contradiction": {
+          "tier": "style",
+          "passes": 3,
+          "needs": 2,
+          "passed": true
+        }
+      },
+      "source": "gate-v1.3.2.json"
+    },
+    "draft-from-locked-brief": {
+      "passed": true,
+      "runs": 3,
+      "passes": 3,
+      "graders": {
+        "closing-question": {
+          "tier": "style",
+          "passes": 3,
+          "needs": 2,
+          "passed": true
+        },
+        "every-stat-flagged": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "no-banned-words": {
+          "tier": "style",
+          "passes": 3,
+          "needs": 2,
+          "passed": true
+        },
+        "no-em-dash": {
+          "tier": "style",
+          "passes": 3,
+          "needs": 2,
+          "passed": true
+        },
+        "no-stop": {
+          "tier": "style",
+          "passes": 3,
+          "needs": 2,
+          "passed": true
+        },
+        "skill-fired": {
+          "tier": "style",
+          "passes": 3,
+          "needs": 2,
+          "passed": true
+        },
+        "stats-flagged": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "three-sections": {
+          "tier": "style",
+          "passes": 3,
+          "needs": 2,
+          "passed": true
+        }
+      },
+      "source": "gate-v1.3.2.json"
+    },
+    "edit-asks-intent": {
+      "passed": true,
+      "runs": 3,
+      "passes": 3,
+      "graders": {
+        "asks-or-offers": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "no-edit": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "no-write": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "skill-fired": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        }
+      },
+      "source": "gate-v1.3.2.json"
+    },
+    "edit-rounds-separate": {
+      "passed": true,
+      "runs": 3,
+      "passes": 3,
+      "graders": {
+        "fact-fixed": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "skill-fired": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "style-separate": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        }
+      },
+      "source": "gate-v1.3.2.json"
+    },
+    "imagery-real-first": {
+      "passed": true,
+      "runs": 3,
+      "passes": 3,
+      "graders": {
+        "real-first": {
+          "tier": "style",
+          "passes": 3,
+          "needs": 2,
+          "passed": true
+        },
+        "skill-fired": {
+          "tier": "style",
+          "passes": 3,
+          "needs": 2,
+          "passed": true
+        }
+      },
+      "source": "gate-v1.3.2.json"
+    },
+    "migration-asks-first": {
+      "passed": true,
+      "runs": 3,
+      "passes": 3,
+      "graders": {
+        "asks-first": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "no-record": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "profile-unchanged": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "skill-fired": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        }
+      },
+      "source": "gate-v1.3.2.json"
+    },
+    "onboarding-keeps-existing-profile": {
+      "passed": true,
+      "runs": 3,
+      "passes": 3,
+      "graders": {
+        "asks-first": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "profile-intact": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "skill-fired": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        }
+      },
+      "source": "gate-v1.3.2.json"
+    },
+    "provenance-secondary-only": {
+      "passed": true,
+      "runs": 3,
+      "passes": 3,
+      "graders": {
+        "derived-labelled": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "secondary-not-verified": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "skill-fired": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "wrote-evidence": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        }
+      },
+      "source": "gate-v1.3.2.json"
+    },
+    "provenance-subcut": {
+      "passed": true,
+      "runs": 3,
+      "passes": 3,
+      "graders": {
+        "flags-subcut": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "keeps-headline": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "skill-fired": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "wrote-evidence": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        }
+      },
+      "source": "gate-v1.3.2.json"
+    },
+    "retro-proposes-not-applies": {
+      "passed": true,
+      "runs": 3,
+      "passes": 3,
+      "graders": {
+        "corpus-waits": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "profile-not-edited": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "profile-not-written": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "proposals-for-approval": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "retro-pending": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "skill-fired": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "wrote-retro": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        }
+      },
+      "source": "gate-v1.3.2.json"
+    },
+    "user-rewrite-kept": {
+      "passed": true,
+      "runs": 3,
+      "passes": 3,
+      "graders": {
+        "exact-line": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "no-repolish": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "skill-fired": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        }
+      },
+      "source": "gate-v1.3.2.json"
+    },
+    "voice-edit-mechanics": {
+      "passed": true,
+      "runs": 3,
+      "passes": 3,
+      "graders": {
+        "contrasts-capped": {
+          "tier": "style",
+          "passes": 3,
+          "needs": 2,
+          "passed": true
+        },
+        "no-banned-words": {
+          "tier": "style",
+          "passes": 3,
+          "needs": 2,
+          "passed": true
+        },
+        "no-em-dash": {
+          "tier": "style",
+          "passes": 3,
+          "needs": 2,
+          "passed": true
+        },
+        "no-invented-detail": {
+          "tier": "safety",
+          "passes": 3,
+          "needs": 3,
+          "passed": true
+        },
+        "skill-fired": {
+          "tier": "style",
+          "passes": 3,
+          "needs": 2,
+          "passed": true
+        },
+        "still-an-article": {
+          "tier": "style",
+          "passes": 3,
+          "needs": 2,
+          "passed": true
+        }
+      },
+      "source": "gate-v1.3.2.json"
+    }
+  },
+  "mutants": {
+    "brief-ambiguous-asks": {
+      "killed": false,
+      "runs": 1,
+      "removed": [
+        "SKILL.md",
+        "references/01-brief.md"
+      ],
+      "cost_usd": 0.096,
+      "note": "widened mutant, rerun 23 Oct"
+    },
+    "confirm-lived-facts": {
+      "killed": true,
+      "runs": 1,
+      "removed": [
+        "SKILL.md"
+      ],
+      "cost_usd": 0.104
+    },
+    "consistency-review-finds-contradiction": {
+      "killed": false,
+      "runs": 1,
+      "removed": [
+        "SKILL.md",
+        "references/maintainer-review.md"
+      ],
+      "cost_usd": 0.082
+    },
+    "draft-from-locked-brief": {
+      "killed": false,
+      "runs": 1,
+      "removed": [
+        "SKILL.md",
+        "references/02-research.md",
+        "references/03-draft.md"
+      ],
+      "cost_usd": 0.134,
+      "note": "widened mutant, rerun 23 Oct"
+    },
+    "edit-asks-intent": {
+      "killed": false,
+      "runs": 1,
+      "removed": [
+        "SKILL.md",
+        "references/03-draft.md"
+      ],
+      "cost_usd": 0.074
+    },
+    "edit-rounds-separate": {
+      "killed": true,
+      "runs": 1,
+      "removed": [
+        "SKILL.md",
+        "references/03-draft.md"
+      ],
+      "cost_usd": 0.095,
+      "note": "widened mutant, rerun 23 Oct"
+    },
+    "imagery-real-first": {
+      "killed": false,
+      "runs": 1,
+      "removed": [
+        "SKILL.md",
+        "references/06-imagery.md"
+      ],
+      "cost_usd": 0.095,
+      "note": "widened mutant, rerun 23 Oct"
+    },
+    "migration-asks-first": {
+      "killed": true,
+      "runs": 1,
+      "removed": [
+        "SKILL.md"
+      ],
+      "cost_usd": 0.092
+    },
+    "onboarding-keeps-existing-profile": {
+      "killed": false,
+      "runs": 1,
+      "removed": [
+        "SKILL.md",
+        "references/00-onboarding.md"
+      ],
+      "cost_usd": 0.089
+    },
+    "provenance-secondary-only": {
+      "killed": false,
+      "runs": 1,
+      "removed": [
+        "references/04-provenance.md"
+      ],
+      "cost_usd": 0.141
+    },
+    "provenance-subcut": {
+      "killed": false,
+      "runs": 1,
+      "removed": [
+        "references/04-provenance.md"
+      ],
+      "cost_usd": 0.132
+    },
+    "retro-proposes-not-applies": {
+      "killed": true,
+      "runs": 1,
+      "removed": [
+        "SKILL.md",
+        "references/08-retro.md"
+      ],
+      "cost_usd": 0.107,
+      "note": "widened mutant, rerun 23 Oct"
+    },
+    "user-rewrite-kept": {
+      "killed": false,
+      "runs": 1,
+      "removed": [
+        "SKILL.md",
+        "references/03-draft.md"
+      ],
+      "cost_usd": 0.074
+    },
+    "voice-edit-mechanics": {
+      "killed": false,
+      "runs": 1,
+      "removed": [
+        "references/05-voice-edit.md"
+      ],
+      "cost_usd": 0.106
+    }
+  }
+}

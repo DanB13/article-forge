@@ -2,12 +2,37 @@
 tier: style
 mutant:
 - file: SKILL.md
-  text: 1. **Clarify before drafting.** If the user gives a theme without audience, tone, vendor positioning, and desired outcome, ask; use short multiple-choice questions where possible. Never produce
-    a draft on an ambiguous brief. But if the brief already answers a question, don't re-ask it.
+  text: '1. **Clarify before drafting.** If the user gives a theme without audience, tone, vendor positioning, and desired outcome, ask; use short multiple-choice questions where possible. Never produce
+    a draft on an ambiguous brief. But if the brief already answers a question, don''t re-ask it. <!-- specs: 004-01, 004-02 -->'
+- file: references/01-brief.md
+  text: 'Goal: lock the brief before any drafting. Three questions up front beat three redrafts later.'
+- file: references/01-brief.md
+  text: 'Any subset of: theme, context, thesis, conclusion, target audience, working title, proof points, references. Take everything offered; ask only for what''s missing.'
 - file: references/01-brief.md
   text: '## The kick-off questions (ask what the brief doesn''t answer)'
 - file: references/01-brief.md
-  text: Take everything offered; ask only for what's missing.
+  text: 1. **Core argument** in one or two sentences. If the user has a predetermined conclusion, capture it verbatim; the article's destination is theirs, you structure the route.
+- file: references/01-brief.md
+  text: 2. **Audience** — be specific. "Security-conscious businesses" beats "everyone"; "MSPs" and "product people & hiring managers" produce very different articles. Also ask for the *secondary* audience.
+- file: references/01-brief.md
+  text: 3. **How this fits the bigger picture** — work, side project, job-hunt positioning, follow-on to previous content? If follow-on, decide the callback style now.
+- file: references/01-brief.md
+  text: 4. **Desired outcome** — comments and conversation? Authority? Inbound? This determines the close (open question vs CTA).
+- file: references/01-brief.md
+  text: 5. **Vendor/employer positioning** — none, nod, or explicit. (Check `profile/context.md` for the default; confirm, don't re-interrogate.)
+- file: references/01-brief.md
+  text: 6. **Register and length band** for THIS piece — read the Registers section of `profile/voice-profile.md` and ask which named register applies (offer them as choices), or whether this piece needs
+    a new one. Mechanics (punctuation, banned words, density limits) are absolute regardless of register; only the register's flex dimensions change. If a new register is minted, add it to the profile with
+    the user's approval.
+- file: references/01-brief.md
+  text: 7. **Anchors already in mind** — lived experiences, a Reddit thread, a framework, a historical parallel, project artefacts.
+- file: references/01-brief.md
+  text: 8. **The one line a reader should repeat to a colleague.**
+- file: references/01-brief.md
+  text: Use short multiple-choice questions where the platform supports them. Two or three well-chosen questions at a time; don't interrogate.
+- file: references/01-brief.md
+  text: 'Write `articles/<slug>/brief.md`: argument, conclusion, audiences (primary/secondary), fit-to-bigger-picture, outcome, positioning, tone/length, anchors, repeat-line, and callback plan if any.
+    Get the user''s sign-off on the brief before moving to research.'
 graders:
   asks-questions:
     checks: 004-01

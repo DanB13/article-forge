@@ -1,4 +1,4 @@
-# status: in-progress
+# status: shipped (v1.3.2)
 # approved: Dan 2026-10-23
 Feature: The maintainer's labels calibrate the AI judges
   As the maintainer,

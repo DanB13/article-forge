@@ -1,4 +1,4 @@
-# status: in-progress
+# status: shipped (v1.3.2)
 # approved: Dan 2026-10-23
 Feature: Test changes are visible and approved
   As the maintainer,

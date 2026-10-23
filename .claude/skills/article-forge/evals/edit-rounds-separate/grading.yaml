@@ -2,12 +2,24 @@
 tier: safety
 mutant:
 - file: SKILL.md
+  text: '2. **Never edit silently.** All edits are proposed as options (usually 2–3, with honest trade-offs), the user picks or counter-proposes, you apply their decision. When the user pastes a sentence
+    or section with an instruction, first check: do you know their *intent*? If not stated, ask one question about what they want the passage to achieve before offering options. <!-- specs: 005-01 -->'
+- file: SKILL.md
   text: '7. **Separate content rounds from style rounds.** Don''t mix factual edits and voice edits in one pass. When one message asks for both ("fix the number and make it punchier"), make only the factual
-    change, report it, and stop there: then offer 2-3 options for the style change, or ask what it should achieve. Do not apply the style change in the same turn, even when the request is direct.'
+    change, report it, and stop there: then offer 2-3 options for the style change, or ask what it should achieve. Do not apply the style change in the same turn, even when the request is direct. <!-- specs:
+    011-02 -->'
+- file: SKILL.md
+  text: 'The human does best: every memorable line, audience judgement, knowing which of your suggestions are too polished, the final call on voice. Design your interactions around genuine alternation:
+    you propose 3–5 options with trade-offs; they pick or counter-propose; you check the counter-proposal; they decide.'
+- file: SKILL.md
+  text: A phase-driven system for producing published, fully-referenced, credible thought-leadership articles. The user owns intent and voice; you execute with precision and never edit silently.
 - file: references/03-draft.md
   text: '2. **Content rounds and style rounds are separate.** Facts, new paragraphs, and corrections in one kind of round; word bans, punctuation, tone in another. When one message mixes both ("fix the
     number and make it punchier"), apply the factual change first and report it on its own. Then treat the style request as the next round: ask what it should achieve, or offer 2-3 options. Never fold a
     style rewrite into the same pass as a fact fix.'
+- file: references/03-draft.md
+  text: '3. **When the user pastes a sentence/section for edits**: if they haven''t stated intent, ask ONE question — "what do you want this passage to do?" (e.g. punchier, more precise, less salesy, set
+    up the next section). Then offer 2–3 rewrite options with a one-line trade-off each and an honest ranking. Apply only what they choose.'
 graders:
   fact-fixed:
     checks: 011-02

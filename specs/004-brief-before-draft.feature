@@ -9,7 +9,7 @@ Feature: The brief comes first; then a full first draft without stopping
   research and the complete first draft run without stopping. The one exception:
   research that contradicts the thesis is raised before drafting.
 
-  # last-verified: 2026-10-22
+  # last-verified: 2026-10-23
   @eval:brief-ambiguous-asks @id:004-01
   Scenario: An ambiguous theme gets questions, not a draft
     Given a theme with no audience, outcome or argument
@@ -17,7 +17,7 @@ Feature: The brief comes first; then a full first draft without stopping
     Then the engine asks about at least two of audience, outcome, argument and positioning
     And no draft file is written
 
-  # last-verified: 2026-10-22
+  # last-verified: 2026-10-23
   @eval:draft-from-locked-brief @id:004-02
   Scenario: A locked brief gets a complete first draft in one pass
     Given a locked brief and finished research
@@ -25,7 +25,7 @@ Feature: The brief comes first; then a full first draft without stopping
     Then a complete article is written: opening, at least three sections, closing question
     And the engine does not stop to re-ask what the brief already answers
 
-  # last-verified: 2026-10-22
+  # last-verified: 2026-10-23
   @eval:draft-from-locked-brief @id:004-03
   Scenario: The first draft follows the profile's mechanics
     Given a voice profile that bans em dashes and listed words

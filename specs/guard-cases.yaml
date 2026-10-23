@@ -1,0 +1,42 @@
+# Eval cases whose mutant survived (spec 022), recorded as guards with the maintainer's approval.
+# A guard still runs every release; it cannot by itself prove the engine works.
+- case: consistency-review-finds-contradiction
+  reason: 'Passes 3/3 without the skill: Claude reviews for contradictions unprompted. Kept as a check on reviewer quality.'
+  approved_by: Dan
+  date: '2026-10-23'
+- case: edit-asks-intent
+  reason: 'Passes 3/3 without the skill: Claude asks about intent unprompted. Kept to catch a model that starts editing silently.'
+  approved_by: Dan
+  date: '2026-10-23'
+- case: onboarding-keeps-existing-profile
+  reason: Passes 3/3 without the skill. Kept to protect existing profiles against a future regression.
+  approved_by: Dan
+  date: '2026-10-23'
+- case: provenance-secondary-only
+  reason: Passes 3/3 without the skill. Kept as a provenance watch; harden its fixture in v1.4 so it proves the engine.
+  approved_by: Dan
+  date: '2026-10-23'
+- case: provenance-subcut
+  reason: Passes 3/3 without the skill. Kept as a provenance watch; harden its fixture in v1.4 so it proves the engine.
+  approved_by: Dan
+  date: '2026-10-23'
+- case: user-rewrite-kept
+  reason: Passes 3/3 without the skill. Kept to catch re-polishing if a model starts doing it.
+  approved_by: Dan
+  date: '2026-10-23'
+- case: voice-edit-mechanics
+  reason: 'Passes 3/3 without the skill: mechanics are partly the model''s own habit when asked. Kept as a regression watch.'
+  approved_by: Dan
+  date: '2026-10-23'
+- case: brief-ambiguous-asks
+  reason: 'Fails without the skill, but survived with all 14 brief instructions removed: the phase structure itself makes Claude ask. v1.4: mutate the phase table too.'
+  approved_by: Dan
+  date: '2026-10-23'
+- case: draft-from-locked-brief
+  reason: 'Fails without the skill (mostly), but survived with all 6 flagging instructions removed: the fixture''s research notes already carry [UNVERIFIED] markers. v1.4: remove them (a recorded test change).'
+  approved_by: Dan
+  date: '2026-10-23'
+- case: imagery-real-first
+  reason: 'Fails without the skill, but survived with 5 instructions removed: other imagery rules still point to real material. v1.4: mutate the whole imagery reference.'
+  approved_by: Dan
+  date: '2026-10-23'

@@ -1,4 +1,4 @@
-# status: in-progress
+# status: shipped (v1.3.2)
 # approved: Dan 2026-10-23
 Feature: The guards themselves are tested
   As the maintainer,
@@ -17,6 +17,7 @@ Feature: The guards themselves are tested
     When I run the spec check
     Then it fails mentioning "has no failure scenario"
 
+  # last-verified: 2026-10-23
   @eval:consistency-review-finds-contradiction @id:026-03
   Scenario: The pre-release review finds a planted contradiction
     Given a copy of the skill where a reference file contradicts a rule in SKILL.md
