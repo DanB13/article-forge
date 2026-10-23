@@ -121,7 +121,8 @@ channel, is the staging step.
    `eval_summary.py check`, and refuses the release if the ledger is behind,
    the summary is missing or stale, a case failed, or a case from the last
    release was not run. Do not create tags from the GitHub Releases page.
-5. Users on the default channel get the final release in Monday's update PR;
+5. Tick the release in the README's Roadmap (in the release PR).
+6. Users on the default channel get the final release in Monday's update PR;
    Claude.ai users download the ZIP.
 
 ## Retire records

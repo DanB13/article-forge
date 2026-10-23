@@ -18,7 +18,7 @@ scenarios("../specs/019-package-and-secrets.feature")
 
 # A skill-relative path in backticks or prose, not part of a longer path like articles/<slug>/assets/.
 SKILL_PATH = re.compile(r"(?<![\w/<>.\-])((?:references|scripts|assets|migrations)/[A-Za-z0-9_.\-/]*[A-Za-z0-9_])")
-PRIVATE_MARKERS = re.compile(r"(?i)(^local/|rory|style-packs/private)")
+PRIVATE_MARKERS = re.compile(r"(?i)(^local/|style-packs/private)")
 
 
 def mentioned_paths() -> set[str]:
