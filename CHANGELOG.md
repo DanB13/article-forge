@@ -3,7 +3,7 @@
 All notable changes to the article-forge engine. Versions follow semver; the
 current version is in `.claude/skills/article-forge/VERSION`.
 
-## v1.3.1 (unreleased): Safe upgrades
+## v1.3.1 (2026-10-22): Safe upgrades
 
 Upgrades, releases and tests that cannot fail silently.
 
@@ -24,6 +24,14 @@ Upgrades, releases and tests that cannot fail silently.
 - `scripts/check_setup.py` checks the two GitHub settings updates need.
 - `scripts/check_profile.py` checks the profile has what the engine reads.
 - UPDATING.md explains how to undo an update.
+
+**Engine behaviour (found by the release eval passes)**
+- Rule 7: a message asking for a fact fix and a style change gets only the
+  fact fix in that turn, then options for the style change.
+- `draft.md` holds the article only; drafting notes go in the reply or in
+  `articles/<slug>/notes.md`. The closing question is the last line.
+- Every appearance of a statistic carries `[UNVERIFIED]`, including
+  back-references, so a later correction finds every mention.
 
 **For the maintainer**
 - Final releases need an eval summary made for exactly the released engine

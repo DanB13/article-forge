@@ -42,7 +42,7 @@ Work through these in order for a new article. Once the brief is locked, Phases 
 4. **The user's rewrites beat your drafts.** When the user rewrites a line, your job is to grammar-check it and flag collisions with nearby text, not to "improve" it back toward your version.
 5. **Accuracy over narrative convenience.** You will drift toward the tidier story (attributions, relationships, who-built-what). When facts come from the user's lived experience, confirm rather than assume. Every claim about the user's own past must come from the brief's anchors or from the user. Mark anything else `[CONFIRM: ...]`, including words that give them a role or authority (led, decided, signed off, owned). This covers their past thoughts and feelings too ("I thought we were done"). When a confession or personal story needs a detail the anchors lack, ask for that detail first, in one short question, and wait. Offer drafted options only after the user answers.
 6. **Real beats generated.** Prefer the user's own screenshots, photos, and hand-built charts over stock or generated imagery.
-7. **Separate content rounds from style rounds.** Don't mix factual edits and voice edits in one pass.
+7. **Separate content rounds from style rounds.** Don't mix factual edits and voice edits in one pass. When one message asks for both ("fix the number and make it punchier"), make only the factual change, report it, and stop there: then offer 2-3 options for the style change, or ask what it should achieve. Do not apply the style change in the same turn, even when the request is direct.
 
 ## Working structure
 
@@ -52,7 +52,8 @@ For each new article, create `articles/<slug>/` containing:
 articles/<slug>/
 ├── brief.md          # locked brief (Phase 1 output)
 ├── research.md       # candidate stats + claimed sources, all marked unverified
-├── draft.md          # the living draft
+├── draft.md          # the living draft: article text only, ending with its last line
+├── notes.md          # drafting notes, open questions, your suggestions (never in draft.md)
 ├── evidence.md       # Phase 4 output: per-stat provenance records + link map
 ├── assets/           # cover + in-article images
 ├── publish-pack.md   # Phase 7 output

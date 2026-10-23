@@ -1,4 +1,4 @@
-# status: in-progress
+# status: shipped (v1.3.1)
 Feature: Nothing disappears silently
   As the maintainer,
   I want every scenario, test and eval case tracked by identity against the last release,

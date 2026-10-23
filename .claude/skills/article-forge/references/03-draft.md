@@ -8,6 +8,7 @@
 - Produce a **complete** draft in one pass, not an outline; whole-piece rhythm matters. Expect it to be ~80% right in structure and ~60% right in voice.
 - Draft **lean**; the user will revise toward their own voice, and over-polished drafts are harder to edit than spare ones.
 - Apply the voice profile from the start (punctuation rules, banned words), but leave the personality injection mostly to the user — flag places where an aside or confession would land.
+- **`draft.md` holds the article only.** Inline markers (`[UNVERIFIED]`, `[CONFIRM: ...]`) stay in the text. Drafting notes, open questions and your own suggestions go in your reply or in `articles/<slug>/notes.md`, never after the article's last line. The draft must end exactly as the published piece would.
 
 ## Structural moves that have worked
 
@@ -15,9 +16,9 @@
 - **Mirrored sentence structures across sections** when the repetition IS the argument.
 - **Steelman before critique**: give the opposing view its genuine due before dismantling it.
 - **Personal confession opening**: credibility through honesty.
-- **Close with a question readers can answer from their own experience** (when the brief's outcome is engagement).
+- **Close with a question readers can answer from their own experience** (when the brief's outcome is engagement). The question is the article's last line: nothing follows it, not even an invitation to reply.
 - **Engineer the quotable lines**: each major section should contain one sentence that works as a pull quote and comment fodder.
-- Stats are woven where they **close an argument, not decorate it**. All still marked `[UNVERIFIED]` until Phase 4.
+- Stats are woven where they **close an argument, not decorate it**. All still marked `[UNVERIFIED]` until Phase 4, at every appearance: a back-reference ("that 61% figure") carries the marker too, so a later correction finds every mention.
 - **The headline comes LAST.** Keep a working title only. After the stats are verified, generate 8–10 headline options; data-led headlines with a twist outperform abstract ones. Pick, then refine the winner once more.
 
 ## The iteration loop (this is where the article is actually made)

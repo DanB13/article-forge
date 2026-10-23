@@ -1,4 +1,4 @@
-# status: in-progress
+# status: shipped (v1.3.1)
 Feature: Engine updates cannot touch the writer's own folders
   As a writer whose profile and articles live in my own repo,
   I want every engine update to leave profile/ and articles/ exactly as they were,
