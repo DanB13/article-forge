@@ -44,7 +44,7 @@ Feature: Spec hygiene: every scenario is tested, stale ones are flagged for reti
 
   @code @id:010-06
   Scenario: Private specs and evals under local/ are checked too
-    Given a private spec "L001-rory.feature" whose scenario uses the private eval case "rory-moves"
+    Given a private spec "L001-pack.feature" whose scenario uses the private eval case "pack-moves"
     When I run the spec check
     Then it passes
 
