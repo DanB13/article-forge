@@ -1,5 +1,5 @@
-# status: shipped (v1.3.1)
-# approved: Dan 2026-10-22
+# status: in-progress (v1.3.1; 014-06 and 014-07 in v1.3.2)
+# approved: Dan 2026-10-22; 014-06 and 014-07 approved by Dan 2026-10-23
 Feature: Engine updates cannot touch the writer's own folders
   As a writer whose profile and articles live in my own repo,
   I want every engine update to leave profile/ and articles/ exactly as they were,
@@ -43,3 +43,16 @@ Feature: Engine updates cannot touch the writer's own folders
     When the engine update runs
     Then it asks for a pull request for that branch
     And it pushes nothing new
+
+  @code @id:014-06
+  Scenario: The update opens its pull request through GitHub's REST API
+    Given the engine-update workflow
+    Then the step that opens the pull request calls the REST pulls endpoint, not gh pr create
+    And it uses the workflow's own token
+
+  @code @id:014-07
+  Scenario: If the pull request cannot be opened, an issue gives a one-click link and the run fails
+    Given the engine-update workflow
+    Then a step runs only when opening the pull request failed
+    And that step opens an issue whose body links to the compare page for the update branch
+    And that step makes the run fail
