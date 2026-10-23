@@ -1,4 +1,5 @@
 # status: shipped (v1.3.0)
+# approved: Dan 2026-10-23 (backfilled in v1.3.2: merging that release's PR confirms it)
 Feature: The voice edit enforces the profile's mechanics and never invents the writer
   As a writer with a defined voice,
   I want the voice edit to apply my mechanical rules and leave personal detail to me,

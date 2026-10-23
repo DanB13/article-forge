@@ -1,4 +1,5 @@
 # status: shipped (v1.2.0)
+# approved: Dan 2026-10-23 (backfilled in v1.3.2: merging that release's PR confirms it)
 Feature: Imagery keeps sources and warns on unsupported CSS
   As a writer who changes titles late,
   I want every rendered image to keep its HTML source and to warn me about

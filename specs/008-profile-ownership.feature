@@ -1,4 +1,5 @@
 # status: shipped (v1.3.0)
+# approved: Dan 2026-10-23 (backfilled in v1.3.2: merging that release's PR confirms it)
 Feature: The writer owns the profile; the retro only proposes
   As a writer whose voice profile is my property,
   I want the retro to propose changes for my approval and never apply them itself,

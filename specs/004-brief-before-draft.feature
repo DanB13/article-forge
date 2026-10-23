@@ -1,4 +1,5 @@
 # status: shipped (v1.3.0)
+# approved: Dan 2026-10-23 (backfilled in v1.3.2: merging that release's PR confirms it)
 Feature: The brief comes first; then a full first draft without stopping
   As a writer handing the engine an idea,
   I want it to pin down the brief before it writes, and then write the whole first draft in one go,

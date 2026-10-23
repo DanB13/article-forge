@@ -1,4 +1,5 @@
 # status: shipped (v1.3.0)
+# approved: Dan 2026-10-23 (backfilled in v1.3.2: merging that release's PR confirms it)
 Feature: A release is consistent and ships only what users need
   As the maintainer,
   I want every release to carry one version number and a clean skill ZIP,

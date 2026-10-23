@@ -3,6 +3,38 @@
 All notable changes to the article-forge engine. Versions follow semver; the
 current version is in `.claude/skills/article-forge/VERSION`.
 
+## v1.3.2 (unreleased): Grounded tests
+
+Tests that cannot lie, weaken quietly, or share the engine's blind spots.
+
+**For the maintainer**
+- Test-change control: the ledger fingerprints every scenario's wording, grader,
+  eval case, fixture, pytest step file and the pass rules. Changing one that a
+  release recorded needs an entry in `specs/test-changes.yaml` (reason, approver).
+- Grounded graders: each eval case has a `grading.yaml` naming, per grader, the
+  scenario it checks and its tier. AI judges must state why no exact check works;
+  every "must not" check has a did-the-work partner.
+- Mutant checks (`tools/mutant_check.py`): each case runs once with the engine
+  text it depends on removed and must fail. A case that still passes needs an
+  approved record in `specs/guard-cases.yaml`.
+- Calibration (`tools/calibrate.py`): the maintainer labels about 20 AI-judged
+  verdicts per final release; a judge disagreed with twice is flagged and blocks
+  the release.
+- Pass rules by risk (`evals/grading-policy.yaml`): safety graders must pass
+  every run; style graders 2 of 3.
+- Every SKILL.md rule names the scenarios that test it; every spec records who
+  approved it; an issue template turns an idea into a story with scenarios.
+- A guard registry (`tools/guards.yaml`): every guard names a scenario proving
+  it fails on bad input.
+- A pre-release consistency review (`references/maintainer-review.md`),
+  advisory, proven by an eval case with a planted contradiction.
+
+**Engine**
+- The skill can review itself for contradictions when asked.
+
+**Specs:** 020 to 026, 20 approved scenarios as 23 scenarios. Specs 001 to 012
+record their approval as backfilled; merging this release confirms them.
+
 ## v1.3.1 (2026-10-22): Safe upgrades
 
 Upgrades, releases and tests that cannot fail silently.

@@ -1,4 +1,5 @@
 # status: shipped (v1.3.1)
+# approved: Dan 2026-10-22
 Feature: A set-up check finds missing GitHub settings
   As a writer setting up my repo,
   I want one command that tells me whether engine updates can reach me,

@@ -1,4 +1,5 @@
 # status: shipped (v1.3.1)
+# approved: Dan 2026-10-22
 Feature: Nothing ships without a passing eval run
   As the maintainer,
   I want a release to need an eval summary made for exactly the engine being released,

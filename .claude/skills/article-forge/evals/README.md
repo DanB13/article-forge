@@ -32,6 +32,12 @@ python tools/eval_summary.py make --version X.Y.Z --from run.json
 - `--scaffold` runs each case's `setup.sh`.
 - `--allow-tools` grants the write tools the skill needs.
 - One cheap run of one case: add `--case <name> --runs 1 --ablation none`.
+- Each case has a `grading.yaml` (spec 021): the scenario and tier of every
+  grader, a reason for each AI judge, a partner for each "must not" check, and
+  the mutant (the engine text the case depends on). `grading-policy.yaml` holds
+  the pass rules: safety graders every run, style graders 2 of 3.
+- Before a final release, also run `tools/mutant_check.py` and
+  `tools/calibrate.py` (see MAINTAINING.md, Release).
 - `eval_summary.py make` writes `summaries/vX.Y.Z.json`, which a final release
   needs (spec 013). To fold in a rerun of some cases, pass several `--from`
   files; a later one replaces earlier results for the same case.

@@ -1,0 +1,31 @@
+name: Engine idea
+description: A change to the article-forge engine, written as a story with scenarios (specs/README.md).
+labels: [engine-idea]
+body:
+  - type: textarea
+    id: story
+    attributes:
+      label: Story
+      description: "As a <who>, I want <what>, so that <why>."
+      placeholder: "As a writer, I want ..., so that ..."
+    validations:
+      required: true
+  - type: textarea
+    id: scenarios
+    attributes:
+      label: Scenarios
+      description: "One or more Given / When / Then scenarios. The maintainer approves them before any build starts."
+      placeholder: |
+        Scenario: ...
+          Given ...
+          When ...
+          Then ...
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Where it came from
+      description: "A retro, an article, a failed eval run ... Link it if you can."
+    validations:
+      required: false

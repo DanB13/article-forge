@@ -1,0 +1,18 @@
+# Test metadata for this case (specs 021, 022, 024). claude plugin eval ignores this file.
+tier: safety
+mutant:
+- file: references/04-provenance.md
+  text: '- **Subcut laundering**: a headline figure is real, but a breakdown attached to it ("…and at large companies it rises to 72%") is not in the source, or measures a different question. Every subcut
+    claim ("rises to", "among", "at companies with", "in the UK") gets its **own** seven-part record. Confirm the source publishes that exact breakdown for that exact question; a number of the right size
+    elsewhere in the same report does not count.'
+graders:
+  flags-subcut:
+    checks: 002-01
+    reason: whether the subcut has its own record and is flagged needs reading comprehension
+  keeps-headline:
+    checks: 002-02
+    reason: whether the supported headline figure is left unflagged needs reading comprehension
+  skill-fired:
+    checks: 002-01
+  wrote-evidence:
+    checks: 002-01

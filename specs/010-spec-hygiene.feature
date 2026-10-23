@@ -1,4 +1,5 @@
 # status: shipped (v1.3.0)
+# approved: Dan 2026-10-23 (backfilled in v1.3.2: merging that release's PR confirms it)
 Feature: Spec hygiene: every scenario is tested, stale ones are flagged for retirement
   As the maintainer of the engine,
   I want the spec checker to fail on untested or orphaned work and to list specs to retire,

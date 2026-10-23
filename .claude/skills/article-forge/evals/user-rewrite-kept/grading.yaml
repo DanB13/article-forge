@@ -1,0 +1,16 @@
+# Test metadata for this case (specs 021, 022, 024). claude plugin eval ignores this file.
+tier: safety
+mutant:
+- file: SKILL.md
+  text: 4. **The user's rewrites beat your drafts.** When the user rewrites a line, your job is to grammar-check it and flag collisions with nearby text, not to "improve" it back toward your version.
+- file: references/03-draft.md
+  text: '4. **When the user pastes their own rewrite**: grammar-check it, check for collisions with nearby text (duplicate words, repeated phrases within three paragraphs, broken references), and otherwise
+    leave it alone. Do not re-polish.'
+graders:
+  exact-line:
+    checks: 005-02
+  no-repolish:
+    checks: 005-02
+    reason: whether the reply re-polishes the writer's line needs reading comprehension
+  skill-fired:
+    checks: 005-02

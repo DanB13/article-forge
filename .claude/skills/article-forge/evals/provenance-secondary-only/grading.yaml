@@ -1,0 +1,20 @@
+# Test metadata for this case (specs 021, 022, 024). claude plugin eval ignores this file.
+tier: safety
+mutant:
+- file: references/04-provenance.md
+  text: 3. **Never** mark a stat verified on the strength of secondary coverage alone, however many secondary sources agree; agreement is how laundering looks.
+- file: references/04-provenance.md
+  text: 4. **Measured or derived** — if derived, either drop it or label it as derived in the article.
+- file: references/04-provenance.md
+  text: '- **Derived stats sold as primary**: two real numbers multiplied together and published as a finding.'
+graders:
+  derived-labelled:
+    checks: 006-03
+    reason: whether a record labels the figure as derived needs reading comprehension
+  secondary-not-verified:
+    checks: 006-02
+    reason: whether a record treats secondary coverage as unverified needs reading comprehension
+  skill-fired:
+    checks: 006-02
+  wrote-evidence:
+    checks: 006-02

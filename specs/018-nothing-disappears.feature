@@ -1,4 +1,5 @@
 # status: shipped (v1.3.1)
+# approved: Dan 2026-10-22
 Feature: Nothing disappears silently
   As the maintainer,
   I want every scenario, test and eval case tracked by identity against the last release,

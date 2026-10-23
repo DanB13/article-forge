@@ -1,4 +1,5 @@
 # status: shipped (v1.3.1)
+# approved: Dan 2026-10-22
 Feature: The release package is complete and nothing private leaks
   As the maintainer of a public engine,
   I want the skill ZIP checked for missing files and the repo checked for private material,

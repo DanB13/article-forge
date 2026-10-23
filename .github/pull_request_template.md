@@ -6,7 +6,7 @@
 
 - [ ] The maintainer approved the scenarios before the build (new or changed specs)
 - [ ] `python tools/check_specs.py` and `pytest` pass locally; CI is green
-- [ ] Any grader, test or fixture change that turns a fail into a pass is explained below
+- [ ] Any change to a released test (scenario wording, grader, case, fixture, step file, pass rules) has a record in `specs/test-changes.yaml`
 - [ ] No scenario or eval case removed without a retire record in `specs/retired.yaml`
 - [ ] If the engine changed: the affected eval cases ran (or the full T2 run, for a release)
 - [ ] CHANGELOG and CAPABILITIES updated (not needed for docs-only changes)

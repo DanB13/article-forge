@@ -1,4 +1,5 @@
 # status: shipped (v1.3.0)
+# approved: Dan 2026-10-23 (backfilled in v1.3.2: merging that release's PR confirms it)
 Feature: No statistic is trusted until it is traced
   As a writer whose credibility rests on data,
   I want every statistic flagged until its origin is proven,

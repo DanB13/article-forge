@@ -32,7 +32,7 @@ def _case(root: Path, base: Path, name: str) -> None:
 def _feature(root: Path, folder: str, name: str, body: str, status: str = "shipped") -> None:
     p = root / folder / name
     p.parent.mkdir(parents=True, exist_ok=True)
-    p.write_text(f"# status: {status}\nFeature: Demo\n\n{body}\n", encoding="utf-8")
+    p.write_text(f"# status: {status}\n# approved: Test 2026-10-23\nFeature: Demo\n\n{body}\n", encoding="utf-8")
 
 
 def _id(name: str) -> str:

@@ -1,4 +1,5 @@
 # status: shipped (v1.3.1)
+# approved: Dan 2026-10-22
 Feature: Updates bring in final releases; the writer can opt in to candidates
   As the maintainer of a few dozen user repos,
   I want users to receive only eval-gated releases, while my own repo tries candidates first,

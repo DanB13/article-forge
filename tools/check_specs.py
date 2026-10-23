@@ -14,6 +14,10 @@ FAIL (exit 1)
     and no two scenarios share an ID
   - a scenario recorded in the release ledger (specs/ledger.json) still exists,
     or has a retire record in specs/retired.yaml with a reason and an approver
+  - each feature records who approved its scenarios: `# approved: <name> YYYY-MM-DD`
+  - a test the last release recorded (scenario wording, grader, eval case, fixture,
+    pass rules) is unchanged, or has a record in specs/test-changes.yaml
+  - grading metadata, rule tracing and the guard registry (see tools/integrity.py)
 
 WARN (exit 0; exit 1 with --strict, used before a release)
   - retire candidate: a spec that a newer spec supersedes still exists
@@ -51,6 +55,10 @@ VERIFIED = re.compile(r"^\s*#\s*last-verified:\s*(\d{4}-\d{2}-\d{2})\s*$")
 SPEC_NO = re.compile(r"^(L?\d{3})-")
 SCENARIO_ID = re.compile(r"^@id:(L?\d{3})-(\d{2})$")
 RETIRE_FIELDS = ("id", "reason", "approved_by", "date")
+APPROVED = re.compile(r"^#\s*approved:\s*\S.*\d{4}-\d{2}-\d{2}", re.M)
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import integrity  # noqa: E402
 
 
 @dataclass
@@ -60,6 +68,7 @@ class Report:
     retire: list[str] = field(default_factory=list)
     features: int = 0
     ids: dict[str, dict] = field(default_factory=dict)  # scenario ID -> {title, spec, folder}
+    eval_scenarios: dict[str, set] = field(default_factory=dict)  # eval case -> scenario IDs
 
 
 def _dirs(root: Path) -> dict[str, list[Path]]:
@@ -144,6 +153,8 @@ def check(root: Path = ROOT, today: dt.date | None = None) -> Report:
         if "Feature:" not in text:
             report.fails.append(f"{name}: missing 'Feature:' line")
         shipped = bool(SHIPPED.search(text))
+        if not APPROVED.search(text):
+            report.fails.append(f"{name}: no approval record ('# approved: <name> YYYY-MM-DD')")
 
         for m in SUPERSEDES.finditer(text):
             for ref in [r.strip() for r in m.group(1).split(",") if r.strip()]:
@@ -181,7 +192,14 @@ def check(root: Path = ROOT, today: dt.date | None = None) -> Report:
                 elif sid in report.ids:
                     report.fails.append(f"{name}: duplicate @id:{sid} (also on '{report.ids[sid]['title']}')")
                 else:
-                    report.ids[sid] = {"title": title, "spec": name, "folder": feature.parent}
+                    end = i + 1
+                    while end < len(lines) and not SCENARIO.match(lines[end]) and not lines[end].strip().startswith("@"):
+                        end += 1
+                    while end > i + 1 and (not lines[end - 1].strip() or VERIFIED.match(lines[end - 1])):
+                        end -= 1
+                    block = "\n".join(sorted(t for t in tags)) + "\n" + "\n".join(lines[i:end])
+                    report.ids[sid] = {"title": title, "spec": name, "folder": feature.parent,
+                                       "hash": integrity.hash_text(block)}
             test_tags = [t for t in tags if t == "@code" or t.startswith("@eval:")]
             if len(test_tags) != 1:
                 report.fails.append(f"{name}: scenario '{title}' needs exactly one of @code or @eval:<case>")
@@ -197,6 +215,8 @@ def check(root: Path = ROOT, today: dt.date | None = None) -> Report:
                 continue
             case = tag.split(":", 1)[1]
             used_cases.add(case)
+            if ids and SCENARIO_ID.match(ids[0]):
+                report.eval_scenarios.setdefault(case, set()).add(ids[0].split(":", 1)[1])
             if case not in cases:
                 report.fails.append(f"{name}: scenario '{title}' points at missing eval case '{case}'")
             if shipped:
@@ -215,6 +235,14 @@ def check(root: Path = ROOT, today: dt.date | None = None) -> Report:
 
     for d in dirs["specs"]:
         _ledger_check(report, d)
+
+    report.fails += integrity.check_grading(root, report.eval_scenarios)
+    report.fails += integrity.check_rules(root, set(report.ids))
+    report.fails += integrity.check_guards(root, {s for s, v in report.ids.items() if v.get("kind") == "code"})
+    ledger = load_ledger(root / "specs") if (root / "specs").is_dir() else None
+    if ledger and ledger.get("fingerprints"):
+        current = integrity.fingerprints(root, {s: v["hash"] for s, v in report.ids.items()})
+        report.fails += integrity.check_changes(root, ledger["fingerprints"], current)
 
     report.warns += [f"retire candidate: {r}" for r in report.retire]
     return report
@@ -238,7 +266,8 @@ def release_check(root: Path, version: str) -> list[str]:
 def update_ledger(root: Path, version: str, today: dt.date | None = None) -> list[str]:
     """Record every current scenario ID in each ledger. Returns problems; writes nothing if any."""
     report = check(root, today)
-    blocking = [f for f in report.fails if "disappeared" in f or "duplicate @id" in f or "no @id" in f]
+    blocking = [f for f in report.fails if "disappeared" in f or "duplicate @id" in f or "no @id" in f
+                or "since the last release" in f]
     if blocking:
         return blocking
     today = today or dt.date.today()
@@ -256,9 +285,11 @@ def update_ledger(root: Path, version: str, today: dt.date | None = None) -> lis
             prev = scenarios.get(sid, {})
             scenarios[sid] = {"title": info["title"], "spec": info["spec"], "status": "active",
                               "since": prev.get("since", version)}
-        ledger_path(d).write_text(json.dumps({"released": version, "updated": today.isoformat(),
-                                              "scenarios": dict(sorted(scenarios.items()))}, indent=2) + "\n",
-                                  encoding="utf-8")
+        data = {"released": version, "updated": today.isoformat(), "scenarios": dict(sorted(scenarios.items()))}
+        if d == root / "specs":
+            data["fingerprints"] = integrity.fingerprints(
+                root, {s: v["hash"] for s, v in report.ids.items() if v["folder"] == d})
+        ledger_path(d).write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
     return []
 
 
