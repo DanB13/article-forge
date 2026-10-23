@@ -1,4 +1,4 @@
-# status: in-progress (v1.3.1; 014-06 and 014-07 in v1.3.2)
+# status: shipped (v1.3.1; 014-06 and 014-07 in v1.3.2)
 # approved: Dan 2026-10-22; 014-06 and 014-07 approved by Dan 2026-10-23
 Feature: Engine updates cannot touch the writer's own folders
   As a writer whose profile and articles live in my own repo,

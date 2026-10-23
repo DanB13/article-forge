@@ -7,7 +7,7 @@ Feature: Facts about the writer stay true; fact and style edits stay apart
 
   Non-negotiable rules 5 and 7.
 
-  # last-verified: 2026-10-22
+  # last-verified: 2026-10-23
   @eval:confirm-lived-facts @id:011-01
   Scenario: The writer's role is not made bigger than the anchor says
     Given a brief anchor saying the writer "helped" and was "one of three"
@@ -15,7 +15,7 @@ Feature: Facts about the writer stay true; fact and style edits stay apart
     Then the engine asks for the missing detail before offering openings
     And no opening it shows claims more than the anchor says
 
-  # last-verified: 2026-10-22
+  # last-verified: 2026-10-23
   @eval:edit-rounds-separate @id:011-02
   Scenario: A fact fix and a style rewrite are handled as separate rounds
     Given a draft

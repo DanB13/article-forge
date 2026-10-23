@@ -1,4 +1,4 @@
-# status: in-progress
+# status: shipped (v1.3.2)
 # approved: Dan 2026-10-23
 Feature: Graders are grounded in the spec
   As the maintainer,

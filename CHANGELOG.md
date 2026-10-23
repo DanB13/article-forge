@@ -3,7 +3,7 @@
 All notable changes to the article-forge engine. Versions follow semver; the
 current version is in `.claude/skills/article-forge/VERSION`.
 
-## v1.3.2 (unreleased): Grounded tests
+## v1.3.2 (2026-10-23): Grounded tests
 
 Tests that cannot lie, weaken quietly, or share the engine's blind spots.
 
@@ -36,6 +36,15 @@ Tests that cannot lie, weaken quietly, or share the engine's blind spots.
 - The update workflow opens its pull request through GitHub's REST API. If
   GitHub still refuses, it opens an issue with a one-click link to create the
   pull request, and the run fails visibly (specs 014-06 and 014-07).
+
+**Release gate results:** 14 of 14 eval cases, 42 of 42 runs with the skill.
+Mutants: 4 cases proven able to fail (facts about the writer, migrations,
+fact-and-style rounds, retro). 10 recorded as guards with the maintainer's
+approval (`specs/guard-cases.yaml`): 7 pass even without the skill, and 3
+need the skill but no single instruction (hardening planned for v1.4). The
+maintainer's calibration labels agreed with all 20 sampled AI verdicts.
+- The engine fingerprint now excludes grading metadata, which the model never
+  reads; changes to it are guarded by test-change control.
 
 **Specs:** 020 to 026, 20 approved scenarios as 23 scenarios. Specs 001 to 012
 record their approval as backfilled; merging this release confirms them.

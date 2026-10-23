@@ -57,18 +57,18 @@ The full workflow (tiers, retiring, releasing) is in `MAINTAINING.md`.
 | 011 | [Facts about the writer stay true; fact and style edits stay apart](011-accuracy-and-rounds.feature) | shipped (v1.3.0) |
 | 012 | [A release is consistent and ships only what users need](012-release.feature) | shipped (v1.3.0) |
 | 013 | [Nothing ships without a passing eval run](013-release-gate.feature) | shipped (v1.3.1) |
-| 014 | [Engine updates cannot touch the writer's own folders](014-upgrade-safety.feature) | shipped (v1.3.1); 014-06, 014-07 in progress (v1.3.2) |
+| 014 | [Engine updates cannot touch the writer's own folders](014-upgrade-safety.feature) | shipped (v1.3.1; 014-06 and 014-07 in v1.3.2) |
 | 015 | [Profile format changes arrive as approved migrations](015-migrations.feature) | shipped (v1.3.1) |
 | 016 | [Updates bring in final releases; candidates by choice](016-release-channels.feature) | shipped (v1.3.1) |
 | 017 | [A set-up check finds missing GitHub settings](017-setup-check.feature) | shipped (v1.3.1) |
 | 018 | [Nothing disappears silently](018-nothing-disappears.feature) | shipped (v1.3.1) |
 | 019 | [The release package is complete and nothing private leaks](019-package-and-secrets.feature) | shipped (v1.3.1) |
-| 020 | [Test changes are visible and approved](020-test-changes.feature) | in progress (v1.3.2) |
-| 021 | [Graders are grounded in the spec](021-grounded-graders.feature) | in progress (v1.3.2) |
-| 022 | [Every eval case can fail](022-mutant-checks.feature) | in progress (v1.3.2) |
-| 023 | [The maintainer's labels calibrate the AI judges](023-calibration.feature) | in progress (v1.3.2) |
-| 024 | [Pass rules follow risk](024-pass-rules.feature) | in progress (v1.3.2) |
-| 025 | [Rules and approvals are traced](025-rules-traced.feature) | in progress (v1.3.2) |
-| 026 | [The guards themselves are tested](026-guards-tested.feature) | in progress (v1.3.2) |
+| 020 | [Test changes are visible and approved](020-test-changes.feature) | shipped (v1.3.2) |
+| 021 | [Graders are grounded in the spec](021-grounded-graders.feature) | shipped (v1.3.2) |
+| 022 | [Every eval case can fail](022-mutant-checks.feature) | shipped (v1.3.2) |
+| 023 | [The maintainer's labels calibrate the AI judges](023-calibration.feature) | shipped (v1.3.2) |
+| 024 | [Pass rules follow risk](024-pass-rules.feature) | shipped (v1.3.2) |
+| 025 | [Rules and approvals are traced](025-rules-traced.feature) | shipped (v1.3.2) |
+| 026 | [The guards themselves are tested](026-guards-tested.feature) | shipped (v1.3.2) |
 
 `CAPABILITIES.md` at the repo root summarises shipped features by phase.

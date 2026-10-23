@@ -95,7 +95,7 @@ Each release is tested before it ships. Ticked items are released; see
 - [x] **v1.2** Foundations: updates can never touch your work; weekly update pull requests
 - [x] **v1.3** Prove: every non-negotiable rule has a test
 - [x] **v1.3.1** Safe upgrades: release gate, profile migrations, release channels, set-up check
-- [ ] **v1.3.2** Grounded tests: mutant checks, judge calibration, test-change control
+- [x] **v1.3.2** Grounded tests: mutant checks, judge calibration, test-change control
 - [ ] **v1.4** Measure: an "AI-ness" scorecard, a detector comparison, and a baseline of how much you edit
 - [ ] **v1.5** Learn: your own example passages in every draft; learning from your edit rounds, not only the retro
 - [ ] **v1.6** Article types (opinion, how-to, case study and more) and optional style packs

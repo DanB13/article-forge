@@ -1,5 +1,5 @@
 version: 1.3.2
-labelled_by: ''
+labelled_by: Dan (2026-10-23)
 instructions: For each item, read the rubric and the judged text, then set label to pass or fail.
 items:
 - id: 1
@@ -31,7 +31,7 @@ items:
     \ to 1,200 words (a full article)?\n\n4. **Secondary audience** (optional). Examples are product peers\
     \ or CISOs' direct reports.\n\nI can also see an existing `articles/ai-policy/` draft. Should this\
     \ piece follow on from it, or stand alone?"
-  label: ''
+  label: pass
 - id: 2
   case: confirm-lived-facts
   grader: asks-for-detail
@@ -68,7 +68,7 @@ items:
 
     I''ve also noticed that the three survey stats in the body are still `[UNVERIFIED]`. That''s for Phase
     4, and I''m leaving it for now.'
-  label: ''
+  label: pass
 - id: 3
   case: confirm-lived-facts
   grader: faithful-to-anchor
@@ -111,7 +111,7 @@ items:
 
     I''ve also noticed that the three survey stats in the body are still `[UNVERIFIED]`. That''s for Phase
     4, and I''m leaving it for now.'
-  label: ''
+  label: pass
 - id: 4
   case: consistency-review-finds-contradiction
   grader: finds-contradiction
@@ -170,7 +170,7 @@ items:
 
     - `08-retro.md` steps 1, 2 and 4 are consistent with `SKILL.md`. `articles/<slug>/retro.md` is not
     covered by the profile rule.'
-  label: ''
+  label: pass
 - id: 5
   case: draft-from-locked-brief
   grader: no-stop
@@ -204,7 +204,7 @@ items:
 
 
     I put drafting notes in `articles/ai-policy/notes.md`, not in the draft.'
-  label: ''
+  label: pass
 - id: 6
   case: edit-asks-intent
   grader: asks-or-offers
@@ -234,7 +234,7 @@ items:
 
     Once I know which, I''ll offer two or three versions that follow your voice profile: no em dashes,
     UK spelling, short sentences.'
-  label: ''
+  label: pass
 - id: 7
   case: edit-rounds-separate
   grader: style-separate
@@ -266,7 +266,7 @@ items:
     \ after it.\n4. **Do all three.** This would take roughly 20% off the length.\n\nBefore I touch your\
     \ voice, tell me what \"punchier\" should do here. Do you want shorter sentences, a harder opening,\
     \ or fewer words overall? Which option do you want, or do you have a different cut in mind?"
-  label: ''
+  label: pass
 - id: 8
   case: imagery-real-first
   grader: real-first
@@ -308,7 +308,7 @@ items:
 
 
     Which of these do you have? If it''s option 1 or 2, send me the file or tell me where it is.'
-  label: ''
+  label: pass
 - id: 9
   case: migration-asks-first
   grader: asks-first
@@ -367,7 +367,7 @@ items:
 
     Answer as much as you like in whatever order. I''ll lock the brief into `articles/<slug>/brief.md`
     once you''ve signed it off.'
-  label: ''
+  label: pass
 - id: 10
   case: onboarding-keeps-existing-profile
   grader: asks-first
@@ -419,7 +419,7 @@ items:
 
 
     Which one?'
-  label: ''
+  label: pass
 - id: 11
   case: provenance-secondary-only
   grader: derived-labelled
@@ -503,7 +503,7 @@ items:
     ("we estimate"). The £3.5m is cited without a source. |
 
     | 5 | Methodology and sample size | None. N'
-  label: ''
+  label: pass
 - id: 12
   case: provenance-secondary-only
   grader: secondary-not-verified
@@ -588,7 +588,7 @@ items:
     ("we estimate"). The £3.5m is cited without a source. |
 
     | 5 | Methodology and sample size | None. N'
-  label: ''
+  label: pass
 - id: 13
   case: provenance-subcut
   grader: flags-subcut
@@ -672,7 +672,7 @@ items:
     usage, so it does not match how the draft uses it.
 
     4. **Measured or derived:** the 74%'
-  label: ''
+  label: pass
 - id: 14
   case: provenance-subcut
   grader: keeps-headline
@@ -753,7 +753,7 @@ items:
     usage, so it does not match how the draft uses it.
 
     4. **Measured or derived:** the 74%'
-  label: ''
+  label: pass
 - id: 15
   case: retro-proposes-not-applies
   grader: proposals-for-approval
@@ -788,7 +788,7 @@ items:
     \ it.\n\n**Questions for you**\n1. May I save the published version to `profile/corpus/ai-policy.md`?\n\
     2. What felt slow or repetitive in this cycle?\n3. What follow-up article did this piece suggest?\
     \ I'll add it to `articles/_ideas.md`."
-  label: ''
+  label: pass
 - id: 16
   case: user-rewrite-kept
   grader: no-repolish
@@ -819,7 +819,7 @@ items:
 
     The two new details, "eleven days" and "workarounds outnumbering the rules", come from you, so I''ve
     treated them as confirmed.'
-  label: ''
+  label: pass
 - id: 17
   case: voice-edit-mechanics
   grader: contrasts-capped
@@ -853,7 +853,7 @@ items:
     What did your organisation do first: block, or write the rules?
 
     '
-  label: ''
+  label: pass
 - id: 18
   case: voice-edit-mechanics
   grader: no-invented-detail
@@ -888,7 +888,7 @@ items:
     What did your organisation do first: block, or write the rules?
 
     '
-  label: ''
+  label: pass
 - id: 19
   case: brief-ambiguous-asks
   grader: asks-questions
@@ -946,7 +946,7 @@ items:
     Your profile already covers the outcome (comments from peers, plus authority) and vendor positioning
     (none), so I''ll assume those unless you say otherwise. If you have a line you''d want a reader to
     repeat to a colleague, send it too.'
-  label: ''
+  label: pass
 - id: 20
   case: confirm-lived-facts
   grader: asks-for-detail
@@ -978,4 +978,4 @@ items:
 
     Once I have that, I''ll give you 2–3 confession openings in your voice: UK spelling, short sentences,
     no em dashes. Each will use only what you''ve told me.'
-  label: ''
+  label: pass
