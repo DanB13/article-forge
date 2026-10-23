@@ -40,10 +40,15 @@ VERSION_TAG = re.compile(r"^v(\d+)\.(\d+)\.(\d+)(?:-rc(\d+))?$")
 
 
 def fingerprint(skill_dir: Path) -> str:
-    """SHA-256 over every engine file's path and bytes, excluding eval results and summaries."""
+    """SHA-256 over every file the model runs against: the skill and its eval cases.
+    Excludes eval results, summaries and calibration labels, and the grading metadata
+    (grading.yaml, grading-policy.yaml), which the eval tool never reads; changes to that
+    metadata are guarded by the ledger's test-change control (spec 020) instead."""
     h = hashlib.sha256()
     for p in sorted(skill_dir.rglob("*")):
         if not p.is_file() or EXCLUDED_DIRS & set(p.parts) or p.suffix == ".pyc" or p.name == ".DS_Store":
+            continue
+        if p.name in ("grading.yaml", "grading-policy.yaml"):
             continue
         rel = p.relative_to(skill_dir).as_posix()
         if rel.startswith(EXCLUDED_PREFIXES):

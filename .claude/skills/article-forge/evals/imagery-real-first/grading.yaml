@@ -2,10 +2,19 @@
 tier: style
 mutant:
 - file: SKILL.md
-  text: 6. **Real beats generated.** Prefer the user's own screenshots, photos, and hand-built charts over stock or generated imagery.
+  text: '6. **Real beats generated.** Prefer the user''s own screenshots, photos, and hand-built charts over stock or generated imagery. <!-- specs: 009-01 -->'
 - file: references/06-imagery.md
   text: 'Before you build or render anything, ask the user what real material they have or can get: screenshots, photos, a real document, data for a chart. Then propose the cover from that. Do not build
     a typography-only placeholder first. Use a designed or generated image only when the user has no real material, and say that it is the fallback.'
+- file: references/06-imagery.md
+  text: 1. **Real beats conceptual.** Real photographs, real screenshots, real charts, real frameworks. Reject stock-concept imagery repeatedly until something authentic appears; "no rubbish" said five
+    times is what produces a distinctive set.
+- file: references/06-imagery.md
+  text: 2. **The user's own finds are usually the best asset.** Ask them to hunt (Unsplash search by the user directly outperforms automated image search for editorial photos). Their own screenshots and
+    photos beat everything.
+- file: references/06-imagery.md
+  text: '- **Generated imagery with text**: Ideogram or Canva handle text-on-image better than most generators, if the user wants a generated cover. Generated imagery is the fallback, not the default; it
+    must still pass rule 1.'
 graders:
   real-first:
     checks: 009-01
