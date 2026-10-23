@@ -189,11 +189,42 @@ def workflow(world):
     world["wf"] = yaml.safe_load((ROOT / ".github/workflows/engine-update.yml").read_text(encoding="utf-8"))
 
 
+def _step(world, name):
+    return next(s for s in world["wf"]["jobs"]["update"]["steps"] if s.get("name", "").startswith(name))
+
+
 @then("the step that opens the pull request uses the workflow's own token")
 def pr_step_token(world):
-    steps = world["wf"]["jobs"]["update"]["steps"]
-    pr = next(s for s in steps if "gh pr create" in s.get("run", ""))
-    assert pr["env"]["GH_TOKEN"] == "${{ github.token }}"
+    assert _step(world, "Open pull request")["env"]["GH_TOKEN"] == "${{ github.token }}"
+
+
+@then("the step that opens the pull request calls the REST pulls endpoint, not gh pr create")
+def pr_step_rest(world):
+    run = _step(world, "Open pull request")["run"]
+    assert 'gh api "repos/${{ github.repository }}/pulls"' in run and "gh pr create" not in run
+
+
+@then("it uses the workflow's own token")
+def pr_step_own_token(world):
+    pr_step_token(world)
+
+
+@then("a step runs only when opening the pull request failed")
+def fallback_condition(world):
+    pr = _step(world, "Open pull request")
+    assert pr.get("continue-on-error") is True and pr.get("id") == "pr"
+    assert _step(world, "If the pull request could not be opened")["if"] == "steps.pr.outcome == 'failure'"
+
+
+@then("that step opens an issue whose body links to the compare page for the update branch")
+def fallback_issue(world):
+    run = _step(world, "If the pull request could not be opened")["run"]
+    assert "gh issue create" in run and "/compare/${BASE}...${BRANCH}?expand=1" in run
+
+
+@then("that step makes the run fail")
+def fallback_fails(world):
+    assert _step(world, "If the pull request could not be opened")["run"].rstrip().endswith("exit 1")
 
 
 @then("only the checkout uses the ENGINE_UPDATE_TOKEN secret")

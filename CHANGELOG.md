@@ -32,6 +32,11 @@ Tests that cannot lie, weaken quietly, or share the engine's blind spots.
 **Engine**
 - The skill can review itself for contradictions when asked.
 
+**For writers**
+- The update workflow opens its pull request through GitHub's REST API. If
+  GitHub still refuses, it opens an issue with a one-click link to create the
+  pull request, and the run fails visibly (specs 014-06 and 014-07).
+
 **Specs:** 020 to 026, 20 approved scenarios as 23 scenarios. Specs 001 to 012
 record their approval as backfilled; merging this release confirms them.
 
