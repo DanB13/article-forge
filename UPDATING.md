@@ -54,6 +54,10 @@ merge* or *Rebase and merge*. The merge commit is how git knows which upstream
 version you already have. Without it, the next update repeats old changes and
 can conflict.
 
+GitHub holds the update pull request's checks until you approve them, because
+a bot opened it. On the pull request, click **Approve and run workflows**, wait
+for `ci` to pass, then merge.
+
 ### Set it up once
 
 1. **Settings > Actions > General > Workflow permissions**: tick *Allow GitHub
