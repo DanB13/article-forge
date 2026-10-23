@@ -1,4 +1,5 @@
 # status: shipped (v1.3.1)
+# approved: Dan 2026-10-22
 Feature: Profile format changes arrive as approved migrations
   As a writer who may skip engine updates for months,
   I want changes to the profile format applied in order, only with my approval, and reversibly,

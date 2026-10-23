@@ -1,4 +1,5 @@
 # status: shipped (v1.3.0)
+# approved: Dan 2026-10-23 (backfilled in v1.3.2: merging that release's PR confirms it)
 Feature: Facts about the writer stay true; fact and style edits stay apart
   As a writer whose name is on the article,
   I want facts about my own past kept exactly as I gave them, and factual fixes kept apart from style changes,

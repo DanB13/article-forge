@@ -1,0 +1,18 @@
+# Test metadata for this case (specs 021, 022, 024). claude plugin eval ignores this file.
+tier: style
+mutant:
+- file: SKILL.md
+  text: When asked to review the article-forge skill (or a copy of it) for contradictions, follow `references/maintainer-review.md`. Report only; never edit the skill during a review.
+- file: references/maintainer-review.md
+  text: '2. List every pair of instructions that cannot both be followed. Typical places: what needs the user''s approval, what is written to `profile/`, when to stop and ask, and what a file must or must
+    not contain.'
+graders:
+  skill-fired:
+    checks: 026-03
+  names-retro-file:
+    checks: 026-03
+  names-corpus:
+    checks: 026-03
+  finds-contradiction:
+    checks: 026-03
+    reason: whether the reply identifies the planted contradiction, rather than mentioning the files, needs reading comprehension

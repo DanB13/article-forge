@@ -1,4 +1,5 @@
 # status: shipped (v1.3.0)
+# approved: Dan 2026-10-23 (backfilled in v1.3.2: merging that release's PR confirms it)
 Feature: Real imagery comes first
   As a writer who wants authentic visuals,
   I want the engine to start from my own screenshots, photos and charts,

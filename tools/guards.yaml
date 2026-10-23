@@ -1,0 +1,41 @@
+# Every guard in the maintainer system, and the code scenarios that prove it fails on bad input (spec 026).
+# check_specs.py fails if a guard names no failure scenario, or one that does not exist.
+- name: spec check (test tags, orphans)
+  tool: tools/check_specs.py
+  failure_scenarios: [010-01, 010-02]
+- name: scenario IDs and the release ledger
+  tool: tools/check_specs.py
+  failure_scenarios: [018-01, 018-02, 018-03, 018-08]
+- name: test-change control
+  tool: tools/integrity.py
+  failure_scenarios: [020-02, 020-04]
+- name: grading metadata (scenario links, AI judge reasons, partners, tiers, mutants named)
+  tool: tools/integrity.py
+  failure_scenarios: [021-01, 021-02, 021-03, 022-01, 024-01]
+- name: rule tracing and approval records
+  tool: tools/integrity.py
+  failure_scenarios: [025-01, 025-02]
+- name: guard registry
+  tool: tools/integrity.py
+  failure_scenarios: [026-02]
+- name: release gate (summary, fingerprint, failed and missing cases)
+  tool: tools/eval_summary.py
+  failure_scenarios: [013-01, 013-02, 013-03, 018-05]
+- name: mutant gate
+  tool: tools/eval_summary.py
+  failure_scenarios: [022-02]
+- name: calibration gate
+  tool: tools/eval_summary.py
+  failure_scenarios: [023-02, 023-03]
+- name: test-run audit
+  tool: tools/scenario_audit.py
+  failure_scenarios: [018-06, 018-07]
+- name: key scan
+  tool: tools/secret_scan.py
+  failure_scenarios: [019-05]
+- name: update guard (writer's folders)
+  tool: tools/engine_update.py
+  failure_scenarios: [014-03]
+- name: migration approval
+  tool: scripts/migrate.py
+  failure_scenarios: [015-02]

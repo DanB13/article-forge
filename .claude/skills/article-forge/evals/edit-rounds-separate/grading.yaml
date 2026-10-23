@@ -1,0 +1,18 @@
+# Test metadata for this case (specs 021, 022, 024). claude plugin eval ignores this file.
+tier: safety
+mutant:
+- file: SKILL.md
+  text: '7. **Separate content rounds from style rounds.** Don''t mix factual edits and voice edits in one pass. When one message asks for both ("fix the number and make it punchier"), make only the factual
+    change, report it, and stop there: then offer 2-3 options for the style change, or ask what it should achieve. Do not apply the style change in the same turn, even when the request is direct.'
+- file: references/03-draft.md
+  text: '2. **Content rounds and style rounds are separate.** Facts, new paragraphs, and corrections in one kind of round; word bans, punctuation, tone in another. When one message mixes both ("fix the
+    number and make it punchier"), apply the factual change first and report it on its own. Then treat the style request as the next round: ask what it should achieve, or offer 2-3 options. Never fold a
+    style rewrite into the same pass as a fact fix.'
+graders:
+  fact-fixed:
+    checks: 011-02
+  skill-fired:
+    checks: 011-02
+  style-separate:
+    checks: 011-02
+    reason: whether the style change was held back for its own round needs reading comprehension

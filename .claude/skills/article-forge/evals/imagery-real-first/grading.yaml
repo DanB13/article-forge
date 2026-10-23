@@ -1,0 +1,14 @@
+# Test metadata for this case (specs 021, 022, 024). claude plugin eval ignores this file.
+tier: style
+mutant:
+- file: SKILL.md
+  text: 6. **Real beats generated.** Prefer the user's own screenshots, photos, and hand-built charts over stock or generated imagery.
+- file: references/06-imagery.md
+  text: 'Before you build or render anything, ask the user what real material they have or can get: screenshots, photos, a real document, data for a chart. Then propose the cover from that. Do not build
+    a typography-only placeholder first. Use a designed or generated image only when the user has no real material, and say that it is the fallback.'
+graders:
+  real-first:
+    checks: 009-01
+    reason: whether the reply starts from real material needs reading comprehension
+  skill-fired:
+    checks: 009-01

@@ -1,4 +1,5 @@
 # status: shipped (v1.2.0)
+# approved: Dan 2026-10-23 (backfilled in v1.3.2: merging that release's PR confirms it)
 Feature: Subcut statistics get their own provenance record
   As a writer whose credibility rests on data,
   I want every breakdown of a headline statistic traced on its own,

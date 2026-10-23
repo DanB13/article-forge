@@ -1,4 +1,4 @@
-# Capabilities (v1.3.1)
+# Capabilities (v1.3.2)
 
 What the engine does today, by phase. Each line links to the spec that proves
 it, where one exists. Specs live in `specs/`; history is in `CHANGELOG.md`.
@@ -32,5 +32,12 @@ it, where one exists. Specs live in `specs/`; history is in `CHANGELOG.md`.
 | Maintainer | A final release needs a passing eval run on exactly that engine | [013](specs/013-release-gate.feature) |
 | Maintainer | Scenarios tracked by ID against the last release; skipped tests fail | [018](specs/018-nothing-disappears.feature) |
 | Maintainer | Complete skill ZIP; no private material or keys in the repo | [019](specs/019-package-and-secrets.feature) |
+| Maintainer | Changes to released tests need a recorded reason and approval | [020](specs/020-test-changes.feature) |
+| Maintainer | Graders tied to scenarios; AI judges justified; no passing by doing nothing | [021](specs/021-grounded-graders.feature) |
+| Maintainer | Every eval case proven able to fail (mutants) | [022](specs/022-mutant-checks.feature) |
+| Maintainer | AI judges calibrated against the maintainer's labels | [023](specs/023-calibration.feature) |
+| Maintainer | Safety graders pass every run; style graders 2 of 3 | [024](specs/024-pass-rules.feature) |
+| Maintainer | Every rule traced to scenarios; approvals recorded | [025](specs/025-rules-traced.feature) |
+| Maintainer | Every guard tested; pre-release contradiction review | [026](specs/026-guards-tested.feature) |
 
 Rows without a spec gain one when they are next changed.

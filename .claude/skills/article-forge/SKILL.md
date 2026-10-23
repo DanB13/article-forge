@@ -1,6 +1,6 @@
 ---
 name: article-forge
-description: A complete idea-to-published workflow for LinkedIn (and other platform) thought-leadership articles. Use this skill whenever the user wants to write, draft, edit, fact-check, illustrate, package, or publish an article, LinkedIn post, or long-form thought-leadership piece; whenever they share a theme, thesis, or article idea; whenever they paste article text for review or edits, or ask for any change to a draft (including files under articles/), such as replacing a line, fixing a fact or making it punchier; and whenever they paste a published article back for a retrospective. Covers briefing, research, drafting, statistic provenance verification, voice editing, imagery, publishing packs, and style learning.
+description: A complete idea-to-published workflow for LinkedIn (and other platform) thought-leadership articles. Use this skill whenever the user wants to write, draft, edit, fact-check, illustrate, package, or publish an article, LinkedIn post, or long-form thought-leadership piece; whenever they share a theme, thesis, or article idea; whenever they paste article text for review or edits, or ask for any change to a draft (including files under articles/), such as replacing a line, fixing a fact or making it punchier; whenever they paste a published article back for a retrospective; and when asked to review the article-forge skill itself for contradictions. Covers briefing, research, drafting, statistic provenance verification, voice editing, imagery, publishing packs, and style learning.
 ---
 
 # Article Forge
@@ -36,13 +36,13 @@ Work through these in order for a new article. Once the brief is locked, Phases 
 
 ## Non-negotiable rules (apply in every phase)
 
-1. **Clarify before drafting.** If the user gives a theme without audience, tone, vendor positioning, and desired outcome, ask; use short multiple-choice questions where possible. Never produce a draft on an ambiguous brief. But if the brief already answers a question, don't re-ask it.
-2. **Never edit silently.** All edits are proposed as options (usually 2–3, with honest trade-offs), the user picks or counter-proposes, you apply their decision. When the user pastes a sentence or section with an instruction, first check: do you know their *intent*? If not stated, ask one question about what they want the passage to achieve before offering options.
-3. **No unverified statistics in any draft shown as "final".** Draft-stage stats are marked `[UNVERIFIED]` inline until Phase 4 clears them. A stat being impressive and widely quoted raises suspicion, not confidence.
-4. **The user's rewrites beat your drafts.** When the user rewrites a line, your job is to grammar-check it and flag collisions with nearby text, not to "improve" it back toward your version.
-5. **Accuracy over narrative convenience.** You will drift toward the tidier story (attributions, relationships, who-built-what). When facts come from the user's lived experience, confirm rather than assume. Every claim about the user's own past must come from the brief's anchors or from the user. Mark anything else `[CONFIRM: ...]`, including words that give them a role or authority (led, decided, signed off, owned). This covers their past thoughts and feelings too ("I thought we were done"). When a confession or personal story needs a detail the anchors lack, ask for that detail first, in one short question, and wait. Offer drafted options only after the user answers.
-6. **Real beats generated.** Prefer the user's own screenshots, photos, and hand-built charts over stock or generated imagery.
-7. **Separate content rounds from style rounds.** Don't mix factual edits and voice edits in one pass. When one message asks for both ("fix the number and make it punchier"), make only the factual change, report it, and stop there: then offer 2-3 options for the style change, or ask what it should achieve. Do not apply the style change in the same turn, even when the request is direct.
+1. **Clarify before drafting.** If the user gives a theme without audience, tone, vendor positioning, and desired outcome, ask; use short multiple-choice questions where possible. Never produce a draft on an ambiguous brief. But if the brief already answers a question, don't re-ask it. <!-- specs: 004-01, 004-02 -->
+2. **Never edit silently.** All edits are proposed as options (usually 2–3, with honest trade-offs), the user picks or counter-proposes, you apply their decision. When the user pastes a sentence or section with an instruction, first check: do you know their *intent*? If not stated, ask one question about what they want the passage to achieve before offering options. <!-- specs: 005-01 -->
+3. **No unverified statistics in any draft shown as "final".** Draft-stage stats are marked `[UNVERIFIED]` inline until Phase 4 clears them. A stat being impressive and widely quoted raises suspicion, not confidence. <!-- specs: 006-01, 006-02, 006-03, 002-01, 002-02 -->
+4. **The user's rewrites beat your drafts.** When the user rewrites a line, your job is to grammar-check it and flag collisions with nearby text, not to "improve" it back toward your version. <!-- specs: 005-02 -->
+5. **Accuracy over narrative convenience.** You will drift toward the tidier story (attributions, relationships, who-built-what). When facts come from the user's lived experience, confirm rather than assume. Every claim about the user's own past must come from the brief's anchors or from the user. Mark anything else `[CONFIRM: ...]`, including words that give them a role or authority (led, decided, signed off, owned). This covers their past thoughts and feelings too ("I thought we were done"). When a confession or personal story needs a detail the anchors lack, ask for that detail first, in one short question, and wait. Offer drafted options only after the user answers. <!-- specs: 011-01 -->
+6. **Real beats generated.** Prefer the user's own screenshots, photos, and hand-built charts over stock or generated imagery. <!-- specs: 009-01 -->
+7. **Separate content rounds from style rounds.** Don't mix factual edits and voice edits in one pass. When one message asks for both ("fix the number and make it punchier"), make only the factual change, report it, and stop there: then offer 2-3 options for the style change, or ask what it should achieve. Do not apply the style change in the same turn, even when the request is direct. <!-- specs: 011-02 -->
 
 ## Working structure
 
@@ -61,6 +61,10 @@ articles/<slug>/
 ```
 
 In Claude.ai without a filesystem, keep the same sections as clearly-labelled artifacts/documents instead.
+
+## Reviewing this skill
+
+When asked to review the article-forge skill (or a copy of it) for contradictions, follow `references/maintainer-review.md`. Report only; never edit the skill during a review.
 
 ## Division of labour
 

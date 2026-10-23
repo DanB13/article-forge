@@ -22,7 +22,7 @@ def repo(tmp_path):
 
 
 def feature(root: Path, name: str, scenarios_text: str) -> None:
-    (root / "specs" / name).write_text(f"# status: shipped\nFeature: Demo\n\n{scenarios_text}\n", encoding="utf-8")
+    (root / "specs" / name).write_text(f"# status: shipped\n# approved: Test 2026-10-23\nFeature: Demo\n\n{scenarios_text}\n", encoding="utf-8")
     (root / "tests" / f"test_{Path(name).stem}.py").write_text(f'scenarios("../specs/{name}")\n', encoding="utf-8")
 
 

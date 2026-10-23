@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: consistency-review-finds-contradiction
+description: "The pre-release review finds a planted contradiction between SKILL.md and a reference file (specs/026)."
+tags: [maintainer, review]
+context:
+  scaffold_script: setup.sh

@@ -11,7 +11,12 @@ that every user runs on their own profile.
    `@eval:<case>`, plus a permanent ID: `@id:NNN-01`, `@id:NNN-02`... An ID
    never changes and is never reused. Scenarios that check the public engine
    repo itself also get `@upstream`, so writers' copies skip them.
-   **The maintainer approves the scenarios before the build starts.**
+   **The maintainer approves the scenarios before the build starts**, and the
+   feature records it: `# approved: Dan YYYY-MM-DD`. A new eval case also needs
+   a `grading.yaml` (scenario and tier per grader, a reason for each AI judge, a
+   did-the-work partner for each "must not" check, and its mutant). A new rule
+   in SKILL.md names its scenarios: `<!-- specs: NNN-NN -->`. A new guard goes in
+   `tools/guards.yaml` with a scenario proving it fails.
 2. **Red.** `python tools/check_specs.py` fails until a test exists. Write the
    pytest-bdd steps in `tests/`, or the eval case in
    `.claude/skills/article-forge/evals/<case>/`. It fails until the behaviour
@@ -92,8 +97,18 @@ channel, is the staging step.
    The `release` workflow runs the free tests and publishes a pre-release.
    Repos with `ENGINE_CHANNEL=rc` receive it at their next update. Use it on
    real work.
-3. **Eval gate.** Run T2 on main and make the summary
-   (`tools/eval_summary.py make`). Then record the release's scenarios:
+3. **Eval gate.** Time it after the weekly usage reset; cap $15. On main:
+   1. T2: `claude plugin eval .claude/skills/article-forge --runs 3 --judge-model sonnet --scaffold --allow-tools Bash Write Edit --json run.json --max-cost-usd 12`
+   2. Mutants: `python tools/mutant_check.py --out mutants.json`. A survivor
+      needs a stronger case, or an approved entry in `specs/guard-cases.yaml`.
+   3. Summary: `python tools/eval_summary.py make --version X.Y.Z --from run.json --mutants mutants.json`
+   4. Calibration: `python tools/calibrate.py export --from run.json --version X.Y.Z`;
+      the maintainer labels the items (about 15 minutes), then
+      `python tools/calibrate.py score --labels .claude/skills/article-forge/evals/calibration/vX.Y.Z.yaml`.
+   5. Optional, advisory: ask Claude to review the skill for contradictions
+      (`references/maintainer-review.md`).
+
+   Then record the release's scenarios:
    `python tools/check_specs.py --update-ledger X.Y.Z`. It refuses if a
    scenario from the last release vanished without a retire record. Set the
    `# last-verified:` dates and each feature's `# status: shipped (vX.Y.Z)`.
@@ -122,6 +137,23 @@ To remove a released scenario or eval case on purpose, add an entry to
 ```
 
 Without one, `check_specs.py` and the release gate fail and name what vanished.
+
+## Test-change records
+
+A test the last release recorded can change only with an entry in
+`specs/test-changes.yaml`. Items are named as `check_specs.py` reports them:
+`scenario:004-02`, `grader:<case>/<grader>`, `case:<case>`, `fixture:<name>`,
+`steps:<test file>`, or `policy`.
+
+```yaml
+- item: "grader:draft-from-locked-brief/stats-flagged"
+  reason: "Also accept [UNVERIFIED: source] markers"
+  approved_by: "Dan"
+  date: "2026-11-02"
+```
+
+A case whose mutant survives goes in `specs/guard-cases.yaml` the same way
+(`case`, `reason`, `approved_by`, `date`).
 
 ## Users and this tooling
 

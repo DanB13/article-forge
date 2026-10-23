@@ -1,0 +1,19 @@
+# Test metadata for this case (specs 021, 022, 024). claude plugin eval ignores this file.
+tier: style
+mutant:
+- file: SKILL.md
+  text: 1. **Clarify before drafting.** If the user gives a theme without audience, tone, vendor positioning, and desired outcome, ask; use short multiple-choice questions where possible. Never produce
+    a draft on an ambiguous brief. But if the brief already answers a question, don't re-ask it.
+- file: references/01-brief.md
+  text: '## The kick-off questions (ask what the brief doesn''t answer)'
+- file: references/01-brief.md
+  text: Take everything offered; ask only for what's missing.
+graders:
+  asks-questions:
+    checks: 004-01
+    reason: whether the questions cover the brief's missing parts needs reading comprehension
+  no-draft:
+    checks: 004-01
+    pair: asks-questions
+  skill-fired:
+    checks: 004-01

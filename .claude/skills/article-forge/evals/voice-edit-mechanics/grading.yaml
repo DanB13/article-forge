@@ -1,0 +1,27 @@
+# Test metadata for this case (specs 021, 022, 024). claude plugin eval ignores this file.
+tier: style
+mutant:
+- file: references/05-voice-edit.md
+  text: '- **"X, not Y" antithesis.** One or two is rhetoric; six is a detectable rhythm. Count them; reduce to 2–3, keeping the ones doing structural work (a header, the close).'
+- file: references/05-voice-edit.md
+  text: '- Punctuation per profile (common ruleset: no em dashes — use semicolons, commas, or sentence breaks; no ampersands in prose).'
+- file: references/05-voice-edit.md
+  text: At least two genuinely personal details per article. These must come FROM the user's life; ask, don't invent.
+graders:
+  contrasts-capped:
+    checks: 007-02
+    reason: counting rhetorical contrasts needs reading comprehension
+  no-banned-words:
+    checks: 007-01
+    pair: still-an-article
+  no-em-dash:
+    checks: 007-01
+    pair: still-an-article
+  no-invented-detail:
+    checks: 007-03
+    tier: safety
+    reason: spotting a new personal anecdote needs reading comprehension
+  skill-fired:
+    checks: 007-01
+  still-an-article:
+    checks: 007-01

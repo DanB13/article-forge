@@ -1,0 +1,32 @@
+# Test metadata for this case (specs 021, 022, 024). claude plugin eval ignores this file.
+tier: style
+mutant:
+- file: SKILL.md
+  text: 3. **No unverified statistics in any draft shown as "final".** Draft-stage stats are marked `[UNVERIFIED]` inline until Phase 4 clears them. A stat being impressive and widely quoted raises suspicion,
+    not confidence.
+- file: references/03-draft.md
+  text: '- Stats are woven where they **close an argument, not decorate it**. All still marked `[UNVERIFIED]` until Phase 4, at every appearance: a back-reference ("that 61% figure") carries the marker
+    too, so a later correction finds every mention.'
+graders:
+  closing-question:
+    checks: 004-02
+  every-stat-flagged:
+    checks: 006-01
+    tier: safety
+    pair: stats-flagged
+  no-banned-words:
+    checks: 004-03
+    pair: three-sections
+  no-em-dash:
+    checks: 004-03
+    pair: three-sections
+  no-stop:
+    checks: 004-02
+    reason: whether the reply stopped to re-ask what the brief answers needs reading comprehension
+  skill-fired:
+    checks: 004-02
+  stats-flagged:
+    checks: 006-01
+    tier: safety
+  three-sections:
+    checks: 004-02

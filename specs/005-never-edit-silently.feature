@@ -1,4 +1,5 @@
 # status: shipped (v1.3.0)
+# approved: Dan 2026-10-23 (backfilled in v1.3.2: merging that release's PR confirms it)
 Feature: Never edit silently; the writer's own lines win
   As a writer who owns my voice,
   I want every change proposed before it is made, and my own rewrites kept exactly,

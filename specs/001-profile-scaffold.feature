@@ -1,4 +1,5 @@
 # status: shipped (v1.2.0; reminder added v1.3.0)
+# approved: Dan 2026-10-23 (backfilled in v1.3.2: merging that release's PR confirms it)
 Feature: Profile scaffold that never overwrites
   As a writer who has filled in my voice profile,
   I want onboarding and engine updates to create missing files only,
