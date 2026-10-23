@@ -62,13 +62,22 @@ flowchart LR
 3. Say *"Set up my voice profile"*. Claude creates `profile/` and `articles/`
    from the templates, then builds your profile from 2 or 3 pieces you've
    published.
-4. Switch on engine updates once (details in [UPDATING.md](UPDATING.md)):
-   - **Settings > Actions > General > Workflow permissions**: tick *Allow
-     GitHub Actions to create and approve pull requests*, then **Save**.
-   - Add a fine-grained token for your repo with **Contents** and **Workflows**
-     set to read and write, as the secret `ENGINE_UPDATE_TOKEN`.
-   - Check both with `python .claude/skills/article-forge/scripts/check_setup.py`.
-5. Then say *"New article: [your theme, thesis or audience]"* and follow the phases.
+4. Say *"New article: [your theme, thesis or audience]"* and follow the phases.
+
+You need git, Python 3 and a Claude plan that includes Claude Code. That is all
+you need to write.
+
+**Optional: get engine improvements automatically.** Your repo checks for a new
+release every Monday and opens a pull request for you to review. Switch it on
+once (about 5 minutes; details in [UPDATING.md](UPDATING.md)):
+
+- **Settings > Actions > General > Workflow permissions**: tick *Allow GitHub
+  Actions to create and approve pull requests*, then **Save**.
+- Create a fine-grained token for this repo only, with **Contents** and
+  **Workflows** set to read and write. Save it as the Actions secret
+  `ENGINE_UPDATE_TOKEN`. GitHub needs it because some releases change the
+  workflow files.
+- Check both with `python .claude/skills/article-forge/scripts/check_setup.py`.
 
 Optional, for the cover image pipeline: `sudo apt install wkhtmltopdf` and
 `pip install pillow`.
