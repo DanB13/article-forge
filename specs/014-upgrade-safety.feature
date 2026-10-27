@@ -56,3 +56,20 @@ Feature: Engine updates cannot touch the writer's own folders
     Then a step runs only when opening the pull request failed
     And that step opens an issue whose body links to the compare page for the update branch
     And that step makes the run fail
+
+  # proposed for v1.4.0-rc1
+  @code @id:014-08
+  Scenario: Without the token, an update that changes workflow files pushes nothing and says so
+    Given a writer's repo made from engine release "v1.0.0", with a filled-in profile and an article
+    And a newer engine release "v1.1.0" that changes a workflow file
+    When the engine update runs without the ENGINE_UPDATE_TOKEN secret
+    Then no update branch is pushed
+    And it asks for the manual-merge issue for "v1.1.0"
+
+  # proposed for v1.4.0-rc1
+  @code @id:014-09
+  Scenario: The manual-merge issue gives the commands to run
+    Given the engine-update workflow
+    Then a step runs only when the update needs the token
+    And that step opens an issue whose body gives the git commands to merge the release by hand
+    And that step marks the run with a warning, not a failure
