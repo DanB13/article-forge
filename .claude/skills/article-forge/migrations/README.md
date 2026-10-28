@@ -9,7 +9,7 @@ Add one as `NNNN_short_name.py` with:
 ```python
 from pathlib import Path
 
-ID = "0001"
+ID = "0102"
 DESCRIPTION = "Adds a '## Density limits' section to the voice profile"
 
 def plan(root: Path) -> dict[str, str]:
@@ -23,4 +23,9 @@ Rules:
 - Add the profile your migration expects to `tests/fixtures/profiles/` and keep
   the upgrade matrix in spec 015 passing.
 
-No engine migrations exist yet: the profile format has not changed since v1.1.
+Engine migrations are numbered from 0101 (0001 to 0099 are kept for the test
+samples in `tests/fixtures/migrations/`).
+
+| ID | Release | Change |
+|---|---|---|
+| 0101 | v1.4 | Adds `profile/settings.yaml` and `profile/samples/` |

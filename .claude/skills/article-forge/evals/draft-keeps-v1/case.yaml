@@ -1,0 +1,8 @@
+schema_version: '1.1'
+name: draft-keeps-v1
+description: 'Spec 031-04: the first complete draft is saved as draft-v1.md and a later change never touches it.'
+tags:
+- spec-031
+- phase3
+context:
+  scaffold_script: setup.sh

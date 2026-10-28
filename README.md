@@ -73,10 +73,10 @@ once (about 5 minutes; details in [UPDATING.md](UPDATING.md)):
 
 - **Settings > Actions > General > Workflow permissions**: tick *Allow GitHub
   Actions to create and approve pull requests*, then **Save**.
-- Create a fine-grained token for this repo only, with **Contents** and
-  **Workflows** set to read and write. Save it as the Actions secret
-  `ENGINE_UPDATE_TOKEN`. GitHub needs it because some releases change the
-  workflow files.
+- Optional: a fine-grained token for this repo only, with **Contents** and
+  **Workflows** set to read and write, saved as the Actions secret
+  `ENGINE_UPDATE_TOKEN`. Without it, an update that changes workflow files
+  opens an issue with the commands to merge it by hand instead.
 - Check both with `python .claude/skills/article-forge/scripts/check_setup.py`.
 
 Optional, for the cover image pipeline: `sudo apt install wkhtmltopdf` and
@@ -130,7 +130,7 @@ article-forge/
 ├── .claude/skills/article-forge/   # THE ENGINE (maintained upstream)
 │   ├── SKILL.md                    #   orchestrator: phases and rules
 │   ├── references/                 #   one playbook per phase (0 to 8)
-│   ├── scripts/                    #   scaffold, migrations, set-up and profile checks, cover renderer
+│   ├── scripts/                    #   scaffold, migrations, checks, meters, edit distance, cover renderer
 │   ├── migrations/                 #   profile format changes, applied only with your approval
 │   ├── assets/templates/           #   profile/ and articles/ starter files
 │   ├── evals/                      #   behaviour tests (claude plugin eval)

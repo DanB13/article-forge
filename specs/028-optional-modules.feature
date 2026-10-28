@@ -1,4 +1,5 @@
-# status: proposed (v1.4.0-rc1)
+# status: in-progress (v1.4.0-rc1)
+# approved: Dan 2026-10-28
 Feature: Optional modules are off until the writer switches them on
   As a writer,
   I want every optional module off by default, and to know whether each one sends my text anywhere,

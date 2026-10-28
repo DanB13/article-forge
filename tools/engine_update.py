@@ -10,9 +10,12 @@ The engine-update workflow runs this in the writer's repo. It:
   4. merges the release on a new branch (the first merge into a template copy
      needs --allow-unrelated-histories and -X theirs);
   5. refuses the update if it would change profile/ or articles/;
-  6. pushes the branch and asks for a pull request.
+  6. if GitHub refuses the push of a release that changes workflow files (it does
+     without the ENGINE_UPDATE_TOKEN secret), pushes nothing and asks for an issue
+     with the commands to merge it by hand (spec 014-08);
+  7. pushes the branch and asks for a pull request.
 
-Results go to GITHUB_OUTPUT (when set) as action=none|open_pr|conflict|refused,
+Results go to GITHUB_OUTPUT (when set) as action=none|open_pr|conflict|refused|needs_token,
 plus branch, tag, version and files. Pushing uses the checkout's credentials
 (the ENGINE_UPDATE_TOKEN secret); the workflow opens pull requests and issues
 with its own token.
@@ -56,7 +59,7 @@ def protected_files(paths: list[str]) -> list[str]:
 
 @dataclass
 class Result:
-    action: str  # none | open_pr | conflict | refused
+    action: str  # none | open_pr | conflict | refused | needs_token
     message: str
     branch: str = ""
     tag: str = ""
@@ -139,8 +142,16 @@ def run(repo: Path, upstream: str, channel: str = "release", remote: str = "orig
         _git(repo, "branch", "-q", "-D", branch)
         return Result("refused", f"{tag} would change your own folders, so nothing was pushed.",
                       branch, tag, version, refused)
-
-    _git(repo, "push", "--quiet", remote, branch)
+    pushed = _git(repo, "push", "--quiet", remote, branch, check=False)
+    if pushed.returncode != 0:
+        workflows = [f for f in changed if f.startswith(".github/workflows/")]
+        _git(repo, "checkout", "-q", "-")
+        _git(repo, "branch", "-q", "-D", branch)
+        if workflows:
+            return Result("needs_token", f"{tag} changes workflow files and GitHub refused the push (it needs "
+                          "the ENGINE_UPDATE_TOKEN secret). Nothing was pushed; merge it by hand instead.",
+                          branch, tag, version, workflows)
+        raise SystemExit(f"Could not push {branch}: {pushed.stderr.strip()}")
     return Result("open_pr", f"Merged {tag} on {branch}.", branch, tag, version)
 
 

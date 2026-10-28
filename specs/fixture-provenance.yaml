@@ -1,0 +1,60 @@
+# Where every piece of test text came from (spec 032). tools/fixture_provenance.py checks it.
+# origin: fictional = invented for testing; public = published text, with its source and licence.
+# A new fixture folder must be added here before the spec check passes.
+- path: .claude/skills/article-forge/evals/_fixtures
+  origin: fictional
+  note: Sam Carter, Acme Research and every other name and figure are invented
+- path: .claude/skills/article-forge/evals/consistency-review-finds-contradiction/resources
+  origin: fictional
+  note: invented for the test
+- path: .claude/skills/article-forge/evals/migration-asks-first/resources
+  origin: fictional
+  note: invented for the test
+- path: .claude/skills/article-forge/evals/onboarding-keeps-existing-profile/resources
+  origin: fictional
+  note: invented for the test
+- path: .claude/skills/article-forge/evals/provenance-secondary-only/resources
+  origin: fictional
+  note: invented for the test
+- path: .claude/skills/article-forge/evals/provenance-subcut/resources
+  origin: fictional
+  note: invented for the test
+- path: .claude/skills/article-forge/evals/retro-proposes-not-applies/resources
+  origin: fictional
+  note: invented for the test
+- path: .claude/skills/article-forge/evals/voice-edit-mechanics/resources
+  origin: fictional
+  note: invented for the test
+- path: tests/fixtures/meters
+  origin: fictional
+  note: invented for the test
+- path: tests/fixtures/migrations
+  origin: fictional
+  note: invented for the test
+- path: tests/fixtures/profiles
+  origin: fictional
+  note: invented for the test
+- path: .claude/skills/article-forge/evals/informality-light/resources
+  origin: fictional
+  note: invented for the test (Sam Carter, Acme Research, example domains)
+- path: .claude/skills/article-forge/evals/provenance-edition-anchor/resources
+  origin: fictional
+  note: invented for the test (Sam Carter, Acme Research, example domains)
+- path: .claude/skills/article-forge/evals/publish-pack-sections/resources
+  origin: fictional
+  note: invented for the test (Sam Carter, Acme Research, example domains)
+- path: .claude/skills/article-forge/evals/research-flags-stats/resources
+  origin: fictional
+  note: invented for the test (Sam Carter, Acme Research, example domains)
+- path: .claude/skills/article-forge/evals/research-thin-evidence/resources
+  origin: fictional
+  note: invented for the test (Sam Carter, Acme Research, example domains)
+- path: .claude/skills/article-forge/evals/retro-records-edit-distance/resources
+  origin: fictional
+  note: invented for the test (Sam Carter, Acme Research, example domains)
+- path: .claude/skills/article-forge/evals/voice-edit-records-calls/resources
+  origin: fictional
+  note: invented for the test (Sam Carter, Acme Research, example domains)
+- path: .claude/skills/article-forge/evals/voice-edit-shows-scorecard/resources
+  origin: fictional
+  note: invented for the test (Sam Carter, Acme Research, example domains)

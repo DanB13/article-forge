@@ -1,4 +1,5 @@
-# status: proposed (v1.4.0-rc1)
+# status: in-progress (v1.4.0-rc1)
+# approved: Dan 2026-10-28
 Feature: The published links are checked against the link map
   As a writer,
   I want the links as they went live compared with the link map,

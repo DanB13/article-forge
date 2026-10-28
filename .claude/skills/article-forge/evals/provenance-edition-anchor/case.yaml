@@ -1,0 +1,8 @@
+schema_version: '1.1'
+name: provenance-edition-anchor
+description: 'Spec 035-01: a named edition keeps its own source in the link map beside the evergreen link.'
+tags:
+- spec-035
+- phase4
+context:
+  scaffold_script: setup.sh

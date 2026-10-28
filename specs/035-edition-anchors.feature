@@ -1,4 +1,5 @@
-# status: proposed (v1.4.0-rc1)
+# status: in-progress (v1.4.0-rc1)
+# approved: Dan 2026-10-28
 Feature: A named edition keeps a link to that edition
   As a writer quoting "the 2025 report",
   I want the link map to keep the edition-specific source as well as the evergreen page,

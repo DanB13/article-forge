@@ -3,6 +3,47 @@
 All notable changes to the article-forge engine. Versions follow semver; the
 current version is in `.claude/skills/article-forge/VERSION`.
 
+## v1.4.0 (unreleased): Measure
+
+Measures how close the engine's drafts are to the writer, so later releases can
+prove they help. rc1 ships the tools; rc2 adds the baseline.
+
+**For writers**
+- A scorecard at the voice edit (`scripts/meters.py`): overused AI words,
+  stacked "X, not Y" contrasts, sentence rhythm, an "is it me?" distance from
+  your own writing, and your signature phrases against the informality dial.
+  Each meter shows a traffic light and a reason. Lights are warnings, never
+  stops. You mark each flag accepted or ignored; every third article, the retro
+  proposes tuning from those calls.
+- Your writing samples (`profile/samples/`): your own unaided writing, tagged
+  written or spoken, published or not. Only written samples judge rhythm.
+  Redaction placeholders and emoji codes are not measured.
+- Settings (`profile/settings.yaml`): the informality dial (off, light, warm),
+  allowed and banned words, and optional modules. Every module states whether
+  your text leaves your machine. Keys live only in environment variables; a key
+  written into the file fails the profile check.
+- Pangram AI detector, off by default: published text only, and a failure is a
+  warning, never a stop.
+- Edit distance at the retro (`scripts/edit_distance.py`): the share of words you
+  changed from the first draft, recorded per article, with your baseline.
+  `draft-v1.md` keeps the first complete draft.
+- `scripts/check_links.py` compares the links as published with the link map.
+- Covers now fit any target size (scale to cover, then centre-crop).
+- Engine updates no longer need the token: an update that changes workflow
+  files without it opens an issue with the commands to merge it by hand. The
+  set-up check reports the token as optional.
+- Migration 0101 adds `profile/settings.yaml` and `profile/samples/` (with your
+  approval; nothing existing changes).
+
+**For the maintainer**
+- Specs 027 to 038, plus 014-08 and 014-09: 45 scenarios, 11 new eval cases.
+  Specs 033 to 038 describe capabilities that had none (voice profile build,
+  research, edition anchors, cover render, publish pack, link list).
+- Fixture provenance (`tools/fixture_provenance.py`, spec 032): every test-text
+  folder is marked fictional, or public with its source and licence, in
+  `specs/fixture-provenance.yaml`.
+- Pillow is pinned in `requirements-dev.txt` for the cover tests.
+
 ## v1.3.2 (2026-10-23): Grounded tests
 
 Tests that cannot lie, weaken quietly, or share the engine's blind spots.

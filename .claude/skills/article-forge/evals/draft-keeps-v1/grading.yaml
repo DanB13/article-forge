@@ -1,0 +1,18 @@
+# Test metadata for this case (specs 021, 022, 024). claude plugin eval ignores this file.
+tier: safety
+mutant:
+- file: references/03-draft.md
+  text: '- **Keep the first draft.** Save the first complete draft twice: as `articles/<slug>/draft-v1.md` and as `draft.md`. Never change `draft-v1.md` again, whatever the user asks; it is what the retro
+    measures edit distance from. Every later change goes into `draft.md` (and numbered snapshots such as `draft-v2.md`, if useful).'
+- file: SKILL.md
+  text: "\u251C\u2500\u2500 draft-v1.md       # the first complete draft, never changed again (edit distance measures from it)"
+graders:
+  v1-saved:
+    checks: 031-04
+  change-in-draft:
+    checks: 031-04
+  v1-untouched:
+    checks: 031-04
+    pair: v1-saved
+  skill-fired:
+    checks: 031-04

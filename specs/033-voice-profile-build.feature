@@ -1,4 +1,5 @@
-# status: proposed (v1.4.0-rc1)
+# status: in-progress (v1.4.0-rc1)
+# approved: Dan 2026-10-28
 Feature: Onboarding builds the voice profile from the writer's own work
   As a new writer,
   I want my profile drawn from what I have written and shown to me before it is saved,

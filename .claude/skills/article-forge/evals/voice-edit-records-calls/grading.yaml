@@ -1,0 +1,18 @@
+# Test metadata for this case (specs 021, 022, 024). claude plugin eval ignores this file.
+tier: style
+mutant:
+- file: references/05-voice-edit.md
+  text: '5. When the user decides on a flag, record their call in the Flags table of `scorecard.md`: `accepted` if they changed the line, `ignored` if they kept it. The retro uses these calls to tune the
+    meters. Running the meters again starts a fresh scorecard, so record calls before re-running.'
+graders:
+  flag1-accepted:
+    checks: 029-09
+  flag2-ignored:
+    checks: 029-09
+  flag3-still-open:
+    checks: 029-09
+    pair: flag1-accepted
+  line-changed:
+    checks: 029-09
+  skill-fired:
+    checks: 029-09

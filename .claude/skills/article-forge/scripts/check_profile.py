@@ -11,6 +11,9 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import settings  # noqa: E402
+
 REQUIRED_FILES = ("profile/voice-profile.md", "profile/context.md")
 VOICE_SECTIONS = ("Registers", "Learned from published diffs")
 
@@ -31,6 +34,7 @@ def problems(root: Path) -> list[str]:
         registers = re.search(r"(?ms)^## Registers.*?(?=^## |\Z)", text)
         if registers and not re.search(r"(?m)^### \S", registers.group(0)):
             found.append(f"{REQUIRED_FILES[0]} names no register under '## Registers' (for example '### default')")
+    found += settings.key_problems(root)
     return found
 
 

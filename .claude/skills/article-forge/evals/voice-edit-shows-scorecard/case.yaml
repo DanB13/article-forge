@@ -1,0 +1,8 @@
+schema_version: '1.1'
+name: voice-edit-shows-scorecard
+description: 'Spec 029: the voice edit runs the meters, shows every light with its reason, proposes fixes without applying them, and reports the reader clues.'
+tags:
+- spec-029
+- phase5
+context:
+  scaffold_script: setup.sh

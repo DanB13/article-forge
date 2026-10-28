@@ -12,6 +12,8 @@ Goal: test whether the thesis has evidence behind it, and stock the larder. Noth
 6. **Hunt for one authentic human artefact** — a Reddit/forum thread, a quote from practice, a real screenshot. These outperform analyst quotes for authenticity every time. Ask the user if they've seen one; their finds are usually the best.
 7. **Check the user's own back catalogue** (past conversation search / their corpus in `profile/corpus/`) for prior articles to reference or build on.
 
+If step 1 finds the evidence thin or contrary, stop after telling the user: write no draft until they decide whether to reframe, narrow or drop the thesis.
+
 ## Output
 
 `articles/<slug>/research.md`: candidate stats table (claim, claimed source, URL, why it might fit), anchor-fact checks, historical evidence, human artefacts, internal references. All stats flagged `[UNVERIFIED]`.

@@ -1,4 +1,5 @@
-# status: proposed (v1.4.0-rc1)
+# status: in-progress (v1.4.0-rc1)
+# approved: Dan 2026-10-28
 Feature: An informality dial controls how much of the writer's spoken voice drafts carry
   As a writer whose spoken voice is warmer than my articles,
   I want drafts to use a few of my signature phrases, and never my spoken habits,

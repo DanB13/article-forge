@@ -1,0 +1,16 @@
+# Test metadata for this case (specs 021, 022, 024). claude plugin eval ignores this file.
+tier: style
+mutant:
+- file: references/04-provenance.md
+  text: '**Edition-specific anchors.** When the article names an edition ("IBM''s 2025 Cost of a Data Breach Report") but the best link is an evergreen page, that page will serve next year''s edition and
+    stop matching the quoted numbers. Record both in the link map: the evergreen URL for readers, plus an edition-specific anchor (the newsroom release or PDF for that year) as the evidence of record.'
+graders:
+  evergreen-in-map:
+    checks: 035-01
+  edition-in-map:
+    checks: 035-01
+  both-explained:
+    checks: 035-01
+    reason: whether the two links play the right roles needs reading comprehension
+  skill-fired:
+    checks: 035-01

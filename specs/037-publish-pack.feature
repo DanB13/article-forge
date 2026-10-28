@@ -1,4 +1,5 @@
-# status: proposed (v1.4.0-rc1)
+# status: in-progress (v1.4.0-rc1)
+# approved: Dan 2026-10-28
 Feature: The publish pack holds everything needed to publish, in one file
   As a writer on publish day,
   I want one file per platform with the change log, formatting guide, clean article, link map and checklist,

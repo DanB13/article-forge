@@ -1,4 +1,5 @@
-# status: proposed (v1.4.0-rc1)
+# status: in-progress (v1.4.0-rc1)
+# approved: Dan 2026-10-28
 Feature: Rule-based meters give every draft a scorecard
   As a writer,
   I want a scorecard at the voice edit that shows, with a reason, where a draft reads as AI or not as me,
@@ -63,3 +64,9 @@ Feature: Rule-based meters give every draft a scorecard
     Given a draft with three overused AI words and five "X, not Y" constructions
     When the writer asks for the voice edit
     Then Claude reports the reader-clue checklist (vocabulary, sentence shape, generic examples)
+
+  @eval:voice-edit-records-calls @id:029-09
+  Scenario: The writer's call on each flag is recorded
+    Given a scorecard with three open flags
+    When the writer accepts the fix for one flag and keeps the line for another
+    Then scorecard.md records the first flag as "accepted" and the second as "ignored"

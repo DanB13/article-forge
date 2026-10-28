@@ -1,0 +1,6 @@
+informality: light
+allowed_words: []
+banned_words: []
+modules:
+  meters: on
+  pangram: off

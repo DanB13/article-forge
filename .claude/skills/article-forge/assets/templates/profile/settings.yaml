@@ -1,0 +1,18 @@
+# Your Article Forge settings (spec 028). Switches only: keys never go in this file.
+# A module that needs a key reads it from an environment variable on your machine.
+
+# How much of your spoken voice drafts carry: off (none), light (up to 3 signature
+# phrases per article) or warm (up to 6). Signature phrases come from
+# profile/samples/fingerprint.md.
+informality: light
+
+# Words the overused-words meter must never flag in your drafts, and extra words to flag.
+allowed_words: []
+banned_words: []
+
+modules:
+  # Rule-based meters and the scorecard. Your text stays on this machine.
+  meters: on
+  # Pangram AI-text detector. Sends PUBLISHED text only to Pangram (stored in your
+  # Pangram account, not used for training). Needs PANGRAM_API_KEY set on this machine.
+  pangram: off

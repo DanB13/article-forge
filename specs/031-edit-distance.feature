@@ -1,4 +1,5 @@
-# status: proposed (v1.4.0-rc1)
+# status: in-progress (v1.4.0-rc1)
+# approved: Dan 2026-10-28
 Feature: Edit distance shows how much the writer had to change
   As a writer,
   I want each article to record how much I changed between the first draft and what I published,

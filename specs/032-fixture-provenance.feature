@@ -1,4 +1,5 @@
-# status: proposed (v1.4.0-rc1)
+# status: in-progress (v1.4.0-rc1)
+# approved: Dan 2026-10-28
 Feature: Test text says where it came from
   As the maintainer,
   I want every piece of text the tests use to be marked fictional, or public with its licence,

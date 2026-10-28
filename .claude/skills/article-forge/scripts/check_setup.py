@@ -6,8 +6,8 @@ Run from your repo root: python .claude/skills/article-forge/scripts/check_setup
 It uses the GitHub CLI (gh) to read two settings:
   1. "Allow GitHub Actions to create and approve pull requests" must be on,
      or the weekly engine-update workflow cannot open its pull request.
-  2. The ENGINE_UPDATE_TOKEN secret must exist, or updates that change
-     workflow files cannot be pushed.
+  2. The ENGINE_UPDATE_TOKEN secret is optional. Without it, an update that
+     changes workflow files opens an issue with the commands to merge it by hand.
 It also reports the update channel (ENGINE_CHANNEL: release or rc).
 If gh is missing or not signed in, it explains how to check by hand.
 """
@@ -23,7 +23,7 @@ Runner = Callable[[list[str]], "tuple[int, str]"]
 
 FIX_PRS = ("  Fix: Settings > Actions > General > Workflow permissions > tick "
            "'Allow GitHub Actions to create and approve pull requests' > Save.")
-FIX_TOKEN = ("  Fix: create a fine-grained token (Settings > Developer settings > Personal access tokens > "
+FIX_TOKEN = ("  To add it: create a fine-grained token (Settings > Developer settings > Personal access tokens > "
              "Fine-grained tokens) for this repo only, with Contents and Workflows set to Read and write.\n"
              "  Then save it in this repo: Settings > Secrets and variables > Actions > New repository secret, "
              "named ENGINE_UPDATE_TOKEN.")
@@ -33,7 +33,8 @@ in your repo on github.com:
   1. Settings > Actions > General > Workflow permissions:
      'Allow GitHub Actions to create and approve pull requests' is ticked.
   2. Settings > Secrets and variables > Actions > Secrets:
-     a secret named ENGINE_UPDATE_TOKEN exists.
+     optional: a secret named ENGINE_UPDATE_TOKEN exists. Without it, updates that change
+     workflow files open an issue with the commands to merge them by hand.
   3. Optional, same page > Variables: ENGINE_CHANNEL is 'rc' to get release candidates.
 
 To let this script check for you: install gh (https://cli.github.com) and run `gh auth login`."""
@@ -74,8 +75,8 @@ def check(run: Runner = _run) -> tuple[list[str], bool]:
     elif "ENGINE_UPDATE_TOKEN" in out.split():
         lines.append("OK Token: ENGINE_UPDATE_TOKEN present")
     else:
-        lines.append("MISSING Token: no ENGINE_UPDATE_TOKEN secret\n" + FIX_TOKEN)
-        ok = False
+        lines.append("OPTIONAL Token: no ENGINE_UPDATE_TOKEN secret. Updates that change workflow files "
+                     "will open an issue with the commands to merge them by hand.\n" + FIX_TOKEN)
 
     rc, out = run(["gh", "api", f"repos/{slug}/actions/variables/ENGINE_CHANNEL", "--jq", ".value"])
     channel = out.strip() if rc == 0 and out.strip() else "release"

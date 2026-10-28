@@ -1,4 +1,5 @@
-# status: proposed (v1.4.0-rc1)
+# status: in-progress (v1.4.0-rc1)
+# approved: Dan 2026-10-28
 Feature: Covers render at the platform's exact size from self-contained HTML
   As a writer,
   I want a cover image at exactly the size the platform needs, with images embedded,

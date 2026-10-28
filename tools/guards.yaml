@@ -39,3 +39,9 @@
 - name: migration approval
   tool: scripts/migrate.py
   failure_scenarios: [015-02]
+- name: fixture provenance (no unmarked test text)
+  tool: tools/fixture_provenance.py
+  failure_scenarios: [032-02]
+- name: keys kept out of the settings file
+  tool: scripts/check_profile.py
+  failure_scenarios: [028-06]

@@ -18,6 +18,7 @@ FAIL (exit 1)
   - a test the last release recorded (scenario wording, grader, eval case, fixture,
     pass rules) is unchanged, or has a record in specs/test-changes.yaml
   - grading metadata, rule tracing and the guard registry (see tools/integrity.py)
+  - a provenance mark for every fixture folder (tools/fixture_provenance.py, spec 032)
 
 WARN (exit 0; exit 1 with --strict, used before a release)
   - retire candidate: a spec that a newer spec supersedes still exists
@@ -58,6 +59,7 @@ RETIRE_FIELDS = ("id", "reason", "approved_by", "date")
 APPROVED = re.compile(r"^#\s*approved:\s*\S.*\d{4}-\d{2}-\d{2}", re.M)
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import fixture_provenance  # noqa: E402
 import integrity  # noqa: E402
 
 
@@ -239,6 +241,8 @@ def check(root: Path = ROOT, today: dt.date | None = None) -> Report:
     report.fails += integrity.check_grading(root, report.eval_scenarios)
     report.fails += integrity.check_rules(root, set(report.ids))
     report.fails += integrity.check_guards(root, {s for s, v in report.ids.items() if v.get("kind") == "code"})
+    if (root / fixture_provenance.REGISTRY).exists():
+        report.fails += fixture_provenance.check(root)
     ledger = load_ledger(root / "specs") if (root / "specs").is_dir() else None
     if ledger and ledger.get("fingerprints"):
         current = integrity.fingerprints(root, {s: v["hash"] for s, v in report.ids.items()})

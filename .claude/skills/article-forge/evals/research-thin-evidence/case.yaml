@@ -1,0 +1,8 @@
+schema_version: '1.1'
+name: research-thin-evidence
+description: 'Spec 034-02: when the evidence contradicts the thesis, the writer hears it before any draft exists.'
+tags:
+- spec-034
+- phase2
+context:
+  scaffold_script: setup.sh

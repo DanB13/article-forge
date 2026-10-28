@@ -62,12 +62,13 @@ for `ci` to pass, then merge.
 
 1. **Settings > Actions > General > Workflow permissions**: tick *Allow GitHub
    Actions to create and approve pull requests*, then **Save**.
-2. Create a fine-grained personal access token for your repo only, with
-   **Contents** and **Workflows** set to *Read and write*. Save it in your repo
-   as the secret `ENGINE_UPDATE_TOKEN` (**Settings > Secrets and variables >
-   Actions**). The token only pushes the update branch: GitHub refuses workflow
-   file changes from the default token. The workflow's own token opens the pull
-   request.
+2. Optional: create a fine-grained personal access token for your repo only,
+   with **Contents** and **Workflows** set to *Read and write*. Save it in your
+   repo as the secret `ENGINE_UPDATE_TOKEN` (**Settings > Secrets and variables >
+   Actions**). GitHub refuses workflow file changes from the default token, so
+   without this token an update that changes workflow files opens an issue with
+   the git commands to merge it by hand. The token only pushes the update
+   branch; the workflow's own token opens the pull request.
 3. Optional: to try release candidates before everyone else, add the
    repository **variable** `ENGINE_CHANNEL` with the value `rc` on the same page
    (Variables tab).
@@ -104,6 +105,30 @@ Every update is one merge commit, so it can be undone in one step:
 - locally: `git revert -m 1 <merge commit>` and push.
 
 If the update also ran a migration, restore the files from `profile/.backups/`.
+
+## Optional modules and keys
+
+`profile/settings.yaml` switches optional modules on and off (`python
+.claude/skills/article-forge/scripts/settings.py` lists them, and says whether
+each one sends your text off your machine). A module that needs a key reads it
+from an environment variable on your computer. Never write a key into any file
+in the repo: the profile check refuses one in `settings.yaml`.
+
+To set the Pangram key (`PANGRAM_API_KEY`):
+
+- **Windows:** press the Windows key, type *environment variables*, choose *Edit
+  environment variables for your account*, then **New** under *User variables*.
+  Name `PANGRAM_API_KEY`, value your key, **OK**, **OK**. Close and reopen your
+  terminal and editor.
+- **Mac:** `security add-generic-password -a "$USER" -s PANGRAM_API_KEY -w`
+  (it asks for the key), then
+  `echo 'export PANGRAM_API_KEY="$(security find-generic-password -a "$USER" -s PANGRAM_API_KEY -w 2>/dev/null)"' >> ~/.zshrc`.
+- **Linux:** `read -rsp "Key: " k && echo "export PANGRAM_API_KEY=\"$k\"" >> ~/.bashrc && unset k && chmod 600 ~/.bashrc`.
+
+Check it without showing it: `[ -n "$PANGRAM_API_KEY" ] && echo set` (PowerShell:
+`if ($env:PANGRAM_API_KEY) {"set"}`). Then set `pangram: on` in
+`profile/settings.yaml`. Pangram only ever sees published text. Its API is billed
+separately from the website's credits.
 
 ## Claude.ai users
 

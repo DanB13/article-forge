@@ -1,5 +1,5 @@
-# status: shipped (v1.3.1; 014-06 and 014-07 in v1.3.2)
-# approved: Dan 2026-10-22; 014-06 and 014-07 approved by Dan 2026-10-23
+# status: shipped (v1.3.1; 014-06 and 014-07 in v1.3.2; 014-08 and 014-09 in progress for v1.4.0-rc1)
+# approved: Dan 2026-10-22; 014-06 and 014-07 approved by Dan 2026-10-23; 014-08 and 014-09 approved by Dan 2026-10-28
 Feature: Engine updates cannot touch the writer's own folders
   As a writer whose profile and articles live in my own repo,
   I want every engine update to leave profile/ and articles/ exactly as they were,
@@ -57,16 +57,14 @@ Feature: Engine updates cannot touch the writer's own folders
     And that step opens an issue whose body links to the compare page for the update branch
     And that step makes the run fail
 
-  # proposed for v1.4.0-rc1
   @code @id:014-08
   Scenario: Without the token, an update that changes workflow files pushes nothing and says so
     Given a writer's repo made from engine release "v1.0.0", with a filled-in profile and an article
     And a newer engine release "v1.1.0" that changes a workflow file
     When the engine update runs without the ENGINE_UPDATE_TOKEN secret
-    Then no update branch is pushed
+    Then no branch is pushed, because the token is missing
     And it asks for the manual-merge issue for "v1.1.0"
 
-  # proposed for v1.4.0-rc1
   @code @id:014-09
   Scenario: The manual-merge issue gives the commands to run
     Given the engine-update workflow

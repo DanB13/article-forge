@@ -1,4 +1,5 @@
-# status: proposed (v1.4.0-rc1)
+# status: in-progress (v1.4.0-rc1)
+# approved: Dan 2026-10-28
 Feature: Research tests the thesis and trusts nothing yet
   As a writer,
   I want research to tell me early if the evidence is thin, and to mark every statistic unverified,

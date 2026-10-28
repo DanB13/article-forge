@@ -8,6 +8,8 @@
 - Produce a **complete** draft in one pass, not an outline; whole-piece rhythm matters. Expect it to be ~80% right in structure and ~60% right in voice.
 - Draft **lean**; the user will revise toward their own voice, and over-polished drafts are harder to edit than spare ones.
 - Apply the voice profile from the start (punctuation rules, banned words), but leave the personality injection mostly to the user — flag places where an aside or confession would land.
+- **Keep the first draft.** Save the first complete draft twice: as `articles/<slug>/draft-v1.md` and as `draft.md`. Never change `draft-v1.md` again, whatever the user asks; it is what the retro measures edit distance from. Every later change goes into `draft.md` (and numbered snapshots such as `draft-v2.md`, if useful).
+- **Season with the writer's spoken voice, by the informality dial.** If `profile/samples/fingerprint.md` exists, read its signature phrases and its phrases to leave out, and the `informality` dial in `profile/settings.yaml` (light when unset). At `off`, use no signature phrase. At `light`, use 1 to 3 where they fit naturally. At `warm`, up to 6. Never use a phrase to leave out. The phrases season the draft; they never change its register.
 - **`draft.md` holds the article only.** Inline markers (`[UNVERIFIED]`, `[CONFIRM: ...]`) stay in the text. Drafting notes, open questions and your own suggestions go in your reply or in `articles/<slug>/notes.md`, never after the article's last line. The draft must end exactly as the published piece would.
 
 ## Structural moves that have worked

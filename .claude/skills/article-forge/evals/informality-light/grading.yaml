@@ -1,0 +1,18 @@
+# Test metadata for this case (specs 021, 022, 024). claude plugin eval ignores this file.
+tier: style
+mutant:
+- file: references/03-draft.md
+  text: '- **Season with the writer''s spoken voice, by the informality dial.** If `profile/samples/fingerprint.md` exists, read its signature phrases and its phrases to leave out, and the `informality`
+    dial in `profile/settings.yaml` (light when unset). At `off`, use no signature phrase. At `light`, use 1 to 3 where they fit naturally. At `warm`, up to 6. Never use a phrase to leave out. The phrases
+    season the draft; they never change its register.'
+graders:
+  uses-a-phrase:
+    checks: 030-02
+  at-most-three:
+    checks: 030-02
+    pair: uses-a-phrase
+  no-leave-out:
+    checks: 030-03
+    pair: uses-a-phrase
+  skill-fired:
+    checks: 030-02
