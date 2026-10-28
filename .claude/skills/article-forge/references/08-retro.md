@@ -11,6 +11,10 @@ Compare the published text against the last draft in `articles/<slug>/draft.md`.
 - **Content edits** — facts, attributions, stats changed or removed
 - **Additions** — lines the user wrote that never appeared in any draft (these are gold: they're pure voice)
 
+## Step 1b — Measure the edit distance
+
+Save the published text, article only, as `articles/<slug>/published.md`. If `articles/<slug>/draft-v1.md` exists, run `python <skill-dir>/scripts/edit_distance.py articles/<slug>` from the repo root. Report the edit distance (the share of words the writer changed from the first draft) next to the baseline it prints, and record both in `retro.md`. A falling edit distance means the engine is getting closer to the writer.
+
 ## Step 2 — Extract patterns, propose profile updates
 
 Learning is **per register**: tag the article with its register (from the brief), and file each proposed rule either under Mechanics (if it should apply everywhere) or under that specific register (if it's audience-flavoured). A joke pattern learned from a jovial network piece must not leak into the authority register. From the diff, propose specific, rule-shaped additions to `profile/voice-profile.md`, e.g.:
@@ -19,6 +23,10 @@ Learning is **per register**: tag the article with its register (from the brief)
 - "Opens sections with direct address more than drafts do"
 
 Present as a numbered proposal table. The user approves/rejects each. Apply approved items to the profile as a single batch. **Never update the profile without approval.**
+
+## Step 2b — Tune the meters (every third article)
+
+Once three published articles have scorecards, read the Flags tables in them. If the writer ignored most of one meter's flags, propose loosening it, for example adding a word to `allowed_words` in `profile/settings.yaml`. If the diff shows the writer cutting a word no meter flagged, propose adding it to `banned_words`. These are profile changes: propose them in the same numbered table and apply only what the writer approves.
 
 ## Step 3 — Archive to corpus
 

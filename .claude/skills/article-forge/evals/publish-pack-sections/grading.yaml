@@ -1,0 +1,19 @@
+# Test metadata for this case (specs 021, 022, 024). claude plugin eval ignores this file.
+tier: style
+mutant:
+- file: references/07-packaging.md
+  text: "1. **Change log** \u2014 what moved since the last version and why."
+- file: references/07-packaging.md
+  text: "4. **Link map** \u2014 each URL paired with the exact phrase it anchors to (from `evidence.md`)."
+- file: references/07-packaging.md
+  text: '- LinkedIn''s article editor doesn''t render markdown: convert to plain text with the formatting guide alongside.'
+graders:
+  pack-written:
+    checks: 037-01
+  sections-in-order:
+    checks: 037-01
+  article-plain-text:
+    checks: 037-02
+    reason: telling the article section apart from the rest of the pack needs reading comprehension
+  skill-fired:
+    checks: 037-01

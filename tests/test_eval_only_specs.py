@@ -15,5 +15,9 @@ for _feature in (
     "008-profile-ownership.feature",
     "009-imagery-real-first.feature",
     "011-accuracy-and-rounds.feature",
+    "033-voice-profile-build.feature",
+    "034-research.feature",
+    "035-edition-anchors.feature",
+    "037-publish-pack.feature",
 ):
     scenarios(f"../specs/{_feature}")

@@ -1,0 +1,8 @@
+schema_version: '1.1'
+name: retro-records-edit-distance
+description: 'Spec 031-05: the retro measures the edit distance from draft-v1.md and reports it with the baseline.'
+tags:
+- spec-031
+- phase8
+context:
+  scaffold_script: setup.sh

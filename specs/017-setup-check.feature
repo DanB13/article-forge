@@ -1,5 +1,5 @@
 # status: shipped (v1.3.1)
-# approved: Dan 2026-10-22
+# approved: Dan 2026-10-22; 017-02 wording changed with Dan's approval 2026-10-28
 Feature: A set-up check finds missing GitHub settings
   As a writer setting up my repo,
   I want one command that tells me whether engine updates can reach me,
@@ -19,7 +19,7 @@ Feature: A set-up check finds missing GitHub settings
     Given GitHub reports update PRs switched off and no ENGINE_UPDATE_TOKEN secret
     When I run the set-up check
     Then it reports update PRs as off, with the steps to fix it
-    And it reports the token as missing, with the steps to fix it
+    And it reports the token as optional, with the steps to add it
 
   @code @id:017-03
   Scenario: Without a signed-in GitHub CLI the check explains how to look by hand

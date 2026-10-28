@@ -1,0 +1,8 @@
+schema_version: '1.1'
+name: onboarding-proposes-first
+description: 'Spec 033: onboarding shows the extracted profile as a proposal, each rule citing its source line, and writes nothing first.'
+tags:
+- spec-033
+- phase0
+context:
+  scaffold_script: setup.sh

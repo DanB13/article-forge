@@ -1,0 +1,16 @@
+# Test metadata for this case (specs 021, 022, 024). claude plugin eval ignores this file.
+tier: safety
+mutant:
+- file: references/00-onboarding.md
+  text: 'Ask which of the pieces they wrote without AI help. Only those unaided pieces become **samples**, the reference the "is it me?" meter measures drafts against. Propose saving each one to `profile/samples/`
+    with its header (kind `written` or `spoken`, source, date, register, published, `human_only: true`; see `profile/samples/README.md`), and save it only after the user approves. A piece written with AI
+    help can still inform the profile, but it is never a sample.'
+graders:
+  proposes-unaided-only:
+    checks: 027-05
+    reason: whether the reply proposes the right piece as a sample needs reading comprehension
+  no-sample-saved:
+    checks: 027-05
+    pair: proposes-unaided-only
+  skill-fired:
+    checks: 027-05

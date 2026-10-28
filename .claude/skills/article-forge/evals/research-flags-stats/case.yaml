@@ -1,0 +1,8 @@
+schema_version: '1.1'
+name: research-flags-stats
+description: 'Spec 034-01: every statistic in research.md is marked [UNVERIFIED] with its claimed source.'
+tags:
+- spec-034
+- phase2
+context:
+  scaffold_script: setup.sh

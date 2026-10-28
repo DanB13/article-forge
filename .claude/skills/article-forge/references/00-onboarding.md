@@ -21,6 +21,8 @@ Ask the user for 2–3 pieces they've already published, in order of preference:
 2. Pasted full text
 3. Uploaded files
 
+Ask which of the pieces they wrote without AI help. Only those unaided pieces become **samples**, the reference the "is it me?" meter measures drafts against. Propose saving each one to `profile/samples/` with its header (kind `written` or `spoken`, source, date, register, published, `human_only: true`; see `profile/samples/README.md`), and save it only after the user approves. A piece written with AI help can still inform the profile, but it is never a sample.
+
 If they have published nothing yet, ask for anything they've written that sounds like them (emails they're proud of, internal docs) and note the profile is provisional.
 
 ## Step 2 — Extract the voice, don't invent it
@@ -33,6 +35,8 @@ Analyse the corpus for, at minimum:
 - Signature moves (rhetorical questions, direct address, callbacks, confession openings)
 - Vocabulary to preserve and vocabulary they never use
 - How they open and how they close pieces
+
+Every rule you propose quotes, or points to, the line it came from, so the user can judge it.
 
 Present the extracted profile to the user as a proposal. They correct it; only then write the file.
 

@@ -1,0 +1,19 @@
+# Test metadata for this case (specs 021, 022, 024). claude plugin eval ignores this file.
+tier: style
+mutant:
+- file: references/08-retro.md
+  text: Save the published text, article only, as `articles/<slug>/published.md`. If `articles/<slug>/draft-v1.md` exists, run `python <skill-dir>/scripts/edit_distance.py articles/<slug>` from the repo
+    root. Report the edit distance (the share of words the writer changed from the first draft) next to the baseline it prints, and record both in `retro.md`. A falling edit distance means the engine is
+    getting closer to the writer.
+- file: SKILL.md
+  text: '- `python <skill-dir>/scripts/edit_distance.py articles/<slug>` records how much the writer changed between `draft-v1.md` and `published.md`, at the retro (Phase 8), and prints the baseline.'
+graders:
+  ran-edit-distance:
+    checks: 031-05
+  metrics-written:
+    checks: 031-05
+  reports-distance:
+    checks: 031-05
+    reason: whether the reply reports the figure and the baseline needs reading comprehension
+  skill-fired:
+    checks: 031-05

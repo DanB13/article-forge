@@ -1,0 +1,8 @@
+schema_version: '1.1'
+name: voice-edit-records-calls
+description: 'Spec 029-09: the writer''s call on each scorecard flag is recorded as accepted or ignored.'
+tags:
+- spec-029
+- phase5
+context:
+  scaffold_script: setup.sh

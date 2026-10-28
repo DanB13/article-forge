@@ -1,0 +1,8 @@
+schema_version: '1.1'
+name: onboarding-asks-for-samples
+description: 'Spec 027-05: onboarding proposes only unaided writing as a sample and saves nothing before approval.'
+tags:
+- spec-027
+- phase0
+context:
+  scaffold_script: setup.sh

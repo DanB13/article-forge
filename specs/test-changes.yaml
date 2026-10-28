@@ -1,0 +1,21 @@
+# Changes to tests that a release recorded (spec 020). Each needs a reason and an approver.
+- item: scenario:017-02
+  reason: "v1.4 makes the ENGINE_UPDATE_TOKEN secret optional (spec 014-08/09), so the set-up check reports it as optional with the steps to add it, instead of missing."
+  approved_by: Dan
+  date: 2026-10-28
+- item: steps:test_setup_check.py
+  reason: "The 017-02 step now checks for the OPTIONAL wording and the manual-merge note; no other step changed."
+  approved_by: Dan
+  date: 2026-10-28
+- item: steps:test_upgrade_safety.py
+  reason: "Adds steps for the new scenarios 014-08 and 014-09 (token fallback); no existing step changed."
+  approved_by: Dan
+  date: 2026-10-28
+- item: steps:test_eval_only_specs.py
+  reason: "Adds the new eval-only features 033, 034, 035 and 037 to the list; nothing removed."
+  approved_by: Dan
+  date: 2026-10-28
+- item: fixture:tests
+  reason: "Adds tests/fixtures/meters (fictional samples and an AI-style draft for specs 027 to 030) and tests/fixtures/profiles/v1.3.2 (a copy of v1.3.0 for spec 028-07); no existing fixture changed."
+  approved_by: Dan
+  date: 2026-10-28

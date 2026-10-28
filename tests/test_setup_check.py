@@ -70,9 +70,10 @@ def prs_off(setup):
     assert setup["ok"] is False
 
 
-@then("it reports the token as missing, with the steps to fix it")
-def token_missing(setup):
-    assert "MISSING Token" in setup["text"] and "Fine-grained tokens" in setup["text"]
+@then("it reports the token as optional, with the steps to add it")
+def token_optional(setup):
+    assert "OPTIONAL Token" in setup["text"] and "Fine-grained tokens" in setup["text"]
+    assert "issue with the commands" in setup["text"]
 
 
 @then("it explains how to check both settings by hand")

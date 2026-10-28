@@ -1,0 +1,8 @@
+schema_version: '1.1'
+name: informality-light
+description: 'Spec 030: at the light informality setting a first draft uses 1 to 3 signature phrases and none of the phrases to leave out.'
+tags:
+- spec-030
+- phase3
+context:
+  scaffold_script: setup.sh

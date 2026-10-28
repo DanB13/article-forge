@@ -233,3 +233,50 @@ def only_checkout(world):
     users = [s.get("name") or s.get("uses") for s in job["steps"] if "ENGINE_UPDATE_TOKEN" in yaml.safe_dump(s)]
     assert users == ["actions/checkout@v4"], users
     assert "ENGINE_UPDATE_TOKEN" not in yaml.safe_dump(job.get("env", {}))
+
+
+@given(parsers.parse('a newer engine release "{tag}" that changes a workflow file'))
+def release_changing_workflow(world, tag):
+    release(world, tag, {".github/workflows/ci.yml": "name: ci\n# changed upstream\n"})
+
+
+@when("the engine update runs without the ENGINE_UPDATE_TOKEN secret")
+def update_without_token(world):
+    # GitHub refuses a push that changes workflow files unless the token allows it.
+    hook = world["tmp"] / "origin.git" / "hooks" / "pre-receive"
+    hook.write_text("#!/bin/sh\nwhile read old new ref; do\n"
+                    "  if git diff --name-only refs/heads/main \"$new\" | grep -q '^.github/workflows/'; then\n"
+                    "    echo 'refusing to allow an app to update workflows' >&2; exit 1; fi\n"
+                    "done\n", encoding="utf-8")
+    hook.chmod(0o755)
+    world["result"] = run_update(world)
+
+
+@then("no branch is pushed, because the token is missing")
+def nothing_pushed_needs_token(world):
+    assert world["result"].action == "needs_token", world["result"].message
+    assert ".github/workflows/ci.yml" in world["result"].files
+    assert git(world["writer"], "ls-remote", "--heads", "origin", "engine-update/*").strip() == ""
+
+
+@then(parsers.parse('it asks for the manual-merge issue for "{tag}"'))
+def asks_manual_issue(world, tag):
+    assert (world["result"].action, world["result"].tag) == ("needs_token", tag)
+
+
+@then("a step runs only when the update needs the token")
+def needs_token_condition(world):
+    assert _step(world, "If the update needs the token")["if"] == "steps.update.outputs.action == 'needs_token'"
+
+
+@then("that step opens an issue whose body gives the git commands to merge the release by hand")
+def needs_token_issue(world):
+    run = _step(world, "If the update needs the token")["run"]
+    assert "gh issue create" in run
+    assert all(c in run for c in ("git fetch upstream --tags", "git merge %s", "git push -u origin"))
+
+
+@then("that step marks the run with a warning, not a failure")
+def needs_token_warns(world):
+    run = _step(world, "If the update needs the token")["run"]
+    assert "::warning::" in run and "exit 1" not in run

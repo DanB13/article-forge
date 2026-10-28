@@ -57,7 +57,7 @@ The full workflow (tiers, retiring, releasing) is in `MAINTAINING.md`.
 | 011 | [Facts about the writer stay true; fact and style edits stay apart](011-accuracy-and-rounds.feature) | shipped (v1.3.0) |
 | 012 | [A release is consistent and ships only what users need](012-release.feature) | shipped (v1.3.0) |
 | 013 | [Nothing ships without a passing eval run](013-release-gate.feature) | shipped (v1.3.1) |
-| 014 | [Engine updates cannot touch the writer's own folders](014-upgrade-safety.feature) | shipped (v1.3.1; 014-06 and 014-07 in v1.3.2) |
+| 014 | [Engine updates cannot touch the writer's own folders](014-upgrade-safety.feature) | shipped (v1.3.1; 014-06 and 014-07 in v1.3.2; 014-08 and 014-09 in progress for v1.4.0) |
 | 015 | [Profile format changes arrive as approved migrations](015-migrations.feature) | shipped (v1.3.1) |
 | 016 | [Updates bring in final releases; candidates by choice](016-release-channels.feature) | shipped (v1.3.1) |
 | 017 | [A set-up check finds missing GitHub settings](017-setup-check.feature) | shipped (v1.3.1) |
@@ -70,5 +70,17 @@ The full workflow (tiers, retiring, releasing) is in `MAINTAINING.md`.
 | 024 | [Pass rules follow risk](024-pass-rules.feature) | shipped (v1.3.2) |
 | 025 | [Rules and approvals are traced](025-rules-traced.feature) | shipped (v1.3.2) |
 | 026 | [The guards themselves are tested](026-guards-tested.feature) | shipped (v1.3.2) |
+| 027 | [The writer's human samples are the reference for "is it me?"](027-human-samples.feature) | in progress (v1.4.0) |
+| 028 | [Optional modules are off until the writer switches them on](028-optional-modules.feature) | in progress (v1.4.0) |
+| 029 | [Rule-based meters give every draft a scorecard](029-meters-and-scorecard.feature) | in progress (v1.4.0) |
+| 030 | [An informality dial controls how much spoken voice drafts carry](030-informality-dial.feature) | in progress (v1.4.0) |
+| 031 | [Edit distance shows how much the writer had to change](031-edit-distance.feature) | in progress (v1.4.0) |
+| 032 | [Test text says where it came from](032-fixture-provenance.feature) | in progress (v1.4.0) |
+| 033 | [Onboarding builds the voice profile from the writer's own work](033-voice-profile-build.feature) | in progress (v1.4.0) |
+| 034 | [Research tests the thesis and trusts nothing yet](034-research.feature) | in progress (v1.4.0) |
+| 035 | [A named edition keeps a link to that edition](035-edition-anchors.feature) | in progress (v1.4.0) |
+| 036 | [Covers render at the platform's exact size](036-cover-render.feature) | in progress (v1.4.0) |
+| 037 | [The publish pack holds everything needed to publish, in one file](037-publish-pack.feature) | in progress (v1.4.0) |
+| 038 | [The published links are checked against the link map](038-link-list.feature) | in progress (v1.4.0) |
 
 `CAPABILITIES.md` at the repo root summarises shipped features by phase.

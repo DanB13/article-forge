@@ -2,6 +2,16 @@
 
 A dedicated pass, separate from copy editing, hunting for machine fingerprints and adding human ones. Run it against `profile/voice-profile.md` — the user's rules override everything below where they conflict.
 
+## Start with the scorecard
+
+1. From the repo root, run `python <skill-dir>/scripts/meters.py articles/<slug>/draft.md`. It writes `articles/<slug>/scorecard.md`.
+2. Show the user every meter's traffic light and reason (overused words, antithesis, rhythm, "is it me?", informality, AI detector). Lights are warnings, never stops.
+3. For each flag, propose a fix as options (rule 2). Apply none until the user chooses.
+4. Report the **reader-clue checklist**: what an expert reader would notice. **Vocabulary**: AI-tell words and corporate filler. **Sentence shape**: uniform sentence length, stacked "X, not Y". **Generic examples**: any example that could sit in anyone's article; ask the user for their own.
+5. When the user decides on a flag, record their call in the Flags table of `scorecard.md`: `accepted` if they changed the line, `ignored` if they kept it. The retro uses these calls to tune the meters. Running the meters again starts a fresh scorecard, so record calls before re-running.
+
+Words listed under `allowed_words` in `profile/settings.yaml` are the writer's own: never flag them, even if they appear below.
+
 ## Kill on sight (unless the profile says otherwise)
 
 - Transitional throat-clearing: "worth sitting with", "here's the striking bit", "sit that with a second", "worth noting", "let's be clear".

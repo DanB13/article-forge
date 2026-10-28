@@ -14,6 +14,8 @@ A phase-driven system for producing published, fully-referenced, credible though
 3. If found, also run `python <skill-dir>/scripts/migrate.py status` from the repo root. If it lists waiting migrations, tell the user what each one changes, show them `migrate.py plan`, and run `migrate.py apply --yes` only after they say yes. Never apply a migration without that yes. Then carry on with their request.
 4. If NOT found, run **onboarding** (see `references/00-onboarding.md`). In a repo, first run `python <skill-dir>/scripts/scaffold_profile.py` from the repo root: it creates `profile/` and `articles/` from `assets/templates/` and never overwrites a file that exists. Then interview the user, ingest 2–3 pieces they've published, and fill the profile files before proceeding.
 
+5. If `profile/settings.yaml` exists, read it: the informality dial, the writer's allowed and banned words, and which optional modules are on. The writer's own unaided writing is in `profile/samples/`; the phrase fingerprint is `profile/samples/fingerprint.md`. Never put a key in any file: modules read keys from environment variables.
+
 The upstream repo never ships `profile/` or `articles/`. Those folders exist only in the user's own repo, so engine updates cannot conflict with them.
 
 Never overwrite the user's profile with your own defaults. Profile files are the user's property; the skill only proposes additions during the Retro phase, with explicit approval.
@@ -52,13 +54,24 @@ For each new article, create `articles/<slug>/` containing:
 articles/<slug>/
 ├── brief.md          # locked brief (Phase 1 output)
 ├── research.md       # candidate stats + claimed sources, all marked unverified
+├── draft-v1.md       # the first complete draft, never changed again (edit distance measures from it)
 ├── draft.md          # the living draft: article text only, ending with its last line
 ├── notes.md          # drafting notes, open questions, your suggestions (never in draft.md)
 ├── evidence.md       # Phase 4 output: per-stat provenance records + link map
 ├── assets/           # cover + in-article images
+├── scorecard.md      # Phase 5: meter lights, reasons, and the writer's call on each flag
 ├── publish-pack.md   # Phase 7 output
+├── published.md      # Phase 8: the text as published
+├── metrics.yaml      # Phase 8: edit distance, first draft to published
 └── retro.md          # Phase 8 output
 ```
+
+## Measuring
+
+Two scripts show whether the engine is getting closer to the writer. Run them from the repo root.
+
+- `python <skill-dir>/scripts/meters.py articles/<slug>/draft.md` writes the scorecard at the voice edit (Phase 5). Its lights are warnings, never stops.
+- `python <skill-dir>/scripts/edit_distance.py articles/<slug>` records how much the writer changed between `draft-v1.md` and `published.md`, at the retro (Phase 8), and prints the baseline.
 
 In Claude.ai without a filesystem, keep the same sections as clearly-labelled artifacts/documents instead.
 

@@ -4,7 +4,7 @@ Render an HTML cover template to a platform-exact PNG.
 
 Pipeline: self-contained HTML (images embedded as base64 data URIs)
   -> wkhtmltoimage (--load-error-handling ignore, for blocked font CDNs)
-  -> Pillow crop/resize to exact dimensions.
+  -> Pillow scale-to-cover and centre-crop to exact dimensions.
 
 Usage:
   python render_cover.py cover.html out.png --width 1200 --height 627
@@ -47,6 +47,15 @@ def keep_source(html_path: Path, output_path: Path) -> Path | None:
     dest_dir.mkdir(parents=True, exist_ok=True)
     shutil.copy2(html_path, dest)
     return dest
+
+
+def fit(img, width: int, height: int):
+    """Scale the image to cover width x height, then centre-crop to exactly that size (spec 036-02)."""
+    from PIL import Image
+    scale = max(width / img.width, height / img.height)
+    img = img.resize((max(width, round(img.width * scale)), max(height, round(img.height * scale))), Image.LANCZOS)
+    left, top = (img.width - width) // 2, (img.height - height) // 2
+    return img.crop((left, top, left + width, top + height))
 
 
 def embed_images(html: str, embeds: list[str]) -> str:
@@ -103,15 +112,7 @@ def main() -> None:
         sys.exit(f"wkhtmltoimage failed:\n{res.stderr}")
 
     from PIL import Image  # noqa: import after render so failure msg is clearer
-    img = Image.open(raw)
-    # Scale to target width, then centre-crop to exact height.
-    scale = args.width / img.width
-    img = img.resize((args.width, round(img.height * scale)), Image.LANCZOS)
-    if img.height < args.height:
-        sys.exit(f"rendered height {img.height}px < target {args.height}px; "
-                 "add content or reduce --height")
-    top = (img.height - args.height) // 2
-    img = img.crop((0, top, args.width, top + args.height))
+    img = fit(Image.open(raw), args.width, args.height)
     img.save(args.output, "PNG")
     raw.unlink(missing_ok=True)
     print(f"wrote {args.output} ({args.width}x{args.height})")

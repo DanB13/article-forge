@@ -8,10 +8,11 @@ name: engine-update
 # One-time setup in your repo (python .claude/skills/article-forge/scripts/check_setup.py checks it):
 #   1. Settings > Actions > General > Workflow permissions:
 #      tick "Allow GitHub Actions to create and approve pull requests".
-#   2. Updates that change files under .github/workflows/ need a fine-grained
-#      token with Contents and Workflows (read and write) on this repo, saved as
-#      the ENGINE_UPDATE_TOKEN secret. The token only pushes the update branch;
-#      this workflow's own token opens the pull request.
+#   2. Optional: a fine-grained token with Contents and Workflows (read and write)
+#      on this repo, saved as the ENGINE_UPDATE_TOKEN secret. GitHub only lets it
+#      push updates that change files under .github/workflows/. Without it, such an
+#      update opens an issue with the commands to merge it by hand. The token only
+#      pushes the update branch; this workflow's own token opens the pull request.
 #   3. Optional: set the repository variable ENGINE_CHANNEL to "rc" to receive
 #      release candidates as well as final releases.
 
@@ -80,6 +81,31 @@ jobs:
           gh issue create --title "Engine update $TAG is ready: open its pull request" --body-file "$RUNNER_TEMP/issue.md"
           echo "::error::Could not open the pull request. An issue with a one-click link was opened instead."
           exit 1
+
+      - name: If the update needs the token, open an issue with the commands to merge it by hand
+        if: steps.update.outputs.action == 'needs_token'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.update.outputs.tag }}
+          FILES: ${{ steps.update.outputs.files }}
+          UPSTREAM: ${{ vars.ARTICLE_FORGE_UPSTREAM || 'https://github.com/DanB13/article-forge.git' }}
+        run: |
+          {
+            printf 'Engine update %s changes workflow files, and GitHub only lets the optional update token secret push those (see UPDATING.md). Nothing was pushed.\n\n' "$TAG"
+            printf 'Merge it by hand from your repo folder (or ask Claude Code to):\n\n'
+            printf '```\n'
+            printf 'git checkout main && git pull\n'
+            printf 'git remote add upstream %s   # skip if you already have it\n' "$UPSTREAM"
+            printf 'git fetch upstream --tags\n'
+            printf 'git checkout -b engine-update/%s\n' "$TAG"
+            printf 'git merge %s --no-edit\n' "$TAG"
+            printf 'git push -u origin engine-update/%s\n' "$TAG"
+            printf '```\n\n'
+            printf 'Then open a pull request for that branch and merge it with **Create a merge commit**.\n'
+            printf 'To make this automatic next time, add the token: see UPDATING.md.\n\nWorkflow files in this update:\n%s\n' "$FILES"
+          } > "$RUNNER_TEMP/issue.md"
+          gh issue create --title "Engine update $TAG needs one manual step" --body-file "$RUNNER_TEMP/issue.md"
+          echo "::warning::Engine update $TAG changes workflow files and needs the update token secret, or a manual merge. An issue with the commands is open."
 
       - name: Report a conflict or a refused update
         if: steps.update.outputs.action == 'conflict' || steps.update.outputs.action == 'refused'
