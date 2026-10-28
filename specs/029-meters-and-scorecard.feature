@@ -11,7 +11,7 @@ Feature: Rule-based meters give every draft a scorecard
   @code @id:029-01
   Scenario Outline: Overused AI words are flagged unless the writer allows them
     Given a draft that uses "<word>" twice
-    And the writer allows "navigate, seamless, robust"
+    And the writer allows "robust, navigate"
     When the meters run
     Then the overused-words meter <result>
 
