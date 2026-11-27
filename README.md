@@ -16,31 +16,10 @@ publish-day link rot. The process exists so you don't repeat them.
 One article runs through nine phases. You make every call that matters; Claude
 does the legwork and never edits silently.
 
-```mermaid
-flowchart TB
-    subgraph write ["Write"]
-        direction LR
-        idea([Your idea]) --> B["1 Brief<br/>argument, audience, outcome"]
-        B --> R["2 Research<br/>stats marked unverified"]
-        R --> D["3 Draft<br/>complete first draft"]
-        D --> E{"Your edit rounds<br/>options, never silent"}
-    end
-    subgraph finish ["Check and publish"]
-        direction LR
-        P["4 Provenance<br/>every stat traced"] --> V["5 Voice edit<br/>in your voice"]
-        V --> I["6 Imagery<br/>real material first"]
-        I --> K["7 Publish pack"]
-        K --> pub([Published])
-    end
-    subgraph learn ["Learn"]
-        direction LR
-        O["0 Onboarding<br/>from your published work"] --> prof[(Your profile)]
-        T["8 Retro<br/>what you changed"] -. "proposes rules,<br/>you approve" .-> prof
-    end
-    E --> P
-    pub --> T
-    prof -. "read before every phase" .-> B
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/how-it-works-dark.svg">
+  <img alt="How Article Forge works: Write (brief, research, draft, your edit rounds), then Check (provenance, voice edit, imagery, publish pack), then Publish and learn (published, retro, profile updates you approve). Your profile is read before every phase and learns from what you changed." src="docs/images/how-it-works-light.svg" width="880">
+</picture>
 
 Your voice lives in your own private repo, and engine improvements reach it as
 pull requests you review. They never touch your profile or your articles.
